@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../Navbar/Navbar.css'
 import Logo from '../../Assets/Aarohna.png'
 const DesktopNav = () => {
 
@@ -9,7 +8,9 @@ const DesktopNav = () => {
   return (
     <>
         <div className='flex justify-between items-center h-24 bg-black p-8 z-10'>
-        <img src={Logo} alt="Antara" className=' z-10 pt-5 w-72 h-96' />
+        <div className="logo text-6xl text-white p-3 rounded-lg z-10">
+          Antara
+        </div>
         <nav className="nav-bar">
             <ul className="flex text-blue-500">
                 <Link to={''} className={linkStyle}> Home </Link>
