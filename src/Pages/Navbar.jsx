@@ -1,12 +1,14 @@
 import React from 'react'
 import DesktopNav from '../Components/Navbar/DesktopNav'
 import MobileNav from '../Components/Navbar/MobileNav'
+import { useEffect , useState} from 'react'
+
 const Navbar = () => {
 
 
-     const [width, setWidth] = React.useState(window.innerWidth);
+     const [width, setWidth] = useState(window.innerWidth);
      const breakpoint = 620;
-     React.useEffect(() => {
+      useEffect(() => {
        const handleWindowResize = () => setWidth(window.innerWidth)
        window.addEventListener("resize", handleWindowResize);
        return () => window.removeEventListener("resize", handleWindowResize);

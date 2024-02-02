@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../../Assets/Aarohna.png'
+
 const DesktopNav = () => {
 
   const linkStyle = "mx-5 inline-block no-underline text-2xl font-bold text-white transition-all duration-500 hover:bg-white hover:text-blue-500 hover:px-2 hover:rounded-lg";
@@ -16,8 +16,7 @@ const DesktopNav = () => {
                 <Link to={''} className={linkStyle}> Home </Link>
                 <Link to={''} className={linkStyle}> Events </Link>
                 <Link to={''} className={linkStyle}> Timeline </Link>
-                <Link to={''} className={linkStyle}> FAQs </Link>
-                <Link to={''} className={linkStyle}> Contacts </Link>
+                <Link to={''} className={linkStyle}> Contact Us </Link>
             </ul>
         </nav>
         </div>
