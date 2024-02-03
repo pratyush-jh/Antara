@@ -1,25 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import {AiFillHome, AiFillCalendar, AiOutlineFieldTime, AiFillContacts} from 'react-icons/ai'
 import DektopNav from '../../Functions/DektopNav'
 
 const DesktopNav = () => {
 
   const {linkStyle} = DektopNav();
+
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
     <>
-        <div className='flex justify-between items-center h-24 bg-purple-700 p-5 z-10 mddmax:h-20 mddmax:p-3' >
-        <div className="logo text-6xl text-white p-2 rounded-lg z-10 mddmax:text-4xl mddmax:p-1" >
+        <div className='flex justify-between items-center h-24 bg-purple-300 p-3 z-10 mddmax:h-20 mddmax:p-2' >
+        <div className="logo text-6xl text-black p-2 rounded-lg z-10 mddmax:text-4xl mddmax:p-1" >
           Antara
         </div>
         <nav className="nav-bar">
             <ul className="flex text-blue-500">
-                <Link to={'/'} className={linkStyle}>Home&nbsp;<AiFillHome/></Link>
-                <Link to={'/events'} className={linkStyle}>Events&nbsp;<AiFillCalendar/></Link>
-                <Link to={'/timeline'} className={linkStyle}>Timeline&nbsp;<AiOutlineFieldTime/></Link>
-                <Link to={'/teams'} className={linkStyle}>Contact Us&nbsp;<AiFillContacts/></Link>
+                <Link to={'*'} className={linkStyle}>Home</Link>
+                <Link to={'/events'} className={linkStyle}>Events</Link>
+                <Link to={'/timeline'} className={linkStyle}>Timeline</Link>
+                <Link to={'/contact'} className={linkStyle}>Contact Us</Link>
             </ul>
         </nav>
+        <div className={`${!isLogin ? 'block' : 'hidden'}`}>
+          <Link to={''} className={linkStyle} onClick={() => setIsLogin(!isLogin)}>Login</Link>
+        </div>
+        <div className={`${isLogin ? 'block' : 'hidden'}`}>
+          <Link to={''} className={linkStyle} onClick={() => setIsLogin(!isLogin)}>Logout</Link>
+        </div>
         </div>
     </>
 
