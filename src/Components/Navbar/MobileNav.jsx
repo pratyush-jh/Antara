@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { FaBars } from "react-icons/fa";
 import {AiFillHome, AiFillCalendar, AiOutlineFieldTime, AiFillContacts} from 'react-icons/ai'
 import { IoMdClose } from "react-icons/io";
@@ -27,10 +27,10 @@ const MobileNav = () => {
 
       <div className={`${isOpen ? 'block' : 'hidden'} bg-purple-500 font- w-full h-screen fixed top-23 border-t-2 z-10`}>
         <div className="flex flex-col items-center justify-center h-full -mt-10">
-          <Link to="/" className={Moblink} onClick={isOpen}>Home&nbsp;<AiFillHome/></Link>
-          <Link to="/about" className={Moblink} onClick={isOpen}>Events&nbsp;<AiFillCalendar/></Link>
-          <Link to="/services" className={Moblink} onClick={isOpen}>Services&nbsp;<AiOutlineFieldTime/></Link>
-          <Link to="/contact" className={Moblink} onClick={isOpen}>Contact&nbsp;<AiFillContacts/></Link>
+          <NavLink to="/" className={Moblink} onClick={isOpen}>Home&nbsp;<AiFillHome/></NavLink>
+          <NavLink to="/events" className={Moblink} onClick={isOpen}>Events&nbsp;<AiFillCalendar/></NavLink>
+          <NavLink to="/timeline" className={Moblink} onClick={isOpen}>Timeline&nbsp;<AiOutlineFieldTime/></NavLink>
+          <NavLink to="/teams" className={Moblink} onClick={isOpen}>Contact&nbsp;<AiFillContacts/></NavLink>
         </div>
       </div>
 

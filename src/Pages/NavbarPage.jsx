@@ -3,7 +3,7 @@ import DesktopNav from '../Components/Navbar/DesktopNav'
 import MobileNav from '../Components/Navbar/MobileNav'
 import { useEffect , useState} from 'react'
 
-const Navbar = () => {
+const NavbarPage = () => {
 
 
      const [width, setWidth] = useState(window.innerWidth);
@@ -23,4 +23,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default NavbarPage

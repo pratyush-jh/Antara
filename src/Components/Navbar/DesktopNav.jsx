@@ -14,10 +14,10 @@ const DesktopNav = () => {
         </div>
         <nav className="nav-bar">
             <ul className="flex text-blue-500">
-                <Link to={''} className={linkStyle}>Home&nbsp;<AiFillHome/></Link>
-                <Link to={''} className={linkStyle}>Events&nbsp;<AiFillCalendar/></Link>
-                <Link to={''} className={linkStyle}>Timeline&nbsp;<AiOutlineFieldTime/></Link>
-                <Link to={''} className={linkStyle}>Contact Us&nbsp;<AiFillContacts/></Link>
+                <Link to={'/'} className={linkStyle}>Home&nbsp;<AiFillHome/></Link>
+                <Link to={'/events'} className={linkStyle}>Events&nbsp;<AiFillCalendar/></Link>
+                <Link to={'/timeline'} className={linkStyle}>Timeline&nbsp;<AiOutlineFieldTime/></Link>
+                <Link to={'/teams'} className={linkStyle}>Contact Us&nbsp;<AiFillContacts/></Link>
             </ul>
         </nav>
         </div>

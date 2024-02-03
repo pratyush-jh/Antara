@@ -1,16 +1,38 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navbar from './Pages/Navbar';
-import Home from './Components/Home/Home';
-function App() {
-  return (
-    <Router>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Home/>} />
-      </Routes>
-    </Router>
-  );
-}
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
 
-export default App;
+import Navbar from './Pages/NavbarPage';
+import Home from './Pages/HomePage';
+import Admin from './Pages/AdminPage';
+import Footer from './Pages/FooterPage';
+import Events from './Pages/EventsPage';
+import Teams from './Pages/TeamsPage';
+import Sponsors from './Pages/SponsorsPage';
+import Timeline from './Pages/TimelinePage';
+
+
+const AppLayout = () => (
+  <div>
+    <Navbar />
+    <Outlet />
+    <Footer />
+  </div>
+)
+
+const appRouters = () => (
+  <Router>
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route index element={<Home />} />
+        <Route path="admin" element={<Admin />} />
+        <Route path="events" element={<Events />} />
+        <Route path="teams" element={<Teams />} />
+        <Route path="sponsors" element={<Sponsors />} />
+        <Route path="timeline" element={<Timeline/>} />
+        <Route path="*" element={<Home /> } />
+      </Route>
+    </Routes>
+  </Router>
+)
+
+export default appRouters;
