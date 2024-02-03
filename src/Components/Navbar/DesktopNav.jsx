@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {AiFillHome, AiFillCalendar, AiOutlineFieldTime, AiFillContacts} from 'react-icons/ai'
+import DektopNav from '../../Functions/DektopNav'
 
 const DesktopNav = () => {
 
-  const linkStyle = "mx-4 inline-block flex items-center no-underline text-2xl font-bold text-white transition-all duration-500 hover:bg-white hover:text-purple-700 hover:px-2 hover:rounded-lg mddmax:text-xl mddmax:mx-2";
-
+  const {linkStyle} = DektopNav();
   return (
     <>
         <div className='flex justify-between items-center h-24 bg-purple-700 p-5 z-10 mddmax:h-20 mddmax:p-3' >
