@@ -35,6 +35,20 @@ export const checkToken = async () => {
   }
 };
 
+export const tokenData = async () => {
+  const token = localStorage.getItem('token');
+  if(token){
+    const response = await fetch(`${API_URL}/check-token`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    });
+    const data = await response.json();
+    return data;
+  }
+}; 
 
 export const logout = () => {
   localStorage.removeItem('token');

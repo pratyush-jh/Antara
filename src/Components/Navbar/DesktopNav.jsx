@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DektopNav from '../../Functions/DektopNav'
-
 import { useNavigate } from 'react-router-dom';
 import { checkToken} from '../../Functions/ApiCall';
+import './Navbar.css'
 
 
 const DesktopNav = () => {
@@ -27,7 +27,7 @@ const DesktopNav = () => {
   }, [navigate]);
   return (
     <>
-        <div className='flex justify-between items-center h-24 bg-purple-300 p-3 z-10 mddmax:h-20 mddmax:p-2' >
+        <div className=' flex justify-between items-center h-24 bg-purple-300 p-3 z-10 mddmax:h-20 mddmax:p-2' >
         <div className="logo text-6xl text-black p-2 rounded-lg z-10 mddmax:text-4xl mddmax:p-1" >
           Antara
         </div>
