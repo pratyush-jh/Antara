@@ -7,6 +7,12 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'skyBlue': '#E2F0F9',
+        'midBlue': '# B0DDE4',
+        'darkBlue': '#286FB4',
+        'white': '#FFFFFF',
+        'red': '#DF4C73',
       screens: {
         'sm': '425px',
         'md': '764px',

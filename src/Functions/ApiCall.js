@@ -1,10 +1,13 @@
 
 import React, { useEffect } from 'react'
 import { API_URL } from './Constants'
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 const ApiCall = () => {
   const [isverified, setIsVerified] = useState(false); 
   const [isToken , setIsToken] = useState(false);
+  const [tokenUserData, setTokenUserData] = useState(null);
+  const navigate = useNavigate();
 
       const checkToken = async () => {
         const token = localStorage.getItem('token');
@@ -27,6 +30,7 @@ const ApiCall = () => {
             if (response.status === 200) {
             console.log('Token is valid');
             setIsToken(true);
+            // console.log(response.user);
             return true;
           } else {
             throw new Error('Invalid token');
@@ -56,10 +60,12 @@ const ApiCall = () => {
     tokenData().then((data) => {
       if(data){
         setIsVerified(true);
+        setIsToken(true);
+        setTokenUserData(data.userData);
       }
     });
-    console.log('isverified', isverified);
-    console.log('isToken', isToken);
+    // console.log('isverified', isverified);
+    // console.log('isToken', isToken);
 
   } , []);
    const logout = () => {
@@ -67,7 +73,7 @@ const ApiCall = () => {
     localStorage.removeItem('LoggedIn');
   };
   return (
-    { checkToken, tokenData, isverified, isToken, logout}
+    { checkToken, tokenData, isverified, isToken,  tokenUserData , logout}
   )
 }
 

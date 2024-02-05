@@ -11,6 +11,7 @@ const Signup = () => {
           userName: '',
           email: '',
           password: '',
+          confirmPassword: '',
      };
 
      const validationSchema = Yup.object({
@@ -37,7 +38,7 @@ const Signup = () => {
                else if (response.status === 200) {
                     console.log('Signup success');
                     localStorage.setItem('token', data.token);
-                    navigate(`/verify`);
+                    navigate(`/events`);
                } else {
                     alert("Signup failed! Please try again.");
                     console.log('Signup failed');
@@ -67,6 +68,11 @@ const Signup = () => {
                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-600">Password</label>
                                    <Field type="password" id="password" name="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
                                    <ErrorMessage name="password" component="div" />
+                              </div>
+                              <div className="mb-5">
+                                   <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-600">Confirm Password</label>
+                                   <Field type="password" id="confirmPassword" name="confirmPassword" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                   <ErrorMessage name="confirmPassword" component="div" />
                               </div>
                               <button type="submit" className="w-full py-2 px-3 bg-blue-500 text-white rounded-md focus:outline-none">Signup</button>
                          </Form>

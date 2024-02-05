@@ -13,6 +13,7 @@ import Login from './Components/Login/Login';
 import LoginPage from './Pages/LoginPage';
 import Signup from './Components/Signup/Signup';
 import Verification from './Components/Verify/Verification';
+import Tutorial from './Components/Tutorial/Tutorial';
 
 
 const AppLayout = () => (
@@ -35,7 +36,7 @@ const appRouters = () => (
         <Route path="timeline" element={<Timeline/>} />
         <Route path="login" element={<LoginPage/>} />
         <Route path = "signup" element = {<Signup/>} />
-        <Route path = "verify" element = {<Verification/>} />
+        <Route path = "registration" element = {<Tutorial/>} />
         <Route path="*" element={<Home /> } />
       </Route>
     </Routes> 

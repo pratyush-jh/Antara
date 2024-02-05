@@ -8,26 +8,22 @@ import ApiCall from '../../Functions/ApiCall';
 
 const Verification = () => {
      const navigate = useNavigate();
-     const { checkToken, tokenData, isToken} = ApiCall();
-     const [user , setUser] = useState();
+     const { checkToken, tokenData, isToken ,tokenUserData} = ApiCall();
+     const [user , setUser] = useState(null);
      useEffect(() => {
-          const checkAndNavigate = () => {
+          const checkAndNavigate = async () => {
+               const Token  = await tokenData();
                console.log("the current state is " + isToken);
-               if (!isToken) {
+               if (!Token) {
                     navigate('/login');
                } 
                else{
-                    const userData = async () => {
-                         const data = await tokenData();
-                         setUser(data.userData.userId);
-                    };
-                    userData();
+                    setUser(tokenUserData.userId);
                }
           };
           checkAndNavigate();
      }, [navigate]);
 
-     
      const sendOTP = async () => {
           try {
                const response = await fetch(`${API_URL}/send-otp`, {
@@ -50,17 +46,9 @@ const Verification = () => {
                console.error('Error:', error);
           }
      };
-     useEffect(() => {
-          if (user) {
-               sendOTP();
-          }
-     }, [user]);
 
      // Function to send the OTP to the server
      console.log(user);
-     if(user === undefined){
-          navigate('/login');
-     }
 
      const initialValues = {
           otp: '',

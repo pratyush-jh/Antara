@@ -16,9 +16,6 @@ const Login = ({path}) => {
                if (!result) {
                  navigate('/login');
                } 
-               else if (!isVerified) {
-                 navigate('/verify');
-               }
                else {
                  navigate('/events');
                }
@@ -52,13 +49,11 @@ const Login = ({path}) => {
                     localStorage.setItem('token', data.token);
                     if (data.isVerified) {
                          navigate('/events');
-                    } else {
-                         navigate(`/verify`);
                     }
-               } else {
-                    alert('Wrong Credentials! Please try again.');
-                    console.log('Login failed');
-               }
+                    } else {
+                              alert('Wrong Credentials! Please try again.');
+                              console.log('Login failed');
+                    }
           } catch (error) {
                console.error('Error:', error);
           }
@@ -84,7 +79,7 @@ const Login = ({path}) => {
                          </Form>
                     </Formik>
                     <div className="mt-4 text-center">
-                         <Link to="/signup" className="text-blue-500 hover:underline">Don't have an account? Sign up</Link>
+                         <Link to="/registration" className="text-blue-500 hover:underline">Don't have an account? Sign up</Link>
                     </div>
                </div>
           </div>
