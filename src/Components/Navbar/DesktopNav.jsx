@@ -3,15 +3,20 @@ import { Link } from 'react-router-dom'
 import DektopNav from '../../Functions/DektopNav'
 
 import { useNavigate } from 'react-router-dom';
-import { logout , checkToken} from '../../Functions/ApiCall';
+import { checkToken} from '../../Functions/ApiCall';
 
 
 const DesktopNav = () => {
 
   const {linkStyle} = DektopNav();
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const logout = async () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('token');
+    navigate('/');
+  };
+
   useEffect(() => {
     const checkAndNavigate = async () => {
       console.log('checking token');
@@ -35,7 +40,8 @@ const DesktopNav = () => {
             </ul>
         </nav>
         <div>
-          {isLoggedIn ? <button onClick={logout} className="bg-blue-500 text-white px-3 py-1 rounded-lg">Logout</button> : <Link to={'/login'} className="bg-blue-500 text-white px-3 py-1 rounded-lg">Login</Link>}
+        {isLoggedIn ? <button onClick={logout} className="bg-blue-500 text-white px-3 py-1 rounded-lg">Logout</button> : <Link to={'/login'} className="bg-blue-500 text-white px-3 py-1 rounded-lg">Login</Link>}
+
         </div>
         </div>
     </>
