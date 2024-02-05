@@ -9,6 +9,8 @@ import Events from './Pages/EventsPage';
 import Teams from './Pages/TeamsPage';
 import Sponsors from './Pages/SponsorsPage';
 import Timeline from './Pages/TimelinePage';
+import Login from './Components/Login/Login';
+import LoginPage from './Pages/LoginPage';
 
 
 const AppLayout = () => (
@@ -29,6 +31,7 @@ const appRouters = () => (
         <Route path="teams" element={<Teams />} />
         <Route path="sponsors" element={<Sponsors />} />
         <Route path="timeline" element={<Timeline/>} />
+        <Route path="login" element={<LoginPage/>} />
         <Route path="*" element={<Home /> } />
       </Route>
     </Routes>
