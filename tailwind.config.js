@@ -13,6 +13,7 @@ export default {
         'darkBlue': '#286FB4',
         'white': '#FFFFFF',
         'red': '#DF4C73',
+      },
       screens: {
         'sm': '425px',
         'md': '764px',
