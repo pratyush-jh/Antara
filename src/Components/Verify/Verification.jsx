@@ -3,17 +3,17 @@ import { useEffect , useState} from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate , useParams} from 'react-router-dom';
-import { API_URL } from '../../Functions/ApiCall';
-import { checkToken , tokenData } from '../../Functions/ApiCall';
+import { API_URL } from '../../Functions/Constants';
+import ApiCall from '../../Functions/ApiCall';
 
 const Verification = () => {
      const navigate = useNavigate();
+     const { checkToken, tokenData, isToken} = ApiCall();
      const [user , setUser] = useState();
      useEffect(() => {
-          const checkAndNavigate = async () => {
-               const result = await checkToken();
-               console.log("the current state is " + result);
-               if (!result) {
+          const checkAndNavigate = () => {
+               console.log("the current state is " + isToken);
+               if (!isToken) {
                     navigate('/login');
                } 
                else{
@@ -24,7 +24,6 @@ const Verification = () => {
                     userData();
                }
           };
-
           checkAndNavigate();
      }, [navigate]);
 

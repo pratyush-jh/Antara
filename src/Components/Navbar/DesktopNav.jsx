@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import DektopNav from '../../Functions/DektopNav'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { checkToken} from '../../Functions/ApiCall';
-import './Navbar.css'
-
+import ApiCall from '../../Functions/ApiCall';
+import './Navbar.css';
 
 const DesktopNav = () => {
-
-  const {linkStyle} = DektopNav();
+  const { checkToken } = ApiCall();
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+
   const logout = async () => {
     setIsLoggedIn(false);
     localStorage.removeItem('token');
@@ -25,28 +23,34 @@ const DesktopNav = () => {
     };
     checkAndNavigate();
   }, [navigate]);
+
+  console.log(isLoggedIn);
   return (
-    <>
-        <div className=' flex justify-between items-center h-24 bg-purple-300 p-3 z-10 mddmax:h-20 mddmax:p-2' >
-        <div className="logo text-6xl text-black p-2 rounded-lg z-10 mddmax:text-4xl mddmax:p-1" >
-          Antara
+    <nav className="bg-white shadow-lg pt-2 pb-2">
+      <div className=" px-40">
+        <div className="flex justify-between items-center">
+          <div className="flex gap-40">
+            <div>
+              <Link to="/" className="flex items-center py-4 px-2 gap-12">
+                <span className="logo text-2xl text-gray-500 ">Antara</span>
+              </Link>
+            </div>
+            <div className="hidden md:flex items-center space-x-6">
+              <Link to="/" className="py-4 px-2 text-gray-500 border-b-4 border-transparent hover:border-blue-500">Home</Link>
+              <Link to="/events" className="py-4 px-2 text-gray-500 border-b-4 border-transparent hover:border-blue-500">Events</Link>
+              <Link to="/timeline" className="py-4 px-2 text-gray-500 border-b-4 border-transparent hover:border-blue-500">Timeline</Link>
+              <Link to="/teams" className="py-4 px-2 text-gray-500 border-b-4 border-transparent hover:border-blue-500">Contact Us</Link>
+            </div>
+          </div>
+          <div className="hidden md:flex items-center space-x-3 ">
+            {isLoggedIn ? 
+              <button onClick={logout} className="py-2 px-2 font-medium text-white bg-blue-500 rounded hover:bg-blue-400">Logout</button> : 
+              <Link to="/login" className="py-2 px-2 font-medium text-white bg-blue-500 rounded hover:bg-blue-400">Login</Link>}
+          </div>
         </div>
-        <nav className="nav-bar">
-            <ul className="flex text-blue-500">
-                <Link to={'*'} className={linkStyle}>Home</Link>
-                <Link to={'/events'} className={linkStyle}>Events</Link>
-                <Link to={'/timeline'} className={linkStyle}>Timeline</Link>
-                <Link to={'/teams'} className={linkStyle}>Contact Us</Link>
-            </ul>
-        </nav>
-        <div>
-        {isLoggedIn ? <button onClick={logout} className="bg-blue-500 text-white px-3 py-1 rounded-lg">Logout</button> : <Link to={'/login'} className="bg-blue-500 text-white px-3 py-1 rounded-lg">Login</Link>}
+      </div>
+    </nav>
+  );
+};
 
-        </div>
-        </div>
-    </>
-
-  )
-}
-
-export default DesktopNav
+export default DesktopNav;

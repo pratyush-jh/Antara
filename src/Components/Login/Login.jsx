@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, Link } from 'react-router-dom';
-import { API_URL, checkToken } from '../../Functions/ApiCall';
-
-
-
+import ApiCall from '../../Functions/ApiCall';
+import { API_URL } from '../../Functions/Constants';
 
 const Login = ({path}) => {
+     const { checkToken , isVerified } = ApiCall();
      const navigate = useNavigate();
      // * Function to check if the user is already logged in
      useEffect(() => {
@@ -16,11 +15,14 @@ const Login = ({path}) => {
                console.log("the current state is " + result);
                if (!result) {
                  navigate('/login');
-               } else {
+               } 
+               else if (!isVerified) {
+                 navigate('/verify');
+               }
+               else {
                  navigate('/events');
                }
              };
-           
              checkAndNavigate();
      }, [navigate]);
           

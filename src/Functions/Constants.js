@@ -3,3 +3,4 @@ import React from 'react';
 
 export let isLogin = false;
 
+export const API_URL = 'http://localhost:5000';
