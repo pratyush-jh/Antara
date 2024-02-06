@@ -8,6 +8,7 @@ import axios from 'axios';
 
 const Signup = () => {
      const navigate = useNavigate();
+     const [isLoading, setIsLoading] = useState(false);
      const initialValues = {
           name: '',
           email: '',
@@ -27,6 +28,7 @@ const Signup = () => {
           password_confirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
      });
      const onSubmit = async (values) => {
+          setIsLoading(true);
                // Create a new FormData instance
                const formData = new FormData();
 
@@ -61,7 +63,7 @@ const Signup = () => {
      return (
           <>
     
-               <div className="flex justify-center items-center h-full p-10 bg-gray-100">
+               <div className={`flex justify-center items-center h-full p-10 bg-gray-100 ${isLoading ? 'opacity-10': `opacity-100`}`}>
                     <div className="w-96 h-full bg-white p-5 rounded-lg shadow-lg">
                          <h1 className="text-3xl font-bold text-center text-gray-800">Signup</h1>
                          <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>

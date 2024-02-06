@@ -14,6 +14,7 @@ import Signup from './Components/Signup/Signup';
 import Tutorial from './Components/Tutorial/Tutorial';
 import Thanks from './Components/Thanks/Thanks';
 import Hero from './Components/Hero/Hero';
+import Verify from './Components/Verify/Verify';
 
 
 const AppLayout = () => (
@@ -39,6 +40,7 @@ const appRouters = () => (
         <Route path = "signup" element = {<Signup/>} />
         <Route path = "registration" element = {<Tutorial/>} />
         <Route path = "thanks" element = {< Thanks />}/>
+        <Route path = "verify" element = {<  Verify/>}/>
         <Route path="*" element={<Home /> } />
       </Route>
     </Routes> 

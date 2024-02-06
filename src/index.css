@@ -17,14 +17,37 @@
      top: 80%;
 }
 
-.bg-skyBlue-alpha {
-     background-color: rgba(#E2F0F9, 0.5); /* Sky blue with 50% opacity */
-   }
-   
-.bg-skin-alpha {
-/* background-color: rgba(rgb(255, 222, 199) ,0.5);  */
+::-webkit-scrollbar {
+     width: 0px;
 }
-
 h1, h2, h3, h4, h5, h6 , p, a {
      font-family: sans-serif ;
+}
+
+
+.spinner {
+height: 15px;
+aspect-ratio: 4;
+--_g: no-repeat radial-gradient(farthest-side,#0080ff ,#0080ff);
+background: 
+     var(--_g) left, 
+     var(--_g) right;
+background-size: 25% 100%;
+display: flex;
+zoom: 0.7;
+}
+.spinner:before{
+content: "";
+flex: 1;
+background: inherit;
+animation: l50 2s infinite;
+}
+@keyframes l50 {
+0%    {transform: translate( 37.5%) rotate(0)     }
+16.67%{transform: translate( 37.5%) rotate(90deg) }
+33.33%{transform: translate(-37.5%) rotate(90deg) }
+50%   {transform: translate(-37.5%) rotate(180deg)}
+66.67%{transform: translate(-37.5%) rotate(270deg)}
+83.33%{transform: translate( 37.5%) rotate(270deg)}
+100%  {transform: translate( 37.5%) rotate(360deg)}
 }
