@@ -57,9 +57,9 @@ const Signup = () => {
                          <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                               <Form className="mt-5">
                                    <div className="mb-5">
-                                        <label htmlFor="userName" className="block mb-2 text-sm font-medium text-gray-600">Username</label>
-                                        <Field type="text" id="userName" name="userName" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
-                                        <ErrorMessage name="userName" component="div" />
+                                        <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-600">Username</label>
+                                        <Field type="text" id="name" name="name" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                        <ErrorMessage name="name" component="div" />
                                    </div>
                                    <div className="mb-5">
                                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-600">Email</label>
@@ -72,9 +72,9 @@ const Signup = () => {
                                         <ErrorMessage name="password" component="div" />
                                    </div>
                                    <div className="mb-5">
-                                        <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-600">Confirm Password</label>
-                                        <Field type="password" id="confirmPassword" name="confirmPassword" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
-                                        <ErrorMessage name="confirmPassword" component="div" />
+                                        <label htmlFor="password_confirmation" className="block mb-2 text-sm font-medium text-gray-600">Confirm Password</label>
+                                        <Field type="password" id="password_confirmation" name="password_confirmation" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                        <ErrorMessage name="password_confirmation" component="div" />
                                    </div>
                                    <button type="submit" className="w-full py-2 px-3 bg-blue-500 text-white rounded-md focus:outline-none">Signup</button>
                               </Form>
