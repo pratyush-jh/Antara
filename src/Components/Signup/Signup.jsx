@@ -9,10 +9,10 @@ import axios from 'axios';
 const Signup = () => {
      const navigate = useNavigate();
      const [email, setEmail] = useState('');
-     const [step, setStep] = useState(1);
+     const [step, setStep] = useState(3);
      const initialValues = {
           userName: '',
-          email: email,
+          email: '',
           password: '',
           confirmPassword: '',
      };
@@ -142,6 +142,11 @@ const Signup = () => {
                                         <label htmlFor="userName" className="block mb-2 text-sm font-medium text-gray-600">Username</label>
                                         <Field type="text" id="userName" name="userName" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
                                         <ErrorMessage name="userName" component="div" />
+                                   </div>
+                                   <div className="mb-5">
+                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-600">Email</label>
+                                        <Field type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                        <ErrorMessage name="email" component="div" />
                                    </div>
                                    <div className="mb-5">
                                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-600">Password</label>
