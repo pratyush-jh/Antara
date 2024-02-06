@@ -25,14 +25,14 @@ const Thanks = () => {
                onRequestClose={closeModal}
                style={{
                     overlay: {
-                         backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                         backgroundColor: 'rgba(255, 222, 199 ,0.2)',
                     },
                     content: {
                          color: 'black',
                          width: '50%',
                          height: '50%',
                          margin: 'auto',
-                         backgroundColor: 'white',
+                         backgroundColor: 'rgba(255, 222, 199 ,1)',
                          borderRadius: '10px',
                          display: 'flex',
                          flexDirection: 'column',
@@ -42,12 +42,12 @@ const Thanks = () => {
                }}
           >
                <div style={{ textAlign: 'center' }} data-aos="fade-down" className=' overflow-hidden'>
-                    <h2 className='text-midBlue font-bold text-2xl'>🎉 Thank You for Registering! 🎉</h2>
-                    <h3 className='text-midBlue font-bold text-xl'>Your verification is Pending</h3>
+                    <h2 className='text-brown font-bold text-2xl'>🎉 Thank You for Registering! 🎉</h2>
+                    <h3 className='text-brown font-bold text-xl'>Your verification is Pending</h3>
                     <h4 className='text-red'>Check your Email For Further Instructions</h4>
                </div>
                <button 
-                    className="py-2 px-2 font-medium text-white bg-blue-500 rounded hover:bg-blue-400 mt-6"
+                    className="py-2 px-2 font-large text-red rounded mt-6"
                     onClick={closeModal}
                     data-aos="fade-up"
                >
