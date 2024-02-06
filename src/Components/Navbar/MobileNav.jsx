@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import ApiCall from '../../Functions/ApiCall';
 
 const MobileNav = () => {
-  const { checkToken } = ApiCall();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -18,9 +16,12 @@ const MobileNav = () => {
 
   useEffect(() => {
     const checkAndNavigate = async () => {
-      console.log('checking token');
-      const result = await checkToken();
-      setIsLoggedIn(result);
+      const token = localStorage.getItem('token');
+      if (token) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
     };
     checkAndNavigate();
   }, [navigate]);

@@ -2,27 +2,22 @@ import React, { useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, Link } from 'react-router-dom';
-import ApiCall from '../../Functions/ApiCall';
 import { API_URL } from '../../Functions/Constants';
 
 const Login = ({path}) => {
-     const { checkToken , isVerified } = ApiCall();
      const navigate = useNavigate();
      // * Function to check if the user is already logged in
+
      useEffect(() => {
           const checkAndNavigate = async () => {
-               const result = await checkToken();
-               console.log("the current state is " + result);
-               if (!result) {
-                 navigate('/login');
-               } 
-               else {
-                 navigate('/events');
+               const token = localStorage.getItem('token');
+               if (token) {
+                    navigate('/events');
                }
-             };
-             checkAndNavigate();
+          };
+          checkAndNavigate();
      }, [navigate]);
-          
+
      const initialValues = {
           email: '',
           password: '',
@@ -45,15 +40,12 @@ const Login = ({path}) => {
                const data = await response.json();
                console.log(data);
                if (response.status === 200) {
-                    console.log('Login success');
                     localStorage.setItem('token', data.token);
-                    if (data.isVerified) {
-                         navigate('/events');
-                    }
-                    } else {
-                              alert('Wrong Credentials! Please try again.');
-                              console.log('Login failed');
-                    }
+                    navigate('/events');
+               } else {
+                    alert('Wrong Credentials! Please try again.');
+                    console.log('Login failed');
+               }
           } catch (error) {
                console.error('Error:', error);
           }

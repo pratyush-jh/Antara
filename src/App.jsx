@@ -9,11 +9,10 @@ import Events from './Pages/EventsPage';
 import Teams from './Pages/TeamsPage';
 import Sponsors from './Pages/SponsorsPage';
 import Timeline from './Pages/TimelinePage';
-import Login from './Components/Login/Login';
 import LoginPage from './Pages/LoginPage';
 import Signup from './Components/Signup/Signup';
-import Verification from './Components/Verify/Verification';
 import Tutorial from './Components/Tutorial/Tutorial';
+import Thanks from './Components/Thanks/Thanks';
 
 
 const AppLayout = () => (
@@ -37,6 +36,7 @@ const appRouters = () => (
         <Route path="login" element={<LoginPage/>} />
         <Route path = "signup" element = {<Signup/>} />
         <Route path = "registration" element = {<Tutorial/>} />
+        <Route path = "thanks" element = {< Thanks />}/>
         <Route path="*" element={<Home /> } />
       </Route>
     </Routes> 

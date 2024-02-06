@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import ApiCall from '../../Functions/ApiCall';
 import './Navbar.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -10,24 +9,27 @@ import { TypeAnimation } from 'react-type-animation';
 
 
 const DesktopNav = () => {
-  const { checkToken , isToken} = ApiCall();
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  
+    const logout = async () => {
+      setIsLoggedIn(false);
+      localStorage.removeItem('token');
+      navigate('/');
+    };
 
-  const logout = async () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem('token');
-    navigate('/');
-  };
-
-  useEffect(() => {
-    const checkAndNavigate =  () => {
-      setIsLoggedIn(isToken);
+ useEffect(() => {
+    const checkAndNavigate = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
     };
     checkAndNavigate();
   }, [navigate]);
 
-  // console.log(isLoggedIn);
   useEffect(() => {
     AOS.init({
       duration : 1000
