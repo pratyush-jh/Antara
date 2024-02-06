@@ -18,25 +18,35 @@ const Signup = () => {
      const validationSchema = Yup.object({
           name: Yup.string().required('Required'),
           email: Yup.string().email('Invalid email address').required('Required'),
-          password: Yup.string().min(8, 'Must be 8 characters or more').required('Required'),
+          password: Yup.string()
+               .matches(
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@])[a-zA-Z\d@]{8,}$/,
+                    'Must contain 8 characters, at least one uppercase letter, one lowercase letter, one number, and one special character (@)'
+               )
+               .required('Required'),
           password_confirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
      });
      const onSubmit = async (values) => {
-          console.log("submitting")
-          console.log(values);
+               // Create a new FormData instance
+               const formData = new FormData();
+
+               // Append each value to the form data
+               for (const key in values) {
+               formData.append(key, values[key]);
+               }
           try {
-            const response = await axios.post(`${API_URL}/register`, values , {
+            const response = await axios.post(`${API_URL}/register`, formData , {
                  headers: {
-                       'Content-Type': 'application/json',
+                       'Content-Type': ' multipart/form-data',
                      }
                }
             ); 
             const data = response.data;
             console.log(data);
-            if (response.status === 400) {
+            if (response.status === 422) {
               alert('User already exists! Please login.');
             }
-            else if (response.status === 200) {
+            else if (response.status === 204) {
               console.log('Signup success');
               localStorage.setItem('token', data.token);
               navigate(`/thanks`);

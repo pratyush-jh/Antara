@@ -4,7 +4,7 @@ import Login from '../Components/Login/Login'
 const LoginPage = () => {
   return (
      <>
-          <Login path='login-antara' />
+          <Login path='login' />
      </>
   )
 }
