@@ -3,5 +3,5 @@ import React from 'react';
 
 export let isLogin = false;
 
-export const API_URL = 'http://localhost:5000';
-// export const API_URL = 'http://127.0.0.1:8000/api';
+// export const API_URL = 'http://localhost:5000';
+export const API_URL = 'https://eventspgdav.onrender.com';

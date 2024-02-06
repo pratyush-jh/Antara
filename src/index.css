@@ -24,3 +24,7 @@
 .bg-skin-alpha {
 background-color: rgba(#ffdec7 ,0.5); /* Skin color with 50% opacity */
 }
+
+h1, h2, h3, h4, h5, h6 , p, a {
+     font-family: sans-serif ;
+}

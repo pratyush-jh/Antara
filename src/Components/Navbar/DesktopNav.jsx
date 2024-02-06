@@ -47,15 +47,15 @@ const DesktopNav = () => {
           sequence={[
             'HYPERION',
             1500, 
-            'AAROHNA',
+            'AROHNA',
             1500,
             'TECHWHIZ',
             1500,
-            'AAROHNA',
+            'AROHNA',
             1500
           ]}
               wrapper="span"
-              speed={50}
+              speed={20}
               style={{ fontSize: '20px', display: 'inline-block' }}
               repeat={2}
             />
@@ -71,9 +71,9 @@ const DesktopNav = () => {
           </div>
           <div className="hidden md:flex items-center space-x-3 ">
             {isLoggedIn ? 
-              <button data-aos="fade-left" onClick={logout} className="py-2 px-2 font-medium rounded text-brown">Logout</button> : 
+              <button data-aos="fade-left" onClick={logout} className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">Logout</button> : 
             
-              <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center py-2 min-w-20 font-medium text-darkBlue rounded ">
+              <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center py-2 min-w-20 font-medium text-darkBlue rounded hover:text-midBlue duration-500 transition-all ">
                 Login
               </Link>
    
