@@ -7,10 +7,7 @@ const Home = () => {
 
   return (
     <div>
-      <a href="https://www.google.com" target="_blank" className={`ml-3 ${linkStyle}`}>
-        Register
-      </a>
-      <div className={`mr-3 ${linkStyle} float-right`}>{countdown}</div>
+      
     </div>
   );
 };

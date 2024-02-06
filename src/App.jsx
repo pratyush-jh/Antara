@@ -13,6 +13,7 @@ import LoginPage from './Pages/LoginPage';
 import Signup from './Components/Signup/Signup';
 import Tutorial from './Components/Tutorial/Tutorial';
 import Thanks from './Components/Thanks/Thanks';
+import Hero from './Components/Hero/Hero';
 
 
 const AppLayout = () => (
@@ -28,6 +29,7 @@ const appRouters = () => (
     <Routes>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Home />} />
+        <Route path="hero" element={<Hero />} />
         <Route path="admin" element={<Admin />} />
         <Route path="events" element={<Events />} />
         <Route path="teams" element={<Teams />} />

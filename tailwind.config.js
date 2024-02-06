@@ -9,10 +9,15 @@ export default {
     extend: {
       colors: {
         'skyBlue': '#E2F0F9',
-        'midBlue': '# B0DDE4',
+        'midBlue': '#B0DDE4',
         'darkBlue': '#286FB4',
         'white': '#FFFFFF',
         'red': '#DF4C73',
+        'pink': '#efa3a0',
+        'purple': '#8b597b',
+        'lightPurple': '#b8a2b9',
+        'skin': '#ffdec7',
+        'brown': '#493129',
       },
       screens: {
         'sm': '425px',

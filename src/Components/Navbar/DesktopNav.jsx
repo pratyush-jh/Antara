@@ -35,12 +35,14 @@ const DesktopNav = () => {
       duration : 1000
     });
   }, []);
+
+  const navbarStyle = `py-4 px-2 border-b-4 border-transparent ${isLoggedIn?'text-brown':' text-darkBlue'}  ${isLoggedIn?'hover:border-brown':'hover:border-darkBlue'} font-medium rounded`;
   return (
-    <nav className="bg-white shadow-lg pt-2 pb-2">
+    <nav className={` shadow-lg pt-2 pb-2 ${!isLoggedIn?'bg-skyBlue':'bg-skin'}`}>
       <div className=" px-40">
         <div className="flex justify-between items-center">
           <div data-aos="fade-right">
-          <Link to="/" className="logo absolute -top-7 font-sans flex items-center py-4 px-2 gap-12 font">
+          <Link to="/" className={`logo absolute -top-7 font-sans flex items-center py-4 px-2 gap-12 font ${isLoggedIn?'text-brown':' text-darkBlue'}`}>
           <TypeAnimation
           sequence={[
             'HYPERION',
@@ -61,17 +63,17 @@ const DesktopNav = () => {
           </div>
           <div className="flex gap-40">
             <div className="hidden md:flex items-center space-x-6">
-              <Link data-aos="fade-down" to="/" className="py-4 px-2 text-gray-500 border-b-4 border-transparent hover:border-blue-500">Home</Link>
-              <Link data-aos="fade-up" to="/events" className="py-4 px-2 text-gray-500 border-b-4 border-transparent hover:border-blue-500">Events</Link>
-              <Link data-aos="fade-down" to="/timeline" className="py-4 px-2 text-gray-500 border-b-4 border-transparent hover:border-blue-500">Timeline</Link>
-              <Link data-aos="fade-up" to="/teams" className="py-4 px-2 text-gray-500 border-b-4 border-transparent hover:border-blue-500">Contact Us</Link>
+              <Link data-aos="fade-down" to="/" className={navbarStyle}>Home</Link>
+              <Link data-aos="fade-up" to="/events" className={navbarStyle}>Events</Link>
+              <Link data-aos="fade-down" to="/timeline" className={navbarStyle}>Timeline</Link>
+              <Link data-aos="fade-up" to="/teams" className= {navbarStyle}>Contact Us</Link>
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-3 ">
             {isLoggedIn ? 
-              <button data-aos="fade-left" onClick={logout} className="py-2 px-2 font-medium text-white bg-blue-500 rounded hover:bg-blue-400">Logout</button> : 
+              <button data-aos="fade-left" onClick={logout} className="py-2 px-2 font-medium rounded text-brown">Logout</button> : 
             
-              <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center py-2 min-w-20 font-medium text-white bg-blue-500 rounded hover:bg-blue-400">
+              <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center py-2 min-w-20 font-medium text-darkBlue rounded ">
                 Login
               </Link>
    

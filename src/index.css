@@ -9,10 +9,18 @@
 .logo {
      /* font-family: 'Berkshire Swash' , cursive; */
      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-     opacity: 0.5;
+     opacity: 0.9;
 }
 
 .signup-button {
      position: absolute;
      top: 80%;
+}
+
+.bg-skyBlue-alpha {
+     background-color: rgba(#E2F0F9, 0.5); /* Sky blue with 50% opacity */
+   }
+   
+.bg-skin-alpha {
+background-color: rgba(#ffdec7 ,0.5); /* Skin color with 50% opacity */
 }

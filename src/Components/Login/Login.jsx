@@ -12,7 +12,7 @@ const Login = ({path}) => {
           const checkAndNavigate = async () => {
                const token = localStorage.getItem('token');
                if (token) {
-                    navigate('/events');
+                    navigate('/');
                }
           };
           checkAndNavigate();
@@ -41,7 +41,7 @@ const Login = ({path}) => {
                console.log(data);
                if (response.status === 200) {
                     localStorage.setItem('token', data.token);
-                    navigate('/events');
+                    navigate('/');
                } else {
                     alert('Wrong Credentials! Please try again.');
                     console.log('Login failed');
