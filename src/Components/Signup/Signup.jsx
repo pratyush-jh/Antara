@@ -11,10 +11,10 @@ const Signup = () => {
      const [email, setEmail] = useState('');
      const [step, setStep] = useState(3);
      const initialValues = {
-          userName: '',
+          name: '',
           email: '',
           password: '',
-          confirmPassword: '',
+          password_confirmation: '',
      };
      const emailValues = {
           email: '',
@@ -65,10 +65,9 @@ const Signup = () => {
           console.log(values);
           console.log(email); 
           try {
-            const response = await axios.post(`${API_URL}/signup-antara`, values , {
+            const response = await axios.post(`${API_URL}/register`, values , {
                  headers: {
                        'Content-Type': 'application/json',
-                       'email': email
                      }
                }
             ); 

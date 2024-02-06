@@ -4,4 +4,4 @@ import React from 'react';
 export let isLogin = false;
 
 // export const API_URL = 'http://localhost:5000';
-export const API_URL = 'https://eventspgdav.onrender.com';
+export const API_URL = 'https://rishi.pgdavhyperion.in';
