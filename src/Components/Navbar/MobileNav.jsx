@@ -93,7 +93,7 @@ useEffect(() => {
                 </Link>
               </div> : 
             
-              <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center py-2 min-w-20 font-medium text-darkBlue rounded hover:text-midBlue duration-500 transition-all ">
+              <Link onClick={() => setIsOpen(false)} data-aos="fade-left" to="/login" className=" flex items-center justify-center py-2 min-w-20 font-medium text-darkBlue rounded hover:text-midBlue duration-500 transition-all ">
                 Login
               </Link>
               }
