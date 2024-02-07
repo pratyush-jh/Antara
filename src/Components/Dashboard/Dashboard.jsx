@@ -19,7 +19,7 @@ useEffect(() => {
      const token = localStorage.getItem('token');
      if (token) {
       authUser().then((data) => {
-        setUser(data.data);
+        setUser(data?.data);
       })
        setIsLoggedIn(true);
      } else {
@@ -29,6 +29,8 @@ useEffect(() => {
    };
    checkAndNavigate();
  }, [navigate]);
+
+ console.log(user); 
 
  if (user.length === 0) {
    return <div className='dashboard-hero flex justify-center items-center text-white'>
@@ -43,13 +45,13 @@ useEffect(() => {
           <div className='flex gap-1 '>
           <TypeAnimation
           sequence={[
-            `Namaste ${user.name.split(' ')[0]} 🙏`,
+            `Namaste ${user?.name.split(' ')[0]} 🙏`,
             1500, 
-            `Hola ${user.name.split(' ')[0]} 👋`,
+            `Hola ${user?.name.split(' ')[0]} 👋`,
             1500,
-            `Hello ${user.name.split(' ')[0]} 👐`,
+            `Hello ${user?.name.split(' ')[0]} 👐`,
             1500,
-            `Bonjour ${user.name.split(' ')[0]} 👋`,
+            `Bonjour ${user?.name.split(' ')[0]} 👋`,
             1500
           ]}
               wrapper="span"

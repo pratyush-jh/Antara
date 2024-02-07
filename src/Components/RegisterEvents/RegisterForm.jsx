@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { useEffect , useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import Api from '../../Functions/api';
-
+import './RegisterForm.css';
 const RegistrationForm = () => {
      // * Check if the user's Email is verified or not
      const { authUser } = Api();
