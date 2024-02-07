@@ -15,6 +15,7 @@ import Tutorial from './Components/Tutorial/Tutorial';
 import Thanks from './Components/Thanks/Thanks';
 import Hero from './Components/Hero/Hero';
 import Verify from './Components/Verify/Verify';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 
 const AppLayout = () => (
@@ -41,6 +42,7 @@ const appRouters = () => (
         <Route path = "registration" element = {<Tutorial/>} />
         <Route path = "thanks" element = {< Thanks />}/>
         <Route path = "verify" element = {<  Verify/>}/>
+        <Route path = "dashboard" element = {<Dashboard/>}/>
         <Route path="*" element={<Home /> } />
       </Route>
     </Routes> 

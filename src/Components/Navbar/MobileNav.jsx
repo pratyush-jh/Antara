@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
-import { IoMdClose } from "react-icons/io";
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { TypeAnimation } from 'react-type-animation';
+import UserProfile from '../../assets/userProfile.png';
 
 
 const MobileNav = () => {
@@ -18,6 +20,16 @@ const MobileNav = () => {
     setIsOpen(false);
     navigate('/');
   };
+
+  // Condition to check if the menu is open then make the body overflow hidden meaning unscrollable
+useEffect(() => {
+  if (isOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+}, [isOpen]);
+  
 
   useEffect(() => {
     const checkAndNavigate = async () => {
@@ -59,9 +71,9 @@ const MobileNav = () => {
                   repeat={2}
                 />
                 </Link>
-        <div className="flex items-center">
-          <button onClick={() => setIsOpen(!isOpen)} className={`text-gray-500 text-3xl ${isLoggedIn?'text-brown':' text-darkBlue'}`}> 
-            {isOpen ? <IoMdClose/> : <FaBars />}   
+        <div onClick={() => setIsOpen(!isOpen)} className="flex items-center ">
+          <button onClick={() => setIsOpen(!isOpen)} className={`text-gray-500 w-12 text-3xl ${isLoggedIn?'text-brown':' text-darkBlue'}`}> 
+            {isOpen ?   <IoMdArrowRoundBack />   : <FaBars />}   
           </button>
         </div>
       </div>
@@ -72,14 +84,29 @@ const MobileNav = () => {
 
         <div className="flex flex-col items-center justify-center h-full -mt-10 gap-10">
         {isLoggedIn ? 
-            <button onClick={logout} className="py-2 px-2 font-medium text-white bg-blue-500 rounded hover:bg-blue-400 mt-4">Logout</button> : 
-            <Link to="/login"  onClick={() => setIsOpen(false)} className="py-2 px-2 font-medium text-white bg-blue-500 rounded hover:bg-blue-400 mt-4">Login</Link>}
+              <div className=' flex flex-col justify-center items-center gap-10'>
+                
+                <Link to={'/dashboard'}>
+                  <button data-aos="fade-left" className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">
+                    <img src={UserProfile} alt="Dash Board" className="h-8 w-8 rounded-full" />
+                  </button>
+                </Link>
+              </div> : 
+            
+              <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center py-2 min-w-20 font-medium text-darkBlue rounded hover:text-midBlue duration-500 transition-all ">
+                Login
+              </Link>
+              }
 
           <Link to="/" className={navbarStyle} onClick={() => setIsOpen(false)}>Home</Link>
           <Link to="/events" className={navbarStyle} onClick={() => setIsOpen(false)}>Events</Link>
           <Link to="/timeline" className={navbarStyle} onClick={() => setIsOpen(false)}>Timeline</Link>
           <Link to="/contact" className={navbarStyle} onClick={() => setIsOpen(false)}>Contact</Link>
+          {isLoggedIn ? 
+          <button data-aos="fade-up" onClick={logout} className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">Logout</button>
 
+            : null
+          }
         </div>
       </div>
     </>

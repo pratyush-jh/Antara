@@ -5,7 +5,7 @@ import './Navbar.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { TypeAnimation } from 'react-type-animation';
-
+import UserProfile from '../../assets/userProfile.png';
 
 
 const DesktopNav = () => {
@@ -69,9 +69,19 @@ const DesktopNav = () => {
               <Link data-aos="fade-up" to="/teams" className= {navbarStyle}>Contact Us</Link>
             </div>
           </div>
-          <div className="hidden md:flex items-center space-x-3 ">
+          <div className="hidden md:flex items-center justify-center space-x-3 ">
             {isLoggedIn ? 
-              <button data-aos="fade-left" onClick={logout} className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">Logout</button> : 
+              <div className=' flex justify-center items-center gap-10'>
+                
+                <Link to={'/dashboard'}>
+                  <button data-aos="fade-left" className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">
+                    <img src={UserProfile} alt="UserProfile" className="h-8 w-8 rounded-full" />
+                  </button>
+                </Link>
+                <button data-aos="fade-left" onClick={logout} className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">Logout</button>
+
+
+              </div> : 
             
               <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center py-2 min-w-20 font-medium text-darkBlue rounded hover:text-midBlue duration-500 transition-all ">
                 Login
