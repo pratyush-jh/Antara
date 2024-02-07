@@ -24,7 +24,6 @@ const Signup = () => {
           const checkAndNavigate = async () => {
                const token = localStorage.getItem('token');
                if (token) {
-                    // call the token verification api
                     navigate('/');
                }
           };
@@ -53,23 +52,25 @@ const Signup = () => {
                  headers: {
                        'Content-Type': ' multipart/form-data',
                      }
+                     , method: 'POST'
                }
             ); 
-            const data = response.data;
-            console.log(data);
-            if (response.status === 422) {
-              alert('User already exists! Please login.');
-            }
-            else if (response.status === 204) {
-              console.log('Signup success');
+            const data = await response.data;
+          if (response.status == 200) {
               localStorage.setItem('token', data.access_token);
               navigate(`/thanks`);
             } else {
+
               alert("Signup failed! Please try again.");
               console.log('Signup failed');
             }
           } catch (error) {
-            console.error('Error:', error);
+               if(error.response.status == 422){
+                    alert("Email already exists.");   
+                    setIsLoading(false);
+                    return
+               }
+            console.error('Error:', error.response.data.ErrorMessage);
           }
         };
      return (

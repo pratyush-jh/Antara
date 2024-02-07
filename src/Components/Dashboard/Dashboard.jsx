@@ -8,33 +8,23 @@ import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const { authUser } = Api();
-  // Verify the token and navigate to the login page if the token is present but invalid
   const [user, setUser] = useState('');
 
 const navigate = useNavigate();
 const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const logout = async () => {
-     setIsLoggedIn(false);
-     localStorage.removeItem('token');
-     navigate('/');
-   };
 
-   useEffect(() => {
-     authUser().then((data) => {
-       setUser(data.data);
-     })
-   }
-     , [navigate]);
-     console.log(user);
 
 useEffect(() => {
    const checkAndNavigate = async () => {
      const token = localStorage.getItem('token');
      if (token) {
+      authUser().then((data) => {
+        setUser(data.data);
+      })
        setIsLoggedIn(true);
      } else {
-       setIsLoggedIn(false);
-     navigate('/');
+    setIsLoggedIn(false);
+     navigate('/login');
      }
    };
    checkAndNavigate();
@@ -53,13 +43,13 @@ useEffect(() => {
           <div className='flex gap-1 '>
           <TypeAnimation
           sequence={[
-            `Namaste ${user.name} 🙏`,
+            `Namaste ${user.name.split(' ')[0]} 🙏`,
             1500, 
-            `Hola ${user.name} 👋`,
+            `Hola ${user.name.split(' ')[0]} 👋`,
             1500,
-            `Hello ${user.name} 👐`,
+            `Hello ${user.name.split(' ')[0]} 👐`,
             1500,
-            `Bonjour ${user.name} 👋`,
+            `Bonjour ${user.name.split(' ')[0]} 👋`,
             1500
           ]}
               wrapper="span"

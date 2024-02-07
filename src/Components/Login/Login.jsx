@@ -7,6 +7,7 @@ import Spinner from '../ShimmerAndSpinner/Spinner';
 import Api from '../../Functions/api';
 
 const Login = ({path}) => {
+     console.log('login');
      const navigate = useNavigate();
      const { authUser } = Api();
      // * Function to check if the user is already logged in
