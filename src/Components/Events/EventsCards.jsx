@@ -1,6 +1,7 @@
 import React from 'react'
 
-const EventsCards = () => {
+const EventsCards = ({eventname}) => {
+  const {id} = eventname;
   return (
     <>
       <div className="flex flex-wrap justify-center gap-4">

@@ -77,7 +77,7 @@ const DesktopNav = () => {
                   <button data-aos="fade-left" className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all flex flex-col items-center">
                     <img src={UserProfile} alt="UserProfile" className="h-8 w-8 rounded-full" />
                     <div className=' text-sm'>
-                      <Link to={'/dashboard'}>Dash Board</Link>
+                      Dash Board
                     </div>
                   </button>
                 </Link>

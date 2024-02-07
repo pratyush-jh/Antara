@@ -2,23 +2,33 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
+import { useEffect , useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import Api from '../../Functions/api';
 
 const RegistrationForm = () => {
-
+     // * Check if the user's Email is verified or not
+     const { authUser } = Api();
+     const navigate = useNavigate();
+     const [user , setUser] = useState([]);
      useEffect(() => {
-          const checkAndNavigate = async () => {
-               const result = await checkToken();
-               console.log("the current state is " + result);
-               if (!result) {
-                 navigate('/login');
-               } else {
-               navigate('/events');
-               }
-             };
-           
-             checkAndNavigate();
-     }, [navigate]);
-
+          const token = localStorage.getItem('token');
+          if(token){
+            authUser().then((data) => {
+               console.log(data);
+                    if(data.data.email_verified_at == null){
+                         navigate('/verify');
+                    }
+            })
+          }
+        }, [navigate]);
+        if(user.length === 0){
+          return (
+            <div>
+              <h1>Loading...</h1>
+            </div>
+          )
+        }
      const { teamSize } = useParams();
 
      const initialValues = {};

@@ -1,13 +1,15 @@
 import React from 'react'
 
 import { useEffect, useState } from 'react';
-import { authUser } from '../../Functions/Constants';
+import Api from '../../Functions/api';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../Functions/Constants';
 import Modal from 'react-modal';
 Modal.setAppElement('#root'); // For screen readers
 const Verify = () => {
      const navigate = useNavigate();
+  const { authUser } = Api();
+
 
      const [user, setUser] = useState([]);
      const [alertMessage, setAlertMessage] = useState(null); // New state variable

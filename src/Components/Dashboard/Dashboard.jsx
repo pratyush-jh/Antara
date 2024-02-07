@@ -2,12 +2,12 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
-import { authUser } from '../../Functions/Constants';
+import Api from '../../Functions/api';
 import { TypeAnimation } from 'react-type-animation';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
-
+  const { authUser } = Api();
   // Verify the token and navigate to the login page if the token is present but invalid
   const [user, setUser] = useState('');
 
@@ -25,6 +25,7 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
      })
    }
      , [navigate]);
+     console.log(user);
 
 useEffect(() => {
    const checkAndNavigate = async () => {
@@ -72,7 +73,7 @@ useEffect(() => {
      {/* //* Styling in Dashboard.css */}
      <div className="dashboard-hero">
           <div className=''>
-               {/* <p   className=' text-brown flex gap-2'>
+               <div   className=' text-brown flex gap-2'>
                Email Verification Status: {user.email_verified_at === null ? <div className=' flex gap-3'>
                     <p>Not Verified  </p>
                     <Link to='/verify'  className='text-white'
@@ -80,7 +81,7 @@ useEffect(() => {
                </div> : 'Verified'}
                
 
-               </p> */}
+               </div>
           </div>
      </div>
     </>

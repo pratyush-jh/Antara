@@ -4,8 +4,11 @@ import * as Yup from 'yup';
 import { useNavigate, Link } from 'react-router-dom';
 import { API_URL } from '../../Functions/Constants';
 import Spinner from '../ShimmerAndSpinner/Spinner';
+import Api from '../../Functions/api';
+
 const Login = ({path}) => {
      const navigate = useNavigate();
+     const { authUser } = Api();
      // * Function to check if the user is already logged in
      const [isLoading, setIsLoading] = useState(false);
      useEffect(() => {
@@ -28,6 +31,7 @@ const Login = ({path}) => {
           password: Yup.string().min(8, 'Must be 8 characters or more').required('Required'),
      });
 
+
      const onSubmit = async (values) => {
           setIsLoading(true);
           try {
@@ -42,6 +46,15 @@ const Login = ({path}) => {
                console.log(data);
                if (response.status === 200) {
                     localStorage.setItem('token', data.access_token);
+                    authUser().then((data) => {  
+                         if(data.data.email_verified_at == null){
+                              navigate('/verify');
+                         }
+                    })
+                    if (!localStorage.getItem('congratulations-shown')) {
+                         localStorage.setItem('congratulations-shown', 0);
+                    }
+                 
                     navigate('/dashboard');
                } else {
                     alert('Wrong Credentials! Please try again.');

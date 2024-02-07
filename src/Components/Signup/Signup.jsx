@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link} from 'react-router-dom';
 import { API_URL } from '../../Functions/Constants';
 import { useState } from 'react';
 import axios from 'axios';
 
 const Signup = () => {
+
+     // call the token verification api
+
      const navigate = useNavigate();
      const [isLoading, setIsLoading] = useState(false);
      const initialValues = {
@@ -14,7 +17,19 @@ const Signup = () => {
           email: '',
           password: '',
           password_confirmation: '',
+
      };
+
+     useEffect(() => {
+          const checkAndNavigate = async () => {
+               const token = localStorage.getItem('token');
+               if (token) {
+                    // call the token verification api
+                    navigate('/');
+               }
+          };
+          checkAndNavigate();
+     }, [navigate]);
 
      const validationSchema = Yup.object({
           name: Yup.string().required('Required'),
@@ -29,10 +44,7 @@ const Signup = () => {
      });
      const onSubmit = async (values) => {
           setIsLoading(true);
-               // Create a new FormData instance
                const formData = new FormData();
-
-               // Append each value to the form data
                for (const key in values) {
                formData.append(key, values[key]);
                }
@@ -88,6 +100,13 @@ const Signup = () => {
                                         <Field type="password" id="password_confirmation" name="password_confirmation" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
                                         <ErrorMessage name="password_confirmation" component="div" />
                                    </div>
+                                   {/* * input field to upload screen shot */}
+                                   {/* <div className="mb-5">
+                                        <label htmlFor="screenshot" className="block mb-2 text-sm font-medium text-gray-600">Upload Screenshot</label>
+                                        <input type="file" id="screenshot" name="screenshot" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                   </div> */}
+                                   <Link to={'/tutorial'} className=" text-darkBlue w-full text-center " target='_blank' 
+                                    >How to do this task?</Link>
                                    <button type="submit" className="w-full py-2 px-3 bg-blue-500 text-white rounded-md focus:outline-none">Signup</button>
                               </Form>
                          </Formik>
