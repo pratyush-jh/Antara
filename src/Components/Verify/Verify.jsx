@@ -5,11 +5,12 @@ import Api from '../../Functions/api';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../Functions/Constants';
 import Modal from 'react-modal';
+import Spinner2 from '../ShimmerAndSpinner/Spinner2';
 Modal.setAppElement('#root'); // For screen readers
 const Verify = () => {
      const navigate = useNavigate();
   const { authUser } = Api();
-
+  const [isLoading, setIsLoading] = useState(true);
 
      const [user, setUser] = useState([]);
      const [alertMessage, setAlertMessage] = useState(null); // New state variable
@@ -44,7 +45,7 @@ const Verify = () => {
        else if (user.email_verified_at === null){
         const sendEmailVerification = async () => {
           const token = localStorage.getItem('token');
-          const response = await fetch(`${API_URL}/send-email`, {
+          const response = await fetch(`${API_URL}/email/verification-notification`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -52,7 +53,15 @@ const Verify = () => {
             }
           });
           const data = await response.json();
-          console.log(data);
+          if (response.status === 200) {
+            console.log(data);
+            setIsLoading(false);
+            showAlert('Email verification link sent successfully');
+          }
+          else if (response.status === 409) {
+            showAlert('Email verification link already sent. Please check your email inbox or spam folder.');
+            sendEmailVerification();
+          }
         }
         sendEmailVerification();
        }
@@ -61,7 +70,6 @@ const Verify = () => {
      if (user.length === 0) {
            return <div className='flex flex-col justify-center items-center h-screen bg-brown text-white gap-10'>Loading...</div>;
       }
-    //  function to check autmatic verification of the email, once the user is verified, redirect to the dashboard
     const checkVerified = () => {
       if(user.email_verified_at !== null){
         showAlert('Email verified successfully');
@@ -89,7 +97,11 @@ const Verify = () => {
                <p className='text-center'>We have sent you an email with a link to your email address {user.email} </p>
                <div className='flex flex-col justify-center items-center bg-brown text-white gap-10'
                     >
-                          <button onClick={checkVerified} className='bg-white text-brown p-2 rounded-lg mt-4'>Check Verification</button>
+                      
+                      
+                      <button onClick={checkVerified} className='bg-white text-brown p-2 rounded-lg mt-4'> {isLoading? 
+                              <Spinner2/> : 'Check Verification'}
+                      </button>
                 </div>                    
           </div>
 
