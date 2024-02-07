@@ -24,8 +24,7 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
        setUser(data.data);
      })
    }
-     , []);
-     console.log(user);
+     , [navigate]);
 
 useEffect(() => {
    const checkAndNavigate = async () => {
@@ -41,7 +40,9 @@ useEffect(() => {
  }, [navigate]);
 
  if (user.length === 0) {
-   return <div className='dashboard-hero'></div>;
+   return <div className='dashboard-hero flex justify-center items-center text-white'>
+     <h1> We are Getting Your Data Wait ..</h1>
+   </div>;
      }
 
   return (
@@ -71,7 +72,7 @@ useEffect(() => {
      {/* //* Styling in Dashboard.css */}
      <div className="dashboard-hero">
           <div className=''>
-               <p   className=' text-brown flex gap-2'>
+               {/* <p   className=' text-brown flex gap-2'>
                Email Verification Status: {user.email_verified_at === null ? <div className=' flex gap-3'>
                     <p>Not Verified  </p>
                     <Link to='/verify'  className='text-white'
@@ -79,7 +80,7 @@ useEffect(() => {
                </div> : 'Verified'}
                
 
-               </p>
+               </p> */}
           </div>
      </div>
     </>

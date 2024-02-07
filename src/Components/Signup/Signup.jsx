@@ -50,7 +50,7 @@ const Signup = () => {
             }
             else if (response.status === 204) {
               console.log('Signup success');
-              localStorage.setItem('token', data.token);
+              localStorage.setItem('token', data.access_token);
               navigate(`/thanks`);
             } else {
               alert("Signup failed! Please try again.");

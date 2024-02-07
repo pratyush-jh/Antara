@@ -58,11 +58,11 @@ useEffect(() => {
               sequence={[
                 'HYPERION',
                 1500, 
-                'AROHNA',
+                'AROHANA',
                 1500,
-                'TECHWHIZ',
+                'HYPERION',
                 1500,
-                'AROHNA',
+                'AROHANA',
                 1500
               ]}
                   wrapper="span"
@@ -86,7 +86,7 @@ useEffect(() => {
         {isLoggedIn ? 
               <div className=' flex flex-col justify-center items-center gap-10'>
                 
-                <Link to={'/dashboard'}>
+                <Link to={'/dashboard'} onClick={() => setIsOpen(false)}>
                   <button data-aos="fade-left" className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">
                     <img src={UserProfile} alt="Dash Board" className="h-8 w-8 rounded-full" />
                   </button>
