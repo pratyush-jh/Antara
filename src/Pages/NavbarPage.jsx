@@ -13,7 +13,7 @@ const NavbarPage = () => {
        window.addEventListener("resize", handleWindowResize);
        return () => window.removeEventListener("resize", handleWindowResize);
      }, []);
-
+   //   * Function to check if the user have a valid token or not and navigate to the login page if the token is not present
   return (
      <>
 

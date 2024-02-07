@@ -7,7 +7,7 @@ export let isLogin = false;
 export const API_URL = 'https://rishi.pgdavhyperion.in';
 
 
-export const fetchEvents = async () => {
+export const authUser = async () => {
      // * Function to check if the user is verified or not 
      const token = localStorage.getItem('token');
      if (!token) {
@@ -33,3 +33,6 @@ export const fetchEvents = async () => {
        console.error('Error:', error);
      }
    }
+
+
+

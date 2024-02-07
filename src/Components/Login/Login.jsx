@@ -42,7 +42,7 @@ const Login = ({path}) => {
                console.log(data);
                if (response.status === 200) {
                     localStorage.setItem('token', data.access_token);
-                    navigate('/');
+                    navigate('/dashboard');
                } else {
                     alert('Wrong Credentials! Please try again.');
                     console.log('Login failed');
