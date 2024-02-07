@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-
+import { useNavigate } from 'react-router-dom';
 const Footer = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const checkAndNavigate = async () => {
             const token = localStorage.getItem('token');
@@ -11,7 +11,7 @@ const Footer = () => {
             }
         };
         checkAndNavigate();
-    }, []);
+    }, [navigate]);
 
     const color = isLoggedIn ? 'brown' : 'darkBlue';
     const textColor = isLoggedIn ? 'brown' : 'darkBlue';
