@@ -77,12 +77,12 @@ const Login = ({path}) => {
                          <Form className="mt-5">
                               <div className="mb-5">
                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-600">Email</label>
-                                   <Field type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                   <Field type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autocomplete="email" />
                                    <ErrorMessage name="email" component="div" />
                               </div>
                               <div className="mb-5">
                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-600">Password</label>
-                                   <Field type="password" id="password" name="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                   <Field type="password" id="password" name="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autocomplete="new-password"/>
                                    <ErrorMessage name="password" component="div" />
                               </div>
                          <button type="submit" className="w-full py-2 px-3 bg-blue-500 text-white rounded-md focus:outline-none" disabled={isLoading}>
