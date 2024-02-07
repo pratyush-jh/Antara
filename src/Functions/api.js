@@ -11,7 +11,6 @@ const Api = () => {
     const token = localStorage.getItem('token');
 
     if(!token){
-      alert('Please login to continue');
       navigate('/login');
     }
     try{
@@ -24,7 +23,6 @@ const Api = () => {
       });
       const data = response.data;
       if (response.status === 401) {
-        alert('Please login again to continue');
         navigate('/login');
       }
       return data;
