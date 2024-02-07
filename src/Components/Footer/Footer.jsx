@@ -1,5 +1,4 @@
 import React from 'react'
-import "./bootstrap.min.css";
 
 const Footer = () => {
   return (
@@ -9,7 +8,7 @@ const Footer = () => {
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
               <a href="Antara/src/Components/Home/Home.jsx" class="flex items-center">
-                  <img src="" class="h-8 me-3" alt="Arohana Logo" />
+                  
                   <span class="self-center text-5xl font-bold whitespace-nowrap dark:text-brown">Arohana</span>
               </a>
           </div>
@@ -52,7 +51,7 @@ const Footer = () => {
       </div>
       <hr class="my-6 border-brown sm:mx-auto dark:border-brown lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
-          <span class="text-sm text-brown sm:text-center dark:text-brown">© 2024 <a href="Antara/src/Components/Home/Home.jsx" class="hover:underline">Arohana™.   </a>
+          <span class="text-sm text-brown sm:text-center dark:text-brown">  
           </span>
           <span class="text-sm text-brown sm:text-center dark:text-brown">© 2024 <a href="https://pgdavhyperion.in/" class="hover:underline">Hyperion™</a>
           </span>
