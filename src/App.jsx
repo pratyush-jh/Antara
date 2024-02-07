@@ -34,7 +34,6 @@ const appRouters = () => (
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Home />} />
         <Route path="hero" element={<Hero />} />
-        <Route path="admin" element={<Admin />} />
         <Route path="events" element={<Events />} />
         <Route path="teams" element={<Teams />} />
         <Route path="sponsors" element={<Sponsors />} />
