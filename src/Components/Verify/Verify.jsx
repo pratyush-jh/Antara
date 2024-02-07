@@ -84,7 +84,7 @@ const Verify = () => {
       </Modal>
           <div className="flex flex-col justify-center items-center h-screen bg-brown text-white gap-10">
                <h1 className='text-3xl font-bold text-center mt-4 mb-8'>Verify your email address</h1>
-               <p className='text-center'>We have sent you an email with a link to verify your email address. </p>
+               <p className='text-center'>We have sent you an email with a link to your email address {user.email} </p>
                <div className='flex flex-col justify-center items-center bg-brown text-white gap-10'
                     >
                           <button onClick={checkVerified} className='bg-white text-brown p-2 rounded-lg mt-4'>Check Verification</button>
