@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import HomeFunction from '../../Functions/Home';
 
-const Home = () => {
+const DesktopHome = () => {
 
   const {countdown, linkStyle } = HomeFunction();
 
@@ -12,4 +12,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default DesktopHome;

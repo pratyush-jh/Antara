@@ -21,7 +21,6 @@ const Login = ({path}) => {
           };
           checkAndNavigate();
      }, [navigate]);
-
      const initialValues = {
           email: '',
           password: '',
@@ -43,8 +42,7 @@ const Login = ({path}) => {
                     },
                     body: JSON.stringify(values),
                });
-               const data = await response.json();
-               console.log(data);
+               const data = await response.json();     
                if (response.status === 200) {
                     localStorage.setItem('token', data.access_token);
                     authUser().then((data) => {  
@@ -55,8 +53,7 @@ const Login = ({path}) => {
                     if (!localStorage.getItem('congratulations-shown')) {
                          localStorage.setItem('congratulations-shown', 0);
                     }
-                 
-                    navigate('/dashboard');
+                    navigate('/');
                } else {
                     alert('Wrong Credentials! Please try again.');
                     console.log('Login failed');
@@ -77,12 +74,12 @@ const Login = ({path}) => {
                          <Form className="mt-5">
                               <div className="mb-5">
                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-600">Email</label>
-                                   <Field type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autocomplete="email" />
+                                   <Field type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autoComplete="email" />
                                    <ErrorMessage name="email" component="div" />
                               </div>
                               <div className="mb-5">
                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-600">Password</label>
-                                   <Field type="password" id="password" name="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autocomplete="new-password"/>
+                                   <Field type="password" id="password" name="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autoComplete="new-password"/>
                                    <ErrorMessage name="password" component="div" />
                               </div>
                          <button type="submit" className="w-full py-2 px-3 bg-blue-500 text-white rounded-md focus:outline-none" disabled={isLoading}>

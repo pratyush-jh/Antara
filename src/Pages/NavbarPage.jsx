@@ -5,53 +5,52 @@ import { useEffect , useState} from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import Modal from 'react-modal'
 import { API_URL } from '../Functions/Constants'
+import axios from 'axios'
+
 const NavbarPage = () => {
       const navigate = useNavigate();
-      const [alertMessage, setAlertMessage] = useState(null);
-     const [width, setWidth] = useState(window.innerWidth);
-     const [user , setUser] = useState([]);
+      const [alertMessage, setAlertMessage] = useState(null); 
+      const [width, setWidth] = useState(window.innerWidth);
+      const [user , setUser] = useState([]);
 
      const breakpoint = 620;
-
+    //* Function to switch between mobile and desktop view
       useEffect(() => {
        const handleWindowResize = () => setWidth(window.innerWidth)
        window.addEventListener("resize", handleWindowResize);
        return () => window.removeEventListener("resize", handleWindowResize);
      }, []);
 
-     const authUser = async () => {
-      // * Function to check if the user is verified or not 
+    //! Function to check the validation of the token and get the user data
+
+    const authUser = async () => {
       const token = localStorage.getItem('token');
-       if(token){
-      try{
-        const response = await fetch(`${API_URL}/auth-user`, 
-        
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-            } ,
-            method: 'GET'
-        });
-        const data = await response.json();
-        if (response.status === 401) {
-          navigate('/login');
+      if(token){
+        try{
+          const response = await axios.get(`${API_URL}/auth-user`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          setUser(response.data.data);
         }
-        setUser(data.data);
+        catch(error){
+          console.log('Error:', error);
+          if (error.response && ( error.response.status == 401)) {
+              alert('Login Again to continue');
+              localStorage.removeItem('token');
+              navigate('/login');
+          }
+        }
       }
-      catch(error){
-        console.error('Error:', error);
-      }
-    }}
+    }
 
-     const showAlert = (message) => {
-      setAlertMessage(message);
-    };
-
+    //* Function to show congratulation message if the user is login first time after Admin verification
      useEffect(() => {
       const token = localStorage.getItem('token');
       if(token){
-        authUser();
+      authUser();
       const congratulationsShown = localStorage.getItem('congratulations-shown');
       if(congratulationsShown == 0 && user?.is_verified === true ){
             showAlert('🎉 Congratulations! Your account has been verified. 🎉');
@@ -60,12 +59,6 @@ const NavbarPage = () => {
       }
      }, [navigate]);     
 
-      useEffect(() => {
-        const token = localStorage.getItem('token');
-        if(token){
-          // * Function to check if the user is verified or not
-        }
-      }, [navigate]);
 
   return (
      <>
