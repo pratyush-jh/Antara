@@ -1,9 +1,24 @@
 import React from 'react'
-import Home from '../Components/Home/Home'
+import DesktopHome from '../Components/Home/DesktopHome'
+import MobileHome from '../Components/Home/MobileHome'
+import { useEffect , useState} from 'react'
 const HomePage = () => {
+  
+  const [width, setWidth] = useState(window.innerWidth);
+  const breakpoint = 620;
+  useEffect(() => {
+    const handleWindowResize = () => setWidth(window.innerWidth)
+    window.addEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
+
+
   return (
     <>
-      <Home />
+    <div className='h-screen'
+    ></div>
+    {width < breakpoint ? <MobileHome /> : <DesktopHome />}
+
     </>
   )
 }

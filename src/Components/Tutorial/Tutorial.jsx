@@ -2,18 +2,31 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { useNavigate } from 'react-router-dom';
+
 
 const Tutorial = () => {
      const [isChecked, setIsChecked] = useState({
           tutorial: false,
           terms: false
      });
-
+     const navigate = useNavigate();
      useEffect(() => {
           AOS.init({
                duration : 1000
           });
      }, []);
+
+     useEffect(() => {
+          const checkAndNavigate = async () => {
+               const token = localStorage.getItem('token');
+               if (token) {
+                    // call the token verification api
+                    navigate('/');
+               }
+          };
+          checkAndNavigate();
+     }, [navigate]);
 
      const handleCheckboxChange = (event) => {
           setIsChecked({ ...isChecked, [event.target.name]: event.target.checked });
