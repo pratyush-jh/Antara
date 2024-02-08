@@ -34,14 +34,14 @@ const appRouters = () => (
         <Route path="events" element={<Events />} />
         <Route path="teams" element={<Teams />} />
         <Route path="sponsors" element={<Sponsors />} />
-        <Route path="timeline" element={<Timeline/>} />
-        <Route path="login" element={<LoginPage/>} />
-        <Route path = "signup" element = {<Signup/>} />
-        <Route path = "registration" element = {<Tutorial/>} />
-        <Route path = "thanks" element = {< Thanks />}/>
-        <Route path="*" element={<Home /> } />
+        <Route path="timeline" element={<Timeline />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="registration" element={<Tutorial />} />
+        <Route path="thanks" element={< Thanks />} />
+        <Route path="*" element={<Home />} />
       </Route>
-    </Routes> 
+    </Routes>
   </Router>
 )
 
