@@ -36,7 +36,7 @@ const Verify = () => {
       setTimeout(() => setAlertMessage(null), 2000); 
     };
 
-    //*  if the user is already verified, redirect to the dashboard
+    //*  if the user is already verified, redirect to the dashboard else send the verification link
 
      useEffect(() => {
        if(!user.email_verified_at === null){
@@ -71,13 +71,17 @@ const Verify = () => {
            return <div className='flex flex-col justify-center items-center h-screen bg-brown text-white gap-10'>Loading...</div>;
       }
     const checkVerified = () => {
-      if(user.email_verified_at !== null){
-        showAlert('Email verified successfully');
-        navigate(`/dashboard`);
-      }
-      else if (user.email_verified_at === null){
-        showAlert('Email not verified yet'); 
-      }
+      authUser().then((data) => {
+        console.log(data);
+        console.log(data?.data?.email_verified_at);
+        if(data?.data?.email_verified_at != null){
+          showAlert('Email verified successfully');
+          navigate(`/dashboard`);
+        }
+        else if (data?.data?.email_verified_at == null){
+          showAlert('Email not verified yet'); 
+        }
+      });
    }
 
   return (

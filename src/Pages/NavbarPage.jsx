@@ -6,6 +6,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import Modal from 'react-modal'
 import { API_URL } from '../Functions/Constants'
 import axios from 'axios'
+import Api from '../Functions/api'
 
 const NavbarPage = () => {
       const navigate = useNavigate();
@@ -13,6 +14,7 @@ const NavbarPage = () => {
       const [width, setWidth] = useState(window.innerWidth);
       const [user , setUser] = useState([]);
 
+      const {fetchApi} = Api();
      const breakpoint = 620;
     //* Function to switch between mobile and desktop view
       useEffect(() => {
@@ -26,26 +28,19 @@ const NavbarPage = () => {
     const authUser = async () => {
       const token = localStorage.getItem('token');
       if(token){
-        try{
-          const response = await axios.get(`${API_URL}/auth-user`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            }
-          });
-          setUser(response.data.data);
-        }
-        catch(error){
-          console.log('Error:', error);
-          if (error.response && ( error.response.status == 401)) {
-              alert('Login Again to continue');
-              localStorage.removeItem('token');
-              navigate('/login');
+        const result = fetchApi('GET', 'auth-user');
+        result.then (response => {
+          if (response?.status === 401) {
+            alert('Please login again.');
+            localStorage.removeItem('token');
+            navigate('/login');
           }
-        }
+          else if (response?.status === 200){
+            setUser(response?.data?.data);
+          }
+        })
       }
     }
-
     //* Function to show congratulation message if the user is login first time after Admin verification
      useEffect(() => {
       const token = localStorage.getItem('token');

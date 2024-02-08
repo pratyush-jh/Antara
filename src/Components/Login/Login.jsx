@@ -7,11 +7,12 @@ import Spinner from '../ShimmerAndSpinner/Spinner';
 import Api from '../../Functions/api';
 
 const Login = ({path}) => {
-     console.log('login');
+
      const navigate = useNavigate();
-     const { authUser } = Api();
-     // * Function to check if the user is already logged in
      const [isLoading, setIsLoading] = useState(false);
+     const {login} = Api();
+
+     // * Function to check if the user is already logged in, if already logged in then redirect to the home page
      useEffect(() => {
           const checkAndNavigate = async () => {
                const token = localStorage.getItem('token');
@@ -21,6 +22,7 @@ const Login = ({path}) => {
           };
           checkAndNavigate();
      }, [navigate]);
+
      const initialValues = {
           email: '',
           password: '',
@@ -34,33 +36,7 @@ const Login = ({path}) => {
 
      const onSubmit = async (values) => {
           setIsLoading(true);
-          try {
-               const response = await fetch( `${API_URL}/${path}` , {
-                    method: 'POST',
-                    headers: {
-                         'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(values),
-               });
-               const data = await response.json();     
-               if (response.status === 200) {
-                    localStorage.setItem('token', data.access_token);
-                    authUser().then((data) => {  
-                         if(data.data.email_verified_at == null){
-                              navigate('/verify');
-                         }
-                    })
-                    if (!localStorage.getItem('congratulations-shown')) {
-                         localStorage.setItem('congratulations-shown', 0);
-                    }
-                    navigate('/');
-               } else {
-                    alert('Wrong Credentials! Please try again.');
-                    console.log('Login failed');
-               }
-          } catch (error) {
-               console.error('Error:', error);
-          }
+          login(values);
      };
 
      return (

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const UserProfile = (user) => {
      console.log(user)
+     
   return (
     <div>UserProfile
      <p className=' flex '> Email verification status : {user.email_verified_at == null ? <div>
