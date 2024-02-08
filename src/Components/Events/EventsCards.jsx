@@ -1,7 +1,7 @@
 import React from 'react'
-
+import { useParams } from 'react-router-dom'
 const EventsCards = ({eventname}) => {
-  const {id} = eventname;
+  const { id } = useParams();
   return (
     <>
       <div className="flex flex-wrap justify-center gap-4">

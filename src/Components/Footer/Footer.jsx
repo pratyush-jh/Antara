@@ -17,8 +17,8 @@ const Footer = () => {
     const textColor = isLoggedIn ? 'brown' : 'darkBlue';
     
 
-    return (
-        <div>
+    return ( 
+        <div className=' bottom-0'>
             <footer className={`${!isLoggedIn ? 'bg-skyBlue': 'bg-skin'}`}>
                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">

@@ -2,9 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from './Constants';
 import axios from 'axios'; 
+import { useState } from 'react';
 
 const Api = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   //* Function to check if the user is verified or not and if the token is valid or not
   const authUser = async () => {
@@ -31,7 +33,8 @@ const Api = () => {
     }
   }
 
-  const fetchApi = async(method, path, ) =>{
+  const fetchApi = async(method, path,parent ) =>{
+    setIsLoading(true);
     const token = localStorage.getItem('token');
     try {
       const response = await axios({
@@ -42,15 +45,22 @@ const Api = () => {
           'Authorization': `Bearer ${token}`
         }
       });
+      setIsLoading(false);
       return response;
   }
   catch(error){
-    console.error('Error:', error);
+    setIsLoading(false);
+    if(parent === 'navbar' && error.response.status === 401){
+      localStorage.removeItem('token');
+      navigate('/login');
+      alert('Please login again.');
+    }
     return response;
   }
 }
 
 const login = async(values) => {
+      setIsLoading(true);
         try {
           const response = await fetch( `${API_URL}/login` , {
               method: 'POST',
@@ -61,6 +71,7 @@ const login = async(values) => {
           });
           const data = await response.json();     
           if (response.status === 200) {
+              setIsLoading(false);
               localStorage.setItem('token', data.access_token);
               authUser().then((data) => {  
                     if(data.data.email_verified_at == null){
@@ -72,10 +83,12 @@ const login = async(values) => {
               }
               navigate('/');
           } else {
+              setIsLoading(false);
               alert('Wrong Credentials! Please try again.');
               console.log('Login failed');
           }
       } catch (error) {
+        setIsLoading(false);
           if (error){
               alert('Something went wrong! Please try again.');
           }
@@ -85,7 +98,7 @@ const login = async(values) => {
 
 
   return (
-    {authUser , fetchApi , login} 
+    {authUser , fetchApi , login, isLoading} 
   )
 }
 

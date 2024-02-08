@@ -9,8 +9,7 @@ import Api from '../../Functions/api';
 const Login = ({path}) => {
 
      const navigate = useNavigate();
-     const [isLoading, setIsLoading] = useState(false);
-     const {login} = Api();
+     const {login , isLoading} = Api();
 
      // * Function to check if the user is already logged in, if already logged in then redirect to the home page
      useEffect(() => {
@@ -35,7 +34,6 @@ const Login = ({path}) => {
 
 
      const onSubmit = async (values) => {
-          setIsLoading(true);
           login(values);
      };
 

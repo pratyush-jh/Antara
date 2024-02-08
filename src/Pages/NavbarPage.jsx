@@ -28,14 +28,9 @@ const NavbarPage = () => {
     const authUser = async () => {
       const token = localStorage.getItem('token');
       if(token){
-        const result = fetchApi('GET', 'auth-user');
+        const result = fetchApi('GET', 'auth-user' , 'navbar');
         result.then (response => {
-          if (response?.status === 401) {
-            alert('Please login again.');
-            localStorage.removeItem('token');
-            navigate('/login');
-          }
-          else if (response?.status === 200){
+            if (response?.status === 200){
             setUser(response?.data?.data);
           }
         })
@@ -53,8 +48,7 @@ const NavbarPage = () => {
        }
       }
      }, [navigate]);     
-
-
+     
   return (
      <>
      <Modal isOpen={!!alertMessage} onRequestClose={() => setAlertMessage(null)}

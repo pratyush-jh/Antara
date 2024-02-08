@@ -60,7 +60,9 @@ const Verify = () => {
           }
           else if (response.status === 409) {
             showAlert('Email verification link already sent. Please check your email inbox or spam folder.');
-            sendEmailVerification();
+            setTimeout(() => {
+              sendEmailVerification();
+            }, 30000);
           }
         }
         sendEmailVerification();
@@ -101,8 +103,7 @@ const Verify = () => {
                <p className='text-center'>We have sent you an email with a link to your email address {user.email} </p>
                <div className='flex flex-col justify-center items-center bg-brown text-white gap-10'
                     >
-                      
-                      
+                    <p className='text-center'>Please click on the link in the email to verify your email address.</p>
                       <button onClick={checkVerified} className='bg-white text-brown p-2 rounded-lg mt-4'> {isLoading? 
                               <Spinner2/> : 'Check Verification'}
                       </button>
