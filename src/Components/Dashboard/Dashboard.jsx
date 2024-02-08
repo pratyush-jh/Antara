@@ -24,9 +24,6 @@ useEffect(() => {
         setUser(data?.data);
       })
        setIsLoggedIn(true);
-     } else {
-    setIsLoggedIn(false);
-     navigate('/login');
      }
    };
    checkAndNavigate();

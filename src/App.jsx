@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom
 
 import Navbar from './Pages/NavbarPage';
 import Home from './Pages/HomePage';
-import Admin from './Pages/AdminPage';
 import Footer from './Pages/FooterPage';
 import Events from './Pages/EventsPage';
 import Teams from './Pages/TeamsPage';

@@ -35,8 +35,8 @@ const Signup = () => {
           email: Yup.string().email('Invalid email address').required('Required'),
           password: Yup.string()
                .matches(
-                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@])[a-zA-Z\d@]{8,}$/,
-                    'Must contain 8 characters, at least one uppercase letter, one lowercase letter, one number, and one special character (@)'
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{8,}$/,
+                    'Must contain 8 characters, at least one uppercase letter, one lowercase letter, one number, and one special character'
                )
                .required('Required'),
           password_confirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
@@ -83,22 +83,22 @@ const Signup = () => {
                               <Form className="mt-5">
                                    <div className="mb-5">
                                         <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-600">Username</label>
-                                        <Field type="text" id="name" name="name" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                        <Field type="text" id="name" name="name" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autoComplete="name" />
                                         <ErrorMessage name="name" component="div" />
                                    </div>
                                    <div className="mb-5">
                                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-600">Email</label>
-                                        <Field type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                        <Field type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autoComplete="email" />
                                         <ErrorMessage name="email" component="div" />
                                    </div>
                                    <div className="mb-5">
                                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-600">Password</label>
-                                        <Field type="password" id="password" name="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                        <Field type="password" id="password" name="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autoComplete="new-password" />
                                         <ErrorMessage name="password" component="div" />
                                    </div>
                                    <div className="mb-5">
                                         <label htmlFor="password_confirmation" className="block mb-2 text-sm font-medium text-gray-600">Confirm Password</label>
-                                        <Field type="password" id="password_confirmation" name="password_confirmation" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" />
+                                        <Field type="password" id="password_confirmation" name="password_confirmation" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autoComplete ="new-password"/>
                                         <ErrorMessage name="password_confirmation" component="div" />
                                    </div>
                                    {/* * input field to upload screen shot */}

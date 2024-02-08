@@ -1,15 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from './Constants';
-import axios from 'axios'; // Import axios
+import axios from 'axios'; 
 
 const Api = () => {
   const navigate = useNavigate();
 
+  //* Function to check if the user is verified or not and if the token is valid or not
   const authUser = async () => {
-    // * Function to check if the user is verified or not 
     const token = localStorage.getItem('token');
-
     if(!token){
       navigate('/login');
     }
@@ -31,8 +30,30 @@ const Api = () => {
       console.error('Error:', error);
     }
   }
+
+  const fetchApi = (method, path, ) =>{
+    const token = localStorage.getItem('token');
+    try {
+      const response = axios({
+        method: method,
+        url: `${API_URL}/${path}`,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      return response;
+  }
+  catch(error){
+    console.error('Error:', error);
+    return response;
+  }
+}
+
+
+
   return (
-    {authUser}
+    {authUser , fetchApi}
   )
 }
 
