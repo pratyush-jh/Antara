@@ -52,8 +52,9 @@ const appRouters = () => (
         <Route path="event-registration" element={<RegistrationForm />} />
         <Route path='categories' element ={<Categories/>} />
         <Route path="*" element={<Home /> } />
+
       </Route>
-    </Routes> 
+    </Routes>
   </Router>
 )
 
