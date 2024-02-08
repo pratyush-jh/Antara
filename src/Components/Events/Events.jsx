@@ -6,13 +6,12 @@ import axios from 'axios';
 import { API_URL } from '../../Functions/Constants';
 
 const Events = () => {
-  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   useEffect(() => {
     const  fetchEvents = async () => {
       const response = await axios.get(`${API_URL}/api/competitions`);
-      const data = response.data;
-      setEvents(data.data);
+      const data = response?.data;
+      setEvents(data?.data);
     }
     fetchEvents();
   }

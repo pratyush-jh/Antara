@@ -36,7 +36,7 @@ const Verify = () => {
       setTimeout(() => setAlertMessage(null), 2000); 
     };
 
-    //*  if the user is already verified, redirect to the dashboard
+    //*  if the user is already verified, redirect to the dashboard else send the verification link
 
      useEffect(() => {
        if(!user.email_verified_at === null){
@@ -60,7 +60,9 @@ const Verify = () => {
           }
           else if (response.status === 409) {
             showAlert('Email verification link already sent. Please check your email inbox or spam folder.');
-            sendEmailVerification();
+            setTimeout(() => {
+              sendEmailVerification();
+            }, 30000);
           }
         }
         sendEmailVerification();
@@ -71,13 +73,17 @@ const Verify = () => {
            return <div className='flex flex-col justify-center items-center h-screen bg-brown text-white gap-10'>Loading...</div>;
       }
     const checkVerified = () => {
-      if(user.email_verified_at !== null){
-        showAlert('Email verified successfully');
-        navigate(`/dashboard`);
-      }
-      else if (user.email_verified_at === null){
-        showAlert('Email not verified yet'); 
-      }
+      authUser().then((data) => {
+        console.log(data);
+        console.log(data?.data?.email_verified_at);
+        if(data?.data?.email_verified_at != null){
+          showAlert('Email verified successfully');
+          navigate(`/dashboard`);
+        }
+        else if (data?.data?.email_verified_at == null){
+          showAlert('Email not verified yet'); 
+        }
+      });
    }
 
   return (
@@ -97,8 +103,7 @@ const Verify = () => {
                <p className='text-center'>We have sent you an email with a link to your email address {user.email} </p>
                <div className='flex flex-col justify-center items-center bg-brown text-white gap-10'
                     >
-                      
-                      
+                    <p className='text-center'>Please click on the link in the email to verify your email address.</p>
                       <button onClick={checkVerified} className='bg-white text-brown p-2 rounded-lg mt-4'> {isLoading? 
                               <Spinner2/> : 'Check Verification'}
                       </button>

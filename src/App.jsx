@@ -17,12 +17,15 @@ import Hero from './Components/Hero/Hero';
 import Verify from './Components/Verify/Verify';
 import Dashboard from './Components/Dashboard/Dashboard';
 import RegistrationForm from './Components/RegisterEvents/RegisterForm';
+import Categories from './Components/Events/Categories';
 
 
 const AppLayout = () => (
   <div>
     <Navbar />
-    <Outlet />
+    <div className=' min-h-screen'>
+      <Outlet />
+    </div>
     <Footer />
   </div>
 )
@@ -47,9 +50,11 @@ const appRouters = () => (
 
         {/* //* Routes for event Registration */}
         <Route path="event-registration" element={<RegistrationForm />} />
+        <Route path='categories' element ={<Categories/>} />
         <Route path="*" element={<Home /> } />
+
       </Route>
-    </Routes> 
+    </Routes>
   </Router>
 )
 
