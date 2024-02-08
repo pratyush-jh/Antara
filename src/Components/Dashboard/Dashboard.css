@@ -7,3 +7,113 @@
 .dashboard{
      box-shadow: 2px 2px 5px 0px #8b597b8b;
 }
+
+hr{
+     border: 2px solid rgb(69 26 3);
+}
+
+.pad-1{
+     padding-top: 20px;
+     padding-bottom: 20px;
+}
+
+.p-pad{
+     padding-top: 25px;
+     padding-bottom: 25px;
+}
+
+.p-pad-2{
+     padding-top: 25px;
+     padding-bottom: 30px;
+}
+
+.db-btn-pad{
+     padding-top: 30px;
+     padding-bottom: 30px;
+}
+
+.bg-svg-db{
+     background-image: url(../Dashboard/svg.png);
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-position: 0% 0%;
+     background-size: cover;
+}
+
+.bg-svg{
+     background-image: url(../Dashboard/svg.png);
+     background-repeat: no-repeat;
+     background-attachment:fixed;
+     background-position: 0% 0%;
+     background-size: cover;
+}
+
+.db-btn, .btn-download:focus, .btn-download:active, .btn-download:visited{
+     border-color: #5a270f;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     padding-left: 30px;
+     padding-right: 30px;
+     font-size: 19px;
+     font-weight: 700;
+     text-transform: uppercase;
+     border-radius: 50px;
+     border-width: thick;
+     color: #5a270f;
+     margin-top: 30px;
+     margin-bottom: 30px;
+}
+
+.pad-2{
+     padding-right: 30px;
+}
+
+.db-btn:hover, .verify-btn:hover{
+     background-color: #5a270f;
+     color: white;
+     transition: all 1s;
+}
+
+.verify-btn{
+     margin-top: 1000px;
+     border-color: #5a270f;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     padding-left: 30px;
+     padding-right: 30px;
+     font-size: 19px;
+     font-weight: 600;
+     text-transform: uppercase;
+     border-radius: 50px;
+     border-width: thick;
+     color: #5a270f;
+}
+
+.profile-text{
+     border-color: #5a270f;
+     padding-top: 5px;
+     padding-bottom: 10px;
+     padding-left: 30px;
+     padding-right: 30px;
+     font-weight: 700;
+     text-transform: uppercase;
+     /* border-width: thick; */
+     color: #5a270f;
+     margin-right: 20px;
+     font-size: 1.25rem; /* 20px */
+     line-height: 1.75rem; /* 28px */
+}
+
+.profile-text-2{
+     border-color: #5a270f;
+     padding-top: 5px;
+     padding-bottom: 20px;
+     padding-left: 30px;
+     padding-right: 30px;
+     font-size: 1.25rem; /* 20px */
+     line-height: 1.75rem; /* 28px */
+     font-weight: 700;
+     text-transform: uppercase;
+     /* border-width: thick; */
+     color: #5a270f;
+}
