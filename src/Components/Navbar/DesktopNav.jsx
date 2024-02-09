@@ -6,7 +6,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { TypeAnimation } from 'react-type-animation';
 import UserProfile from '../../assets/userProfile.png';
-import { useSpring, animated } from 'react-spring';
+
 
 
 
@@ -15,7 +15,7 @@ const DesktopNav = () => {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isOnDashboard, setIsOnDashboard] = useState(false);
-  const [previousLocation, setPreviousLocation] = useState('');
+
 
     const logout = async () => {
       setIsLoggedIn(false);
@@ -32,13 +32,6 @@ const DesktopNav = () => {
     }
   }, [navigate, location]);
 
-
-  useEffect(() => {
-    if (previousLocation === '/dashboard' && location.pathname !== '/dashboard') {
-      window.location.reload();
-    }
-    setPreviousLocation(location.pathname);
-  }, [location]);
 
 
  useEffect(() => {
@@ -69,7 +62,7 @@ const DesktopNav = () => {
   const navbarStyle = `py-4 px-2 border-b-4 border-transparent ${isLoggedIn? `${isOnDashboard? 'text-white':'text-brown'}` :' text-darkBlue'} 
   ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-brown'}`: 'hover:border-darkBlue'}  font-medium rounded`;
   return (
-<nav className={`shadow-lg pt-2 pb-2 ${isOnDashboard ? 'bg-gradient-to-r from-black to-linear-darkBlue    ' : `bg-${bgcolor}`}`}>
+  <nav className={`shadow-lg pt-2 pb-2 ${isOnDashboard ? 'bg-gradient-to-r from-black to-linear-darkBlue ' : `bg-${bgcolor}`}`} data-aos="fade-down">
       <div className=" px-40">
         <div className="flex justify-between items-center">
           <div data-aos="fade-right">
@@ -112,6 +105,7 @@ const DesktopNav = () => {
                     </div>
                   </button>
                 </Link>
+
                 <button data-aos="fade-left" onClick={logout} className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white  hover:text-rose-600 navbar':' text-brown hover:text-rose-200'} duration-500 transition-all`}>Logout</button>
               </div> : 
             

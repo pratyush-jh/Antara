@@ -78,7 +78,7 @@ const Dashboard = () => {
                 className={`glow-on-hover ${activeComponent === 'userTeams' ? 'open' : 'close'}`} 
                 onClick={() => setActiveComponent('userTeams')}
               >
-                Teams
+                Participations
               </button>
 
               <div className='flex gap-1 absolute top-60 '>

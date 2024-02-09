@@ -15,7 +15,7 @@ import Tutorial2 from './Components/Tutorial/Tutorial2';
 import Thanks from './Components/Thanks/Thanks';
 import Hero from './Components/Hero/Hero';
 import Verify from './Components/Verify/Verify';
-import Dashboard from './Components/Dashboard/Dashboard';
+import Dashboard from '../src/Pages/DashBoardPage';
 import RegistrationForm from './Components/RegisterEvents/RegisterForm';
 import Categories from './Components/Events/Categories';
 

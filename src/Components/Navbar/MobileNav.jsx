@@ -31,6 +31,15 @@ useEffect(() => {
     document.body.style.overflow = 'auto';
   }
 }, [isOpen]);
+
+useEffect(() => {
+  setIsOnDashboard(location.pathname === '/dashboard');
+  if (location.pathname === '/dashboard') {
+    document.body.style.backgroundColor = 'black';
+  } else {
+    document.body.style.backgroundColor = 'white'; // or any other default color
+  }
+}, [navigate, location]);
   
 useEffect(() => {
 
