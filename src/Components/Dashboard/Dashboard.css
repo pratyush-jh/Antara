@@ -1,15 +1,61 @@
 
-.dashboard-hero {
-     height: 100vh;
-     background-color: #8b597b6a;
+.dashboard-body{
+     background: #000000;
+     max-height: 80vh;
+     overflow:scroll;
+}
+.dashboard-body::-webkit-scrollbar {
+     width: 4px;
+     color: #ffffff ;
+
 }
 
-.dashboard{
-     box-shadow: 2px 2px 5px 0px #8b597b8b;
+
+.dashboard-body::-webkit-scrollbar-thumb {
+     background: #1900ff;
+}
+
+.dashboard-left{
+     padding-top: 20px;
+     padding-bottom: 20px;
+     padding-left: 5px;
+     padding-right: 5px;
+     max-height: 80vh;
+}
+.dashboard-left button {
+     background-color: #000000; 
+     border: none;
+     border-radius: 10px;
+     padding: 15px 32px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     margin: 4px 2px;
+     cursor: pointer;
+     transition: background-color 0.3s ease-in-out;
+     width: 100%    ;
+     transition: all 0.3s;
+}
+
+.dashboard-left button:hover {
+     background-color: #ff0000; 
+     color: white;
+     font-size: large ;
+
+}
+
+.open {
+     opacity: 1;
+     color: blue;
+}
+.close {
+     opacity: 1;
+     color: white;
 }
 
 hr{
-     border: 2px solid rgb(69 26 3);
+     border: 2px solid rgb(255, 255, 255);
 }
 
 .pad-1{
@@ -28,12 +74,12 @@ hr{
 }
 
 .db-btn-pad{
-     padding-top: 30px;
+     padding-top: 20px;
      padding-bottom: 30px;
 }
 
 .bg-svg-db{
-     background-image: url(../Dashboard/svg.png);
+     background: #000;
      background-repeat: no-repeat;
      background-attachment: fixed;
      background-position: 0% 0%;
@@ -41,7 +87,7 @@ hr{
 }
 
 .bg-svg{
-     background-image: url(../Dashboard/svg.png);
+     background: #000;
      background-repeat: no-repeat;
      background-attachment:fixed;
      background-position: 0% 0%;
@@ -49,7 +95,7 @@ hr{
 }
 
 .db-btn, .btn-download:focus, .btn-download:active, .btn-download:visited{
-     border-color: #5a270f;
+     border-color: #ffffff;
      padding-top: 10px;
      padding-bottom: 10px;
      padding-left: 30px;
@@ -59,7 +105,7 @@ hr{
      text-transform: uppercase;
      border-radius: 50px;
      border-width: thick;
-     color: #5a270f;
+     color: #ffffff;
      margin-top: 30px;
      margin-bottom: 30px;
 }
@@ -68,15 +114,10 @@ hr{
      padding-right: 30px;
 }
 
-.db-btn:hover, .verify-btn:hover{
-     background-color: #5a270f;
-     color: white;
-     transition: all 1s;
-}
 
 .verify-btn{
      margin-top: 1000px;
-     border-color: #5a270f;
+     border-color: #ffffff;
      padding-top: 10px;
      padding-bottom: 10px;
      padding-left: 30px;
@@ -86,11 +127,15 @@ hr{
      text-transform: uppercase;
      border-radius: 50px;
      border-width: thick;
-     color: #5a270f;
+     color: #ffffff;
+     zoom: 0.7;
+     transition: all 1s;
 }
 
+
+
 .profile-text{
-     border-color: #5a270f;
+     border-color: #ffffff;
      padding-top: 5px;
      padding-bottom: 10px;
      padding-left: 30px;
@@ -105,7 +150,7 @@ hr{
 }
 
 .profile-text-2{
-     border-color: #5a270f;
+     border-color: #ffffff;
      padding-top: 5px;
      padding-bottom: 20px;
      padding-left: 30px;
@@ -115,5 +160,64 @@ hr{
      font-weight: 700;
      text-transform: uppercase;
      /* border-width: thick; */
-     color: #5a270f;
+     color: #ffffff;
 }
+
+.glow-on-hover {
+     width: 220px;
+     height: 50px;
+     border: none;
+     outline: none;
+     color: #fff;
+     cursor: pointer;
+     position: relative;
+     z-index: 0;
+     border-radius: 10px;
+ }
+ 
+ .glow-on-hover:before {
+     content: '';
+     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+     position: absolute;
+     top: -2px;
+     left:-2px;
+     background-size: 400%;
+     z-index: -1;
+     filter: blur(5px);
+     width: calc(100% + 4px);
+     height: calc(100% + 4px);
+     animation: glowing 20s linear infinite;
+     opacity: 0;
+     transition: opacity .3s ease-in-out;
+     border-radius: 10px;
+ }
+ 
+ .glow-on-hover:active {
+     color: #000
+ }
+ 
+ .glow-on-hover:active:after {
+     background: transparent;
+ }
+ 
+ .glow-on-hover:hover:before {
+     opacity: 1;
+ }
+ 
+ .glow-on-hover:after {
+     z-index: -1;
+     content: '';
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     background: #373737;
+     left: 0;
+     top: 0;
+     border-radius: 10px;
+ }
+ 
+ @keyframes glowing {
+     0% { background-position: 0 0; }
+     50% { background-position: 400% 0; }
+     100% { background-position: 0 0; }
+ }

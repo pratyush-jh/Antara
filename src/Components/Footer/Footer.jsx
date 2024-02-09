@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 const Footer = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const location = useLocation();
     const navigate = useNavigate();
+    const [isOnDashboard, setIsOnDashboard] = useState(false);
     useEffect(() => {
         const checkAndNavigate = async () => {
             const token = localStorage.getItem('token');
@@ -13,13 +15,22 @@ const Footer = () => {
         checkAndNavigate();
     }, [navigate]);
 
-    const color = isLoggedIn ? 'brown' : 'darkBlue';
-    const textColor = isLoggedIn ? 'brown' : 'darkBlue';
+    useEffect(() => {
+        if (location.pathname === '/dashboard') {
+            setIsOnDashboard(true);
+        } else {
+            setIsOnDashboard(false);
+        }
+    }
+    , [location]);
+
+    const color = isLoggedIn ? `${isOnDashboard? 'white':'brown'}` : 'darkBlue';
+    const textColor = isLoggedIn ? `${isOnDashboard? 'white':'brown'}` : 'darkBlue';
     
 
     return ( 
         <div className=' bottom-0'>
-            <footer className={`${!isLoggedIn ? 'bg-skyBlue': 'bg-skin'}`}>
+            <footer className={`${!isLoggedIn ? 'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r from-black to-linear-darkBlue ':'bg-skin'}`}`}>
                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">
                         <div className="mb-6 md:mb-0">

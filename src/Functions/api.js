@@ -53,7 +53,6 @@ const Api = () => {
     if(parent === 'navbar' && error.response.status === 401){
       localStorage.removeItem('token');
       navigate('/login');
-      alert('Please login again.');
     }
     return response;
   }
