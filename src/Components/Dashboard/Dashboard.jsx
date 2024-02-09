@@ -41,7 +41,6 @@ const Dashboard = () => {
 
   if (user.length === 0) {
     return <div className='dashboard-hero flex justify-center items-center text-white'>
-      <h1> We are Getting Your Data Wait ..</h1>
     </div>;
   }
 
