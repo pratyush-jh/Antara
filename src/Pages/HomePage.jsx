@@ -15,8 +15,6 @@ const HomePage = () => {
 
   return (
     <>
-    <div className='h-screen'
-    ></div>
     {width < breakpoint ? <MobileHome /> : <DesktopHome />}
 
     </>

@@ -11,6 +11,9 @@ const Footer = () => {
             if (token) {
                 setIsLoggedIn(true);
             }
+            else{
+                setIsLoggedIn(false);
+            }
         };
         checkAndNavigate();
     }, [navigate]);
