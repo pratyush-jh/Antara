@@ -35,26 +35,33 @@ const MobileDasboard = () => {
                  <div className="hamburger__hidden"></div>
                </div>
            </div>
-           <h1 className='text-3xl hover:text-rose-600 select-none font-bold' data-aos="fade-left" data-aos-delay="400">Dashboard</h1>
+           <h1 className='text-3xl pl-10 select-none font-bold' data-aos="fade-left" data-aos-delay="400">
+            { activeComponent === 'userProfile' ? 'Profile' : activeComponent === 'userEventDetails' ? 'Participation' : 'Teams'}
+           </h1>
             </div>
-            <div className={`dashboard-sidebar ${hamOpen ? 'w-1/5 mdmax:w-full' : 'w-0 mdmax:w-0'}`} >
+          <div className={`dashboard-sidebar ${hamOpen ? '  ' : ' hidden'}`} >
            <div className="flex flex-col items-center justify-center h-full
                bg-black dashboard-left" >
                <button 
                  className={`glow-on-hover ${activeComponent === 'userProfile' ? 'open' : 'close'}`} 
-                 onClick={() => setActiveComponent('userProfile')}
+                 onClick={() =>{
+                  setHamOpen(false);
+                  setActiveComponent('userProfile')}}
                >
                      Profile
                </button>
                <button 
                  className={` glow-on-hover ${activeComponent === 'userEventDetails' ? 'open' : 'close'}`} 
-                 onClick={() => setActiveComponent('userEventDetails')}
+                 onClick={() => { setHamOpen(false);
+                  setActiveComponent('userEventDetails')}}
                >
                      Participation
                </button>
                <button 
                  className={` glow-on-hover ${activeComponent === 'userTeams' ? 'open' : 'close'}`} 
-                 onClick={() => setActiveComponent('userTeams')}
+                 onClick={() => {
+                  setHamOpen(false);
+                  setActiveComponent('userTeams')}} 
                >
                      Teams
                </button>
@@ -63,10 +70,10 @@ const MobileDasboard = () => {
           
      
      <div 
-          className={`dashboard-body ${hamOpen ? 'w-4/5 mdmax:w-0' : 'w-full mdmax:w-full'} ${hamOpen ? 'pl-10 mdmax:pl-0' : 'pl-20'} `} 
-          onClick={() => setHamOpen(false)}
+          className={`${hamOpen ? ' hidden':''} 'bg-black`} 
+          
         >
-          {activeComponent === 'userProfile' && < MobileProfile />}
+          {activeComponent === 'userProfile' && < MobileProfile user={user} />}
           {activeComponent === 'userEventDetails' && <MobileParticipation />}
           {activeComponent === 'userTeams' && <MobileTeams />}
         </div>

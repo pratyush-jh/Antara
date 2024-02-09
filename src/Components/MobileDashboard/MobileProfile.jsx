@@ -1,6 +1,7 @@
 import React from 'react'
 
-const MobileProfile = () => {
+const MobileProfile = ({user}) => {
+  console.log(user)
   return (
     <div>MobileProfile</div>
   )
