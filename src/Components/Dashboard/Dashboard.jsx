@@ -37,7 +37,7 @@ useEffect(() => {
 
   return (
     <>    
-     <div className="z-30 flex justify-around items-center h-16 bg-pink text-white dashboard">
+     <div className="z-30 flex justify-around items-center h-16 bg-pink text-amber-950 dashboard">
           <h1 className='text-3xl font-bold'>Dashboard</h1>
           <div className='flex gap-1 '>
           <TypeAnimation
@@ -60,16 +60,17 @@ useEffect(() => {
           </div>
      </div>
      {/* //* Styling in Dashboard.css */}
-    <div className="flex">
-      <div className="flex flex-col w-1/5 p-4 z-10 bg-gray-200 min-h-screen ">
+    <div className="flex bg-svg db-btn-pad">
+      <div className="flex flex-col w-1/5 p-4 z-10 bg-gray-200 min-h-screen bg-svg-db">
+        
         <button 
-          className={`w-full py-2 px-4 rounded ${activeComponent === 'userProfile' ? 'bg-brown text-white' : ''}`} 
+          className={`w-full py-2 px-4 rounded ${activeComponent === 'userProfile' ? 'bg-skin text-brown db-btn ' : ''}`} 
           onClick={() => setActiveComponent('userProfile')}
         >
           Profile
         </button>
         <button 
-          className={`w-full py-2 px-4 rounded mt-2 ${activeComponent === 'userEventDetails' ? 'bg-brown text-white' : ''}`} 
+          className={`w-full py-2 px-4 rounded mt-2 ${activeComponent === 'userEventDetails' ? 'bg-skin text-brown db-btn' : ''}`} 
           onClick={() => setActiveComponent('userEventDetails')}
         >
           Event Details
