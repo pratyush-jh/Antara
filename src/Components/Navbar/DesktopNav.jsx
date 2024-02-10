@@ -90,7 +90,7 @@ const DesktopNav = () => {
               <Link to="/" data-aos="fade-down" className={navbarStyle}>Home</Link>
               <Link data-aos="fade-up" to="/events" className={navbarStyle}>Events</Link>
               <Link data-aos="fade-down" to="/timeline" className={navbarStyle}>Timeline</Link>
-              <Link data-aos="fade-up" to="/teams" className= {navbarStyle}>Contact Us</Link>
+              <Link data-aos="fade-up" to="/teams" className= {navbarStyle}>Teams</Link>
             </div>
           </div>
           <div className="hidden md:flex items-center justify-center space-x-3 ">
