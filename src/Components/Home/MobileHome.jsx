@@ -12,10 +12,20 @@ const MobileHome = () => {
     }
     setIsLoggedIn(true);
   }, [navigate])
+  useEffect(() => {
+    // Prevent scrolling
+    document.body.style.overflow = 'hidden';
+    const timeoutId = setTimeout(() => {
+      document.body.style.overflow = 'auto';
+    }, 5000);
+
+    // Clean up function
+    return () => clearTimeout(timeoutId);
+  }, [navigate]);
 
   const colour = isLoggedIn ? 'brown' : 'blue';
   return (
-    <div  className='-z-10 overflow-hidden' data-aos = "fade-down" >
+    <div  className='-z-10 overflow-hidden' data-aos = "fade-up" >
     <Hero />
       
   </div>

@@ -73,7 +73,7 @@ useEffect(() => {
   return (
     <>
       <div className={`flex justify-between items-center h-20 shadow-lg p-4 z-10 pt-2 pb-2 ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r from-black to-linear-darkBlue ':'bg-skin'}`}`}>
-          <Link to="/" className={`logo  font-sans flex items-center py-4 px-2 gap-12 font ${isLoggedIn?`${isOnDashboard? 'text-white':'text-brown'}`:' text-darkBlue'}`}>
+          <Link to="/" className={`logo flex items-center py-4 px-2 gap-12 font ${isLoggedIn?`${isOnDashboard? 'text-white':'text-brown'}`:' text-darkBlue'}`}>
               <TypeAnimation
               sequence={[
                 'HYPERION',
@@ -87,7 +87,7 @@ useEffect(() => {
               ]}
                   wrapper="span"
                   speed={20}
-                  style={{ fontSize: '20px', display: 'inline-block' }}
+                  style={{ fontSize: '20px', display: 'inline-block' , fontFamily: "fantasy"}}
                   repeat={2}
                 />
                 </Link>

@@ -5,10 +5,18 @@
      font-family: 'Berkshire Swash' ;
      src: url(../src/assets/Fonts/Berkshire/BerkshireSwash-Regular.ttf);
 }
+@font-face {
+     font-family: 'Audrey' ;
+     src: url('../src/assets/Fonts/Audrey/Audrey-Medium.otf');
+}
 
+*{
+     font-family: 'Poppins', sans-serif;
+
+}
 .logo {
      /* font-family: 'Berkshire Swash' , cursive; */
-     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
      opacity: 0.9;
 }
 
@@ -20,10 +28,9 @@
 ::-webkit-scrollbar {
      width: 0px;
 }
-h1, h2, h3, h4, h5, h6 , p, a {
-     font-family: sans-serif ;
-}
+h1, h2, h3, h4, h5, h6 , p, a , text{
 
+}
 
 .spinner {
 height: 15px;

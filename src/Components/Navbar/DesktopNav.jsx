@@ -66,7 +66,7 @@ const DesktopNav = () => {
       <div className=" px-40">
         <div className="flex justify-between items-center">
           <div data-aos="fade-right">
-          <Link to="/" className={`logo absolute -top-7 font-sans flex items-center py-4 px-2 gap-12  text-${color}`}>
+          <Link to="/" className={`logo absolute -top-7 flex items-center py-4 px-2 gap-12  text-${color}`}>
           <TypeAnimation
           sequence={[
             'HYPERION',
@@ -80,7 +80,7 @@ const DesktopNav = () => {
           ]}
               wrapper="span"
               speed={20}
-              style={{ fontSize: '20px', display: 'inline-block' }}
+              style={{ fontSize: '20px', display: 'inline-block' , fontFamily: 'Poppins'}}
               repeat={2}
             />
             </Link>

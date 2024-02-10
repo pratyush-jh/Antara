@@ -1,17 +1,26 @@
+@font-face {
+  font-family: 'Berkshire Swash' ;
+  src: url(../../assets/Fonts/Berkshire/BerkshireSwash-Regular.ttf);
+}
 
 .hero-container {
   height: 100vh;
 }
 .images{
   position: absolute;
+  
 }
 .heading-animation{
   opacity: 0;
-  font-size: 200px;
+  font-size: 150px;
   animation: zoom-out 3s forwards ;
   animation-delay:   2s;
   z-index: 10;
+  font-family: Audrey;
+  text-transform: uppercase;
 }
+
+
 
 @keyframes  zoom-out {
   0% {
@@ -236,6 +245,7 @@ body, html{
   100% {
     transform: translateX(100%) translateY(40%) rotate(0deg)  ;
     opacity: 0;
+    display: none;
     visibility: hidden;
   }
 }
@@ -305,4 +315,23 @@ body, html{
     transform: translateX(-400px) translateY(-100px) rotate(45deg); ;
 
   }
+}
+
+@media (max-width: 768px) {
+  .heading-animation{
+    font-family: Berkshire Swash, cursive;  
+    text-transform: capitalize;
+    font-size: 100px;
+  }
+  .flower2, .flower7, .flower5{
+    left: 50%;
+  }
+  .flower9{
+    width: 100px;
+  }
+  .flower12{
+    width: 100px;
+  }
+
+
 }

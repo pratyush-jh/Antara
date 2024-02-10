@@ -3,6 +3,7 @@ import HomeFunction from '../../Functions/Home';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useNavigate } from 'react-router-dom';
+import Hero from '../Hero/Hero';
 const DesktopHome = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,9 +16,8 @@ const DesktopHome = () => {
   const {countdown, linkStyle } = HomeFunction();
 
   return (
-    <div  className='-z-10 overflow-hidden' data-aos = "fade-down" >
-
-        
+    <div  className='-z-10 overflow-hidden' data-aos = "fade-down" >        
+      <Hero />
     </div>
   );
 };

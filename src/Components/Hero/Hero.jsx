@@ -30,13 +30,11 @@ import Other8 from '../../assets/Flowers/Other/pngegg (7).png';
 import Other9 from '../../assets/Flowers/Other/pngegg (8).png';
 
 const Hero = () => {
-  useEffect(() => {
-    window.scrollTo(10, 0);
-  }, []);
+
   return ( 
     <div className='hero-container h-screen -z-10 w-screen flex items-center justify-center overflow-hidden'>
       <div className="content -z-50">
-        <h1 className='heading-animation'>AROHANA</h1>
+        <h1 className='heading-animation'>Arohana</h1>
       </div>
       <div className='-z-10'>
           <img src={Img6} alt=""  className=' images flower1' />
