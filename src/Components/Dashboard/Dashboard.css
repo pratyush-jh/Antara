@@ -33,7 +33,7 @@ hr{
 }
 
 .bg-svg-db{
-     background-image: url(../Dashboard/svg.png);
+     background-image: url(../../assets/svg.png);
      background-repeat: no-repeat;
      background-attachment: fixed;
      background-position: 0% 0%;
@@ -41,7 +41,7 @@ hr{
 }
 
 .bg-svg{
-     background-image: url(../Dashboard/svg.png);
+ background-image: url(../../assets/svg.png);
      background-repeat: no-repeat;
      background-attachment:fixed;
      background-position: 0% 0%;
