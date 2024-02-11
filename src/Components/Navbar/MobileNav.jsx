@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
@@ -10,9 +10,11 @@ import UserProfile from '../../assets/userProfile.png';
 
 
 const MobileNav = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isOnDashboard, setIsOnDashboard] = useState(false);
 
   const logout = async () => {
     setIsLoggedIn(false);
@@ -29,7 +31,25 @@ useEffect(() => {
     document.body.style.overflow = 'auto';
   }
 }, [isOpen]);
+
+useEffect(() => {
+  setIsOnDashboard(location.pathname === '/dashboard');
+  if (location.pathname === '/dashboard') {
+    document.body.style.backgroundColor = 'black';
+  } else {
+    document.body.style.backgroundColor = 'white'; // or any other default color
+  }
+}, [navigate, location]);
   
+useEffect(() => {
+
+  if (location.pathname === '/dashboard') {
+    setIsOnDashboard(true);
+  }
+  else {
+    setIsOnDashboard(false);
+  }
+}, [location]);
 
   useEffect(() => {
     const checkAndNavigate = async () => {
@@ -49,11 +69,11 @@ useEffect(() => {
     });
   }, []);
 
-  const navbarStyle = `py-2 px-2 border-b-4 border-transparent ${isLoggedIn?'text-brown':' text-darkBlue'}  ${isLoggedIn?'hover:border-brown':'hover:border-darkBlue'} font-medium rounded`;
+  const navbarStyle = `py-2 px-2 border-b-4 border-transparent ${isLoggedIn?`${isOnDashboard? 'text-white':'text-brown'}`:' text-darkBlue'}  ${isLoggedIn?'hover:border-brown':'hover:border-darkBlue'} font-medium rounded`;
   return (
     <>
-      <div className={`flex justify-between items-center h-20 shadow-lg p-4 z-10 pt-2 pb-2 ${!isLoggedIn?'bg-skyBlue':'bg-skin'}`}>
-          <Link to="/" className={`logo  font-sans flex items-center py-4 px-2 gap-12 font ${isLoggedIn?'text-brown':' text-darkBlue'}`}>
+      <div className={`flex justify-between items-center h-20 shadow-lg p-4 z-10 pt-2 pb-2 ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r from-black to-linear-darkBlue ':'bg-skin'}`}`}>
+          <Link to="/" className={`logo flex items-center py-4 px-2 gap-12 font ${isLoggedIn?`${isOnDashboard? 'text-white':'text-brown'}`:' text-darkBlue'}`}>
               <TypeAnimation
               sequence={[
                 'HYPERION',
@@ -67,20 +87,25 @@ useEffect(() => {
               ]}
                   wrapper="span"
                   speed={20}
-                  style={{ fontSize: '20px', display: 'inline-block' }}
+                  style={{ fontSize: '20px', display: 'inline-block' , fontFamily: "fantasy"}}
                   repeat={2}
                 />
                 </Link>
-        <div onClick={() => setIsOpen(!isOpen)} className="flex items-center ">
-          <button onClick={() => setIsOpen(!isOpen)} className={`text-gray-500 w-12 text-3xl ${isLoggedIn?'text-brown':' text-darkBlue'}`}> 
-            {isOpen ?   <IoMdArrowRoundBack />   : <FaBars />}   
+        <div onClick={() => setIsOpen(!isOpen)}>
+          <button> 
+            <div className={`hamburger ${isOpen? 'is-active' :''}`} >
+              <div className="hamburger__container" >
+                <div className="hamburger__inner"></div>
+                <div className="hamburger__hidden"></div>
+              </div>
+            </div>
           </button>
         </div>
       </div>
 
 
 
-      <div className={`${isOpen ? 'block' : 'hidden'} w-full h-screen fixed top-23 transition-all duration-500 ease-in-out z-10 ${!isLoggedIn?'bg-skyBlue':'bg-skin'}  `}>
+      <div className={`${isOpen ? 'block' : 'hidden'} w-full h-screen fixed top-23 transition-all duration-500 ease-in-out z-10 ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-black':'bg-skin' }`}`}>
 
         <div className="flex flex-col items-center justify-center h-full -mt-10 gap-10">
         {isLoggedIn ? 
@@ -103,7 +128,7 @@ useEffect(() => {
           <Link to="/timeline" className={navbarStyle} onClick={() => setIsOpen(false)}>Timeline</Link>
           <Link to="/contact" className={navbarStyle} onClick={() => setIsOpen(false)}>Contact</Link>
           {isLoggedIn ? 
-          <button data-aos="fade-up" onClick={logout} className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">Logout</button>
+          <button data-aos="fade-up" onClick={logout} className={` py-2 px-2 font-medium rounded ${isOnDashboard?'text-white':'text-brown' } hover:text-rose-200 duration-500 transition-all`}>Logout</button>
 
             : null
           }

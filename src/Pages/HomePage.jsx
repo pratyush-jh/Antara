@@ -5,7 +5,7 @@ import { useEffect , useState} from 'react'
 const HomePage = () => {
   
   const [width, setWidth] = useState(window.innerWidth);
-  const breakpoint = 620;
+  const breakpoint = 772;
   useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth)
     window.addEventListener("resize", handleWindowResize);
@@ -15,8 +15,6 @@ const HomePage = () => {
 
   return (
     <>
-    <div className='h-screen'
-    ></div>
     {width < breakpoint ? <MobileHome /> : <DesktopHome />}
 
     </>

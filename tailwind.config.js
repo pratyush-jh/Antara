@@ -18,6 +18,9 @@ export default {
         'lightPurple': '#b8a2b9',
         'skin': '#ffdec7',
         'brown': '#493129',
+        'linear-darkBlue':'#090979',
+        'linear-lightBlue':'#00d4ff',
+        'shade-darkBlue':'#00008B',
       },
       screens: {
         'sm': '425px',
@@ -25,13 +28,19 @@ export default {
         'lg': '1024px',
         'xl': '1280px',
         'smmax': {'max': '425px'},
-        'mdmax': {'max': '764px'},
+        'mdmax': {'max': '620px'},
         'mdsmax': {'max': '874px'},
         'mddmax':{'max':'900px'},
         'lgmax': {'max': '1024px'},
         'xlmax': {'max': '1155px'},
         'xxlmax': {'max': '1280px'},
         'xxxlmax':{'max':'1345px'},
+      },
+      // backgroung image
+      backgroundImage:{
+        'hero': "url('./src/assets/Image/bg-1.jpg')",
+        'hero2': "url('./src/assets/Image/bg-2.jpg')",
+        'hero3': "url('./src/assets/Image/bg-3.jpg')",
       },
       fontFamily: {
         'logo': ['Berkshire Swash', 'serif'],

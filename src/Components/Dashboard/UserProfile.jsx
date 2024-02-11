@@ -7,10 +7,9 @@ const UserProfile = ({user}) => {
     <div>
       
       <div>
-        <p className='text-6xl font-sans font-semibold pad-1 text-amber-950'>User Profile</p> <br /> <hr /> <br />
         
         <ul>
-          <li><p className='flex p-pad font-sans text-2xl '><strong className="pad-2 profile-text"> Email Verification Status:</strong>{user.email_verified_at == null ?
+          <li><p className='flex p-pad font-sans text-2xl '><strong className=" text-white pr-5 pt-1"> Email Verification Status:</strong>{user.email_verified_at == null ?
           <div>
            <Link to="/verify" className='verify-btn'> Verify Email</Link>
           </div> : "Verified"}
