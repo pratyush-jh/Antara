@@ -1,0 +1,337 @@
+@font-face {
+  font-family: 'Berkshire Swash' ;
+  src: url(../../assets/Fonts/Berkshire/BerkshireSwash-Regular.ttf);
+}
+
+.hero-container {
+  height: 100vh;
+}
+.images{
+  position: absolute;
+  
+}
+.heading-animation{
+  opacity: 0;
+  font-size: 150px;
+  animation: zoom-out 3s forwards ;
+  animation-delay:   3s;
+  z-index: 10;
+  font-family: Audrey;
+  text-transform: uppercase;
+}
+
+
+
+@keyframes  zoom-out {
+  0% {
+    opacity: 0;
+    transform: scale(1);  
+  }
+  100% {
+    opacity: 1;
+    transform: scale(0.7);
+  }
+}
+body, html{
+  overflow-x: hidden;
+}
+
+.flower1{
+  top: 10%;
+  left: 10%;
+  width: 300px;
+  animation: flower1 3s forwards;
+  animation-delay:   3s;
+}
+@keyframes flower1 {
+  0% {
+    transform: translateX(0px) rotate(0deg); ;
+  
+  }
+  100% {
+    transform: translateX(-400px) translateY(-100px) rotate(45deg); ;
+
+  }
+}
+.flower2{
+  top: 10%;
+  left: 23%;
+  width: 300px;
+  animation: flower2 3s forwards;
+  animation-delay:   3s;
+}
+@keyframes flower2 {
+  0% {
+    transform: translateX(0px) rotate(0deg); ;
+  
+  }
+  100% {
+    transform: translateX(500px) translateY(-200px) rotate(-45deg); ;
+
+  }
+}
+
+.flower3{
+  bottom: -30%;
+  right:  0%;
+  width: 600px;
+  animation: flower3 3s forwards;
+  animation-delay:   3s;
+}
+@keyframes flower3 {
+  0% {
+    opacity: 1;
+    transform: translateX(0px) rotate(0deg); ;
+  
+  }
+  100% {
+    opacity: 0;
+    display: none;
+    transform: translateX(300px) translateY(140px) rotate(45deg); ;
+
+  }
+}
+
+.flower4{
+  bottom: 0%;
+  left:  0%;
+  width: 600px;
+  transform: rotateZ(-70deg);
+  animation: flower4 3s forwards;
+  animation-delay:   3s;
+}
+
+@keyframes flower4 {
+  0% {
+
+    transform: translateX(0px) rotate(-70deg); 
+  
+  }
+  100% {
+    transform: rotateZ(-90deg);
+    bottom: -20%;
+    left:  -10%;
+  }
+}
+
+.flower5{
+  bottom: 20%;
+  right:  0%;
+  width: 600px;
+  animation: flower5 3s forwards;
+  animation-delay:   3s;
+  z-index: -60;
+}
+
+@keyframes flower5 {
+  0% {
+
+    transform: translateX(0px) rotate(0deg); 
+  
+  }
+  100% {
+    transform: rotateZ(45deg);
+    bottom: -20%;
+    right:  -10%;
+  }
+}
+
+.flower6{
+  bottom: 12%;
+  right:  0%;
+  width: 200px;
+  animation: flower6 3s forwards;
+  animation-delay:   3s;
+  transform: scale(1.5);
+  opacity: 1;
+}
+
+@keyframes  flower6 {
+  0% {
+    
+    transform:rotate(0deg) scale(1.5); 
+  
+  }
+  100% {
+    transform: translateX(-500px) translateY(200px) scale(0.7) rotate(90deg);
+    opacity: 0;
+  }
+}
+
+.flower7{
+  top: 10%;
+  transform: translateX(50px);
+  width: 200px;
+  animation: flower7 3s forwards;
+  animation-delay:   3s;
+  z-index: -70;
+}
+
+@keyframes flower7 {
+  0% {
+
+    transform: translateX(50px) rotate(0deg); 
+  
+  }
+  100% {
+    transform: translateX(100px) rotateZ(-90deg);
+    top: -20%;
+
+  }
+}
+.flower8{
+  top: 0%;
+  left:-20%;
+  width: 600px;
+  animation: flower5 3s forwards;
+  animation-delay:   3s;
+  z-index: -10;
+}
+
+@keyframes flower8 {
+  0% {
+
+    transform: translateX(0px) rotate(0deg); 
+  
+  }
+  100% {
+    transform: rotateZ(45deg);
+    bottom: -20%;
+    right:  -10%;
+  }
+}
+.flower9{
+  top: 0%;
+  left: 50%;
+  transform: translateX(-50%) translateY(40%) rotate(90deg) ;
+  width: 400px;
+  animation: flower9 3s forwards;
+  animation-delay:   3s;
+  z-index: -10;
+}
+
+ @keyframes flower9 {
+  0% {
+       
+    transform: translateX(-50%) translateY(40%) rotate(90deg)  ;
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(-50%) translateY(80%) rotate(90deg)  ;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.flower10{
+  top: 0%;
+  right: 50%;
+  transform: translateX(0%) translateY(40%) rotate(0deg) ;
+  width: 400px;
+  scale: 2;
+  animation: flower10 3s forwards;
+  animation-delay:   3s;
+  z-index: -10;
+}
+
+ @keyframes flower10 {
+  0% {
+       
+    transform: translateX(0%) translateY(40%) rotate(0)  ;
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(100%) translateY(40%) rotate(0deg)  ;
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+}
+.flower11{
+  bottom: 0%;
+  left: 50%;
+  transform: translateX(-100%) translateY(10%) rotate(90deg) ;
+  width: 400px;
+  scale: 2;
+  animation: flower11 3s forwards;
+  animation-delay:   3s;
+  z-index: -10;
+}
+
+@keyframes flower11 {
+  0% {
+    transform: translateX(-50%) translateY(40%) rotate(90deg)  ;
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(-50%) translateY(80%) rotate(90deg)  ;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.flower12{
+  bottom: 0%;
+  right: 50%;
+  transform: translateX(50%) translateY(-40%) rotate(0deg) ;
+  width: 400px;
+  scale: 2;
+  animation: flower12 3s forwards;
+  animation-delay:   3s;
+  z-index: -10;
+}
+
+@keyframes flower12 {
+  0% {
+    transform: translateX(50%) translateY(-40%) rotate(0)  ;
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(50%) translateY(-100%) rotate(45deg)  ;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.butterfly{
+  top: 10%;
+  left: 10%;
+  animation: butterfly1 3s forwards;
+  animation-delay: 3s;
+  z-index: 10;
+  scale: 2;
+}
+
+@keyframes butterfly1 {
+  0% {
+    transform: translateX(0px) rotate(0deg); ;
+  
+  }
+  100% {
+    transform: translateX(-400px) translateY(-100px) rotate(45deg); ;
+
+  }
+}
+
+@media (max-width: 768px) {
+  .heading-animation{
+    font-family: Berkshire Swash, cursive;  
+    text-transform: capitalize;
+    font-size: 100px;
+  }
+  .flower2, .flower7, .flower5{
+    left: 50%;
+  }
+  .flower9{
+    width: 100px;
+  }
+  .flower12{
+    width: 100px;
+  }
+
+
+}
