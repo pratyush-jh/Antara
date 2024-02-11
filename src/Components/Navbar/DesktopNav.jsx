@@ -25,11 +25,7 @@ const DesktopNav = () => {
 
   useEffect(() => {
     setIsOnDashboard(location.pathname === '/dashboard');
-    if (location.pathname === '/dashboard') {
-      document.body.style.backgroundColor = 'black';
-    } else {
-      document.body.style.backgroundColor = 'white'; // or any other default color
-    }
+
   }, [navigate, location]);
 
 
@@ -62,7 +58,7 @@ const DesktopNav = () => {
   const navbarStyle = `py-4 px-2 border-b-4 border-transparent ${isLoggedIn? `${isOnDashboard? 'text-white':'text-brown'}` :' text-darkBlue'} 
   ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-brown'}`: 'hover:border-darkBlue'}  font-medium rounded`;
   return (
-  <nav className={`shadow-lg pt-2 pb-2 ${isOnDashboard ? 'bg-gradient-to-r from-black to-linear-darkBlue ' : `bg-${bgcolor}`}`} data-aos="fade-down">
+  <nav className={`shadow-lg pt-2 pb-2 ${isOnDashboard ? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue  ' : `bg-${bgcolor}`}`} data-aos="fade-down">
       <div className=" px-40">
         <div className="flex justify-between items-center">
           <div data-aos="fade-right">
@@ -98,7 +94,7 @@ const DesktopNav = () => {
               <div className=' flex justify-center items-center gap-10'>
                 
                 <Link to={'/dashboard'} >
-                  <button data-aos="fade-left" className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white hover:text-rose-600':' text-brown hover:text-rose-200'} duration-500 transition-all flex flex-col items-center`}>
+                  <button data-aos="fade-left" className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white hover:text-shade-darkBlue':' text-brown hover:text-rose-200'} duration-500 transition-all flex flex-col items-center`}>
                     <img src={UserProfile} alt="UserProfile" className="h-8 w-8 rounded-full text-white" />
                     <div className=' text-sm'>
                       Dash Board
@@ -106,7 +102,7 @@ const DesktopNav = () => {
                   </button>
                 </Link>
 
-                <button data-aos="fade-left" onClick={logout} className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white  hover:text-rose-600 navbar':' text-brown hover:text-rose-200'} duration-500 transition-all`}>Logout</button>
+                <button data-aos="fade-left" onClick={logout} className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white  hover:text-shade-darkBlue navbar':' text-brown hover:text-rose-200'} duration-500 transition-all`}>Logout</button>
               </div> : 
             
               <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center py-2 min-w-20 font-medium text-darkBlue rounded hover:text-midBlue duration-500 transition-all ">

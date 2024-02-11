@@ -20,7 +20,7 @@ export default {
         'brown': '#493129',
         'linear-darkBlue':'#090979',
         'linear-lightBlue':'#00d4ff',
-        'shade-darkBlue':'#00008B',
+        'shade-darkBlue':'#00f7ff',
       },
       screens: {
         'sm': '425px',

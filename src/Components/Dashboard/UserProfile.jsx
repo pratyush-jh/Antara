@@ -1,38 +1,31 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './dashboard.css';
-const UserProfile = ({user}) => {
-     console.log(user)
+
+const UserProfile = ({ user }) => {
   return (
-    <div>
-      
-      <div>
-        
-        <ul>
-          <li><p className='flex p-pad font-sans text-2xl '><strong className=" text-white pr-5 pt-1"> Email Verification Status:</strong>{user.email_verified_at == null ?
-          <div>
-           <Link to="/verify" className='verify-btn'> Verify Email</Link>
-          </div> : "Verified"}
-        
-          </p></li>
-
-        <li><p className='p-pad font-sans text-2xl '><strong className='profile-text-2'>ID : </strong>{user.id}</p></li>
-        <li><p className='p-pad font-sans text-2xl '><strong className='profile-text-2'>Name : </strong>{user.name}</p></li>
-        <li><p className='p-pad font-sans text-2xl '><strong className='profile-text-2'>Email : </strong>{user.email}</p></li>
-        <li><p className='p-pad font-sans text-2xl '><strong className='profile-text-2'>Phone Number : </strong>{}</p></li>
-        <li><p className='p-pad font-sans text-2xl '><strong className='profile-text-2'>College Name : </strong>{}</p></li>
-        <li><p className='p-pad font-sans text-2xl '><strong className='profile-text-2'>User QR : </strong>{}</p></li>
-        <li><p className='p-pad-2 font-sans text-2xl '><strong className='profile-text-2'>Account Created on : </strong>{}</p></li>
-      
-        </ul>
+    <div className=" -z-10 flex h-screen  w-full" data-aos="fade-left">
+      <div className="flex flex-col flex-1 p-6 space-y-4">
+        <h2 className="text-2xl font-semibold">PROFILE</h2>
+        <div className="flex space-x-4">
+          <div className="flex-1 p-4 bg-white rounded shadow">
+            <h2 className="text-lg font-semibold">User Name:</h2>
+            <p>{user.name}</p>
+            <h2 className="text-lg font-semibold">Phone Number:</h2>
+            <p>{user.phoneNumber}</p>
+            <h2 className="text-lg font-semibold">College Name:</h2>
+            <p>{user.collegeName}</p>
+            <h2 className="text-lg font-semibold">Email Verification Status:</h2>
+            <p>{user.emailVerified ? 'Verified' : 'Not Verified'}</p>
+            <h2 className="text-lg font-semibold">Sponsors Task Verification:</h2>
+            <p>{user.sponsorsTaskVerified ? 'Verified' : 'Not Verified'}</p>
+          </div>
+          <div className="flex-1 p-4 bg-white rounded shadow">
+            <h2 className="text-lg font-semibold">QR Code:</h2>
+            <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(user.qrCodeData)}&amp;size=200x200`} alt="QR Code" />
+          </div>
+        </div>
       </div>
-      
-      <br /> <hr /> <br />
-
-      
-
     </div>
-  )
+  );
 }
 
-export default UserProfile
+export default UserProfile;
