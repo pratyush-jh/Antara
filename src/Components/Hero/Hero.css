@@ -8,7 +8,7 @@
 }
 .images{
   position: absolute;
-  
+  filter: drop-shadow(0 0 10px rgba(132, 132, 132, 0.5)) ;
 }
 .heading-animation{
   opacity: 0;

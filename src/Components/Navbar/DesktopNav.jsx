@@ -94,20 +94,23 @@ const DesktopNav = () => {
               <div className=' flex justify-center items-center gap-10'>
                 
                 <Link to={'/dashboard'} >
-                  <button data-aos="fade-left" className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white hover:text-shade-darkBlue':' text-brown hover:text-rose-200'} duration-500 transition-all flex flex-col items-center`}>
+                  <div data-aos="fade-left" className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white hover:text-shade-darkBlue':' text-brown hover:text-rose-200'} duration-500 transition-all flex flex-col items-center`}>
                     <img src={UserProfile} alt="UserProfile" className="h-8 w-8 rounded-full text-white" />
                     <div className=' text-sm'>
                       Dash Board
                     </div>
-                  </button>
+                  </div>
                 </Link>
-
-                <button data-aos="fade-left" onClick={logout} className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white  hover:text-shade-darkBlue navbar':' text-brown hover:text-rose-200'} duration-500 transition-all`}>Logout</button>
+              <div className={`btn`}>
+                <button data-aos="fade-left" onClick={logout} className={`btn-content-login font-medium ${isOnDashboard ? ' text-white  hover:text-shade-darkBlue ':' text-white hover:text-rose-200'} `}>Logout</button>
+              </div>
               </div> : 
             
-              <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center py-2 min-w-20 font-medium text-darkBlue rounded hover:text-midBlue duration-500 transition-all ">
+              <div className='btn'>
+                <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center min-w-20 font-medium text-white btn-content-login duration-500 transition-all ">
                 Login
               </Link>
+              </div>
    
               }
           </div>

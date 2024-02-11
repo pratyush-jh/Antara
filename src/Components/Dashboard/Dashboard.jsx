@@ -4,14 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 import Api from '../../Functions/api';
 import { TypeAnimation } from 'react-type-animation';
-import { Link ,Element} from 'react-scroll';
 import UserProfile from './UserProfile';
 import UserEventDetails from './UserEventDetails';
 import UserTeams from './UserTeams';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Welcome from './Welcome';
-import './Dashboard.scss';
+import '../../Button.css';
+import { FaUser, FaCalendar, FaUsers } from 'react-icons/fa';
+
+
 
 const Dashboard = () => {
   const { authUser } = Api();
@@ -34,6 +36,12 @@ const Dashboard = () => {
     };
     checkAndNavigate();
   }, [navigate]);
+
+  useEffect(() => {
+    document.querySelectorAll('button').forEach(button => {
+      button.innerHTML = '<div><span>' + button.textContent.trim().split('').join('</span><span>') + '</span></div>';
+    });
+  }, [navigate, hamOpen, activeComponent, user]);
 
   useEffect(() => {
     AOS.init({duration: 1000});
@@ -61,26 +69,36 @@ const Dashboard = () => {
         <div className={`${!hamOpen? 'w-0 mdmax:w-0' :'w-1/5 mdmax:w-screen'} dashboard-left-body` } >
             {
               !hamOpen? <div></div>:
-              <div className='h-screen dashboard-left flex items-center' >
-              <div className=''>
-                <button
-                  onClick={() => setActiveComponent('userProfile')}
-                  className={`glow-on-hover ${activeComponent === 'userProfile' ? 'open' : 'close'}`}
-                >
-                  <p>Profile</p>
-                </button>
-                <button 
-                  onClick={() => setActiveComponent('userEventDetails')}
-                  className={` glow-on-hover ${activeComponent === 'userEventDetails' ? 'open' : 'close'}`} 
-                >
-                  <p>Event Details</p>
-                </button>
-                <button
-                  onClick={() => setActiveComponent('userTeams')}
-                  className={`glow-on-hover ${activeComponent === 'userTeams' ? 'open' : 'close'}`}
-                >
-                  <p>Teams</p>
-                </button>
+              <div className='h-screen dashboard-left flex items-center justify-center' >
+              <div className='button-list'>
+                  <div className=''>
+                  <FaUser className=' absolute scale-125 text-white left-52 translate-y-4'/>
+
+                    <button
+                      onClick={() => setActiveComponent('userProfile')}
+                      className={`button  ${activeComponent === 'userProfile' ? 'open' : 'close'}`}
+                    >
+                      <p>Profile</p>
+                    </button>
+                  </div>
+                  <div>
+                  <FaCalendar className=' absolute scale-125 text-white left-52 translate-y-4'/>
+                    <button 
+                      onClick={() => setActiveComponent('userEventDetails')}
+                      className={` button reverse ${activeComponent === 'userEventDetails' ? 'open' : 'close'}`} 
+                    >
+                      <p>Event Details</p>
+                    </button>
+                  </div>
+                  <div>
+                    <FaUsers className=' absolute scale-125 text-white left-52 translate-y-4'/>
+                    <button
+                      onClick={() => setActiveComponent('userTeams')}
+                      className={`button ${activeComponent === 'userTeams' ? 'open' : 'close'}`}
+                    >
+                      <p>Teams</p>
+                    </button>
+                  </div>
                 </div>
       
               <div className='flex gap-1 absolute top-10 '>
@@ -99,18 +117,24 @@ const Dashboard = () => {
                   speed={10}
                   
                   style={{ fontSize: '20px', display: 'inline-block', width: '300px' , padding: '10px' , color: 'black',
-                  textAlign: 'center', fontWeight: 'bold', fontFamily: 'Berkshire Swash ', borderRadius: '10px'  
+                  textAlign: 'center', fontWeight: 'bold',  borderRadius: '10px'  
 
                 }}
-                  repeat={Infinity}
+                  repeat={3}
                 />
                 
               </div>
               </div>
             }
         </div>
+        {
+          hamOpen? null:
+          <div className='menu ' onClick={() => setHamOpen(!hamOpen)}>
+          </div>
+        
+        }
         <div 
-          className={`dashboard-body ${hamOpen ? 'w-4/5 mdmax:w-0' : 'w-full mdmax:w-full ml-10'} ${hamOpen ? 'pl-10 mdmax:pl-0 maxHieght' : 'pl-10'} `} 
+          className={`dashboard-body ${hamOpen ? 'w-4/5 mdmax:w-0' : 'w-full mdmax:w-full'} ${hamOpen ? 'pl-10 mdmax:pl-0 maxHieght' : 'pl-10'} `} 
           onClick={() => setHamOpen(false)}
         >
           <Welcome user={user} />

@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
-
 import Navbar from './Pages/NavbarPage';
 import Home from './Pages/HomePage';
 import Footer from './Pages/FooterPage';
@@ -47,7 +46,6 @@ const appRouters = () => (
         <Route path = "thanks" element = {< Thanks />}/>
         <Route path = "verify" element = {<  Verify/>}/>
         <Route path = "dashboard" element = {<Dashboard/>}/>
-
         {/* //* Routes for event Registration */}
         <Route path="event-registration" element={<RegistrationForm />} />
         <Route path='categories' element ={<Categories/>} />
