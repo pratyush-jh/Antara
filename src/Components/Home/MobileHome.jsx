@@ -6,6 +6,7 @@ import Aos from 'aos';
 import 'aos/dist/aos.css'
 const MobileHome = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [clickedIndex, setClickedIndex] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -15,13 +16,11 @@ const MobileHome = () => {
     setIsLoggedIn(true);
   }, [navigate])
   useEffect(() => {
-    // Prevent scrolling
     document.body.style.overflow = 'hidden';
     const timeoutId = setTimeout(() => {
       document.body.style.overflow = 'auto';
     }, 5000);
 
-    // Clean up function
     return () => clearTimeout(timeoutId);
   }, [navigate]);
 
@@ -29,12 +28,20 @@ const MobileHome = () => {
     Aos.init();
   }, [])
 
+    const toggleAnswer = (index) => {
+      if (index === clickedIndex) {
+        setClickedIndex(null);
+      } else {
+        setClickedIndex(index);
+      }
+    };
+
   const colour = isLoggedIn ? 'brown' : 'blue';
   return (
     <div  className='-z-10 overflow-hidden relative' data-aos = "fade-up" >
     <Hero />
-      
-  </div>
+    
+    </div>
   )
 }
 
