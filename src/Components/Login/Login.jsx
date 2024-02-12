@@ -1,17 +1,17 @@
-import React, { useEffect , useState } from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, Link } from 'react-router-dom';
-import { API_URL } from '../../Functions/Constants';
-import Spinner from '../ShimmerAndSpinner/Spinner';
+import { MdEmail } from "react-icons/md";
+import { TbPasswordUser } from "react-icons/tb";
 import Api from '../../Functions/api';
-
+import './Login.css'
+import Profile from '../../assets/userProfile.png'
 const Login = ({path}) => {
 
      const navigate = useNavigate();
      const {login , isLoading} = Api();
 
-     // * Function to check if the user is already logged in, if already logged in then redirect to the home page
      useEffect(() => {
           const checkAndNavigate = async () => {
                const token = localStorage.getItem('token');
@@ -32,41 +32,57 @@ const Login = ({path}) => {
           password: Yup.string().min(8, 'Must be 8 characters or more').required('Required'),
      });
 
-
      const onSubmit = async (values) => {
           login(values);
      };
+     const handleAutofill = (e) => {
+          e.preventDefault();
+          const email = e.target.elements.email.value;
+          const password = e.target.elements.password.value;
+          const values = {
+               email,
+               password,
+          };
+          onSubmit(values);
+     };
 
      return (
-          <div className={`flex justify-center items-center h-screen bg-gray-100  `}>
-              { 
-              isLoading ? <div className=' absolute z-30'><Spinner /> </div>: <div></div>
-              }
-              <div className={`w-96 h-96 bg-white p-5 rounded-lg shadow-lg ${isLoading ? 'opacity-70': `opacity-100`}`}>
-                    <h1 className="text-3xl font-bold text-center text-gray-800">Login</h1>
-                    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-                         <Form className="mt-5">
-                              <div className="mb-5">
-                                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-600">Email</label>
-                                   <Field type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autoComplete="email" />
-                                   <ErrorMessage name="email" component="div" />
-                              </div>
-                              <div className="mb-5">
-                                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-600">Password</label>
-                                   <Field type="password" id="password" name="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none" autoComplete="new-password"/>
-                                   <ErrorMessage name="password" component="div" />
-                              </div>
-                         <button type="submit" className="w-full py-2 px-3 bg-blue-500 text-white rounded-md focus:outline-none" disabled={isLoading}>
-                              Login
-                         </button>
-                         </Form>
-                    </Formik>
-                    <div className="mt-4 text-center">
-                         <Link to="/registration" className="text-blue-500 hover:underline">Don't have an account? Sign up</Link>
+          <div className={`${isLoading? 'opacity-40': 'opacity-100'}`} >
+               <div className="container-login100" style={{backgroundImage: "url('images/bg-01.jpg')"}}>
+                    <div className="wrap-login100">
+                         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+                              <Form className="login100-form validate-form" onSubmit={handleAutofill}>
+                                   <span className="login100-form-logo">
+                                         <img src={Profile} alt="" />
+                                   </span>
+                                   <span className="login100-form-title">
+                                        Log in
+                                   </span>
+                                   <div className="wrap-input100 validate-input" data-validate = "Enter username">
+                                        <Field type="email" name="email" className="input100 text-white placeholder:text-white " placeholder="Email"  />
+                                        <span className='focus-input100' data=""></span>
+                                   </div>
+                                   <div className="wrap-input100 validate-input" data-validate="Enter password">
+                                        <Field type="password" name="password" className="input100 placeholder:text-white" placeholder="Password" />
+                                        <span className="focus-input100" data={<Profile/>}> </span>
+                                   </div>
+                                   <div className="container-login100-form-btn">
+                                        <button type="submit" className="login100-form-btn" disabled={isLoading}>
+                                             Login
+                                        </button>
+                                   </div>
+                                   <div className="text-center">
+                                        <Link to="/registration" className="txt1">
+                                             Don't Have an account? <p className=' text-white font-medium'> Singup</p> 
+                                        </Link>
+                                   </div>
+                              </Form>
+                         </Formik>
                     </div>
                </div>
           </div>
      );
 };
 
+     
 export default Login;

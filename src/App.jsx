@@ -4,6 +4,7 @@ import Navbar from './Pages/NavbarPage';
 import Home from './Pages/HomePage';
 import Footer from './Pages/FooterPage';
 import Events from './Pages/EventsPage';
+import EventByCategories from './Components/Events/EventByCategories';
 import Teams from './Pages/TeamsPage';
 import Sponsors from './Pages/SponsorsPage';
 import Timeline from './Pages/TimelinePage';
@@ -49,6 +50,7 @@ const appRouters = () => (
         {/* //* Routes for event Registration */}
         <Route path="event-registration" element={<RegistrationForm />} />
         <Route path='categories' element ={<Categories/>} />
+        <Route path="categories/:id" element={<EventByCategories />} />
         <Route path="*" element={<Home /> } />
 
       </Route>
