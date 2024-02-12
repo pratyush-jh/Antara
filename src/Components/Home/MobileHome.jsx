@@ -27,7 +27,7 @@ const MobileHome = () => {
   const colour = isLoggedIn ? 'brown' : 'blue';
   return (
     <>
-    <div  className='overflow-hidden relative '>
+    <div  className='-z-10 overflow-hidden' data-aos = "fade-up" >
     <Hero />
     </div>
 
