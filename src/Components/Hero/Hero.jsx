@@ -9,6 +9,7 @@ import Img14 from '../../assets/Flowers/pngwing.com (14).png';
 
 
 const Hero = () => {
+  
 
   // console.log(Img6);
   return ( 

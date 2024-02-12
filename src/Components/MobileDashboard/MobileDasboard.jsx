@@ -25,14 +25,14 @@ const MobileDasboard = () => {
 
   return (
      <>
-            <div className="z-30 flex justify-between  pr-48  items-center h-16 bg-gradient-to-r from-black to-linear-darkBlue    text-white dashboard mdmax:pr-0 mdmax:flex-row-reverse"  data-aos-delay="200">
+            <div className="z-30 flex justify-between  pr-48  items-center h-16 bg-gradient-to-r from-black to-linear-darkBlue    text-white dashboard mdmax:pr-0 mdmax:flex-row-reverse" >
            <div className={`hamburger ${hamOpen? 'is-active' :''}`} onClick={() => setHamOpen(!hamOpen)}>
                <div className="hamburger__container">
                  <div className="hamburger__inner"></div>
                  <div className="hamburger__hidden"></div>
                </div>
            </div>
-           <h1 className='text-3xl pl-10 select-none font-bold' data-aos="fade-left" data-aos-delay="400">
+           <h1 className='text-3xl pl-10 select-none font-bold'>
             { activeComponent === 'userProfile' ? 'Profile' : activeComponent === 'userEventDetails' ? 'Participation' : 'Teams'}
            </h1>
             </div>

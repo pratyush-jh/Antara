@@ -23,11 +23,12 @@ const DesktopNav = () => {
       navigate('/');
     };
 
-  useEffect(() => {
-    setIsOnDashboard(location.pathname === '/dashboard');
-
-  }, [navigate, location]);
-
+    useEffect(() => {
+      setIsOnDashboard(location.pathname === '/dashboard');
+      if (location.pathname !== '/dashboard') {
+        window.scrollTo(0, 84); 
+      }
+    }, [navigate, location]);
 
 
  useEffect(() => {
@@ -46,11 +47,9 @@ const DesktopNav = () => {
     AOS.init({
       duration: 1000
     });
-  }, []); // Initialize AOS when component mounts
-  
-  useEffect(() => {
-    AOS.refresh(); // Refresh AOS on navigation
-  }, [location]); // Refresh AOS when location changes
+  }, []); 
+
+
 
   const color = isLoggedIn ? `${isOnDashboard ? 'white' : 'brown'}` : 'darkBlue';
   const bgcolor = isLoggedIn ? 'bg-skin' : ' bg-skyBlue';
