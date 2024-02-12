@@ -1,8 +1,5 @@
 import React from 'react'
 import Api from '../../Functions/api'
-import MobileParticipation from './MobileParticipation';
-import MobileProfile from './MobileProfile';
-import MobileTeams from './MobileTeams';
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 const MobileDasboard = () => {
@@ -73,9 +70,6 @@ const MobileDasboard = () => {
           className={`${hamOpen ? ' hidden':''} 'bg-black`} 
           
         >
-          {activeComponent === 'userProfile' && < MobileProfile user={user} />}
-          {activeComponent === 'userEventDetails' && <MobileParticipation />}
-          {activeComponent === 'userTeams' && <MobileTeams />}
         </div>
      </>
 
