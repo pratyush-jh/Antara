@@ -16,7 +16,7 @@ const DesktopHome = () => {
   const {countdown, linkStyle } = HomeFunction();
 
   return (
-    <div  className='-z-10 overflow-hidden' data-aos = "fade-down" >        
+    <div  className='-z-10 relative overflow-hidden' data-aos = "fade-down" >        
       <Hero />
     </div>
   );

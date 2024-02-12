@@ -53,12 +53,12 @@ const DesktopNav = () => {
   }, [location]); // Refresh AOS when location changes
 
   const color = isLoggedIn ? `${isOnDashboard ? 'white' : 'brown'}` : 'darkBlue';
-  const bgcolor = isLoggedIn ? 'skin' : 'midBlue';
+  const bgcolor = isLoggedIn ? 'bg-skin' : ' bg-skyBlue';
 
   const navbarStyle = `py-4 px-2 border-b-4 border-transparent ${isLoggedIn? `${isOnDashboard? 'text-white':'text-brown'}` :' text-darkBlue'} 
   ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-brown'}`: 'hover:border-darkBlue'}  font-medium rounded`;
   return (
-  <nav className={`shadow-lg pt-2 pb-2 ${isOnDashboard ? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue  ' : `bg-${bgcolor}`}`} data-aos="fade-down">
+  <nav className={` z-20 shadow-lg pt-2 pb-2 ${isOnDashboard ? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue ' : bgcolor} `} data-aos="fade-down"> 
       <div className=" px-40">
         <div className="flex justify-between items-center">
           <div data-aos="fade-right">
@@ -84,7 +84,7 @@ const DesktopNav = () => {
           <div className="flex gap-40 " >
             <div className="hidden md:flex items-center space-x-6">
               <Link to="/" data-aos="fade-down" className={navbarStyle}>Home</Link>
-              <Link data-aos="fade-up" to="/events" className={navbarStyle}>Events</Link>
+              <Link data-aos="fade-up" to="/categories" className={navbarStyle}>Events</Link>
               <Link data-aos="fade-down" to="/timeline" className={navbarStyle}>Timeline</Link>
               <Link data-aos="fade-up" to="/teams" className= {navbarStyle}>Teams</Link>
             </div>
