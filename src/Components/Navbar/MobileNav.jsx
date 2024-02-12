@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { TypeAnimation } from 'react-type-animation';
 import UserProfile from '../../assets/userProfile.png';
-
+import './Navbar.css';
 
 const MobileNav = () => {
   const location = useLocation();
@@ -54,11 +54,11 @@ useEffect(() => {
     checkAndNavigate();
   }, [navigate]);
 
-
-  const navbarStyle = `py-2 px-2 border-b-4 border-transparent ${isLoggedIn?`${isOnDashboard? 'text-white':'text-brown'}`:' text-darkBlue'}  ${isLoggedIn?'hover:border-brown':'hover:border-darkBlue'} font-medium rounded`;
+  const navbarStyle = `py-4 px-2 border-b-4 border-transparent ${isLoggedIn? `${isOnDashboard? 'text-white':'text-brown'}` :' text-darkBlue'} 
+  ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-brown'}`: 'hover:border-darkBlue'}  font-medium rounded`;
   return (
     <>
-      <div className={`flex justify-between items-center h-20 shadow-lg p-4 z-10 pt-2 pb-2 ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r from-black to-linear-darkBlue ':'bg-skin'}`}`}>
+      <div className={`flex justify-between items-center h-20 shadow-lg p-4 z-10 pt-2 pb-2 ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue  ':'bg-skin'}`}`}>
           <Link to="/" className={`logo flex items-center py-4 px-2 gap-12 font ${isLoggedIn?`${isOnDashboard? 'text-white':'text-brown'}`:' text-darkBlue'}`}>
               <TypeAnimation
               sequence={[
@@ -77,30 +77,30 @@ useEffect(() => {
                   repeat={2}
                 />
                 </Link>
-        <div onClick={() => setIsOpen(!isOpen)}>
-          <button> 
+        <div onClick={() => setIsOpen(!isOpen)} className=' cursor-pointer'>
+          <div onClick={() => setIsOpen(!isOpen)} className=' cursor-pointer'> 
             <div className={`hamburger ${isOpen? 'is-active' :''}`} >
-              <div className="hamburger__container" >
+              <div className="hamburger__container " onClick={() => setIsOpen(!isOpen)}>
                 <div className="hamburger__inner"></div>
                 <div className="hamburger__hidden"></div>
               </div>
             </div>
-          </button>
+          </div>
         </div>
       </div>
 
 
 
-      <div className={`${isOpen ? 'block' : 'hidden'} z-40 w-full h-screen fixed top-23 transition-all duration-500 ease-in-out  ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-black':'bg-skin' }`}`}>
+      <div className={`${isOpen ? 'block' : 'hidden'} z-40 w-full h-screen fixed top-23 transition-all duration-500 ease-in-out  ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue ':'bg-skin' }`}`}>
 
         <div className="flex flex-col items-center justify-center h-full -mt-10 gap-10 ">
         {isLoggedIn ? 
               <div className=' flex flex-col justify-center items-center gap-10'>
                 
                 <Link to={'/dashboard'} onClick={() => setIsOpen(false)}>
-                  <button className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">
-                    <img src={UserProfile} alt="Dash Board" className="h-8 w-8 rounded-full" />
-                  </button>
+                  <div className=" py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">
+                    <img src={UserProfile} alt="Dash Board" className={`h-8 w-8 rounded-full ${isOnDashboard?"logoWhite":""}`} />
+                  </div>
                 </Link>
               </div> : 
             
@@ -117,7 +117,6 @@ useEffect(() => {
           <Link to="/contact" className={navbarStyle} onClick={() => setIsOpen(false)}>Contact</Link>
           {isLoggedIn ? 
           <button  onClick={logout} className={` py-2 px-2 font-medium rounded ${isOnDashboard?'text-white':'text-brown' } hover:text-rose-200 duration-500 transition-all`}>Logout</button>
-
             : null
           }
         </div>

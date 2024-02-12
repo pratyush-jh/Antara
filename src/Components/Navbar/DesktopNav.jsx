@@ -94,7 +94,7 @@ const DesktopNav = () => {
                 
                 <Link to={'/dashboard'} >
                   <div data-aos="fade-left" className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white hover:text-shade-darkBlue':' text-brown hover:text-rose-200'} duration-500 transition-all flex flex-col items-center`}>
-                    <img src={UserProfile} alt="UserProfile" className="h-8 w-8 rounded-full text-white" />
+                    <img src={UserProfile} alt="UserProfile" className={`h-8 w-8 rounded-ful ${isOnDashboard? 'logoWhite' :''}`} />
                     <div className=' text-sm'>
                       Dash Board
                     </div>

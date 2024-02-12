@@ -11,7 +11,7 @@ import Img14 from '../../assets/Flowers/pngwing.com (14).png';
 const Hero = () => {
   
   return ( 
-    <div className='h-screen -z-10 w-screen '>
+    <div className='hero-container h-screen -z-10 w-screen flex items-center justify-center overflow-hidden'>
       <div className="content flex justify-center items-center h-screen">
         {/* //* Have to use two different styles of heading one for mobile and one for desktop */}
         <h1 className='heading-animation'>Arohana</h1>
