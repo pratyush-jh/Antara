@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Hero from '../Hero/Hero';
+import Aos from 'aos';
+import 'aos/dist/aos.css'
 const MobileHome = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -23,9 +25,13 @@ const MobileHome = () => {
     return () => clearTimeout(timeoutId);
   }, [navigate]);
 
+  useEffect(()=>{
+    Aos.init();
+  }, [])
+
   const colour = isLoggedIn ? 'brown' : 'blue';
   return (
-    <div  className='-z-10 overflow-hidden' data-aos = "fade-up" >
+    <div  className='-z-10 overflow-hidden relative' data-aos = "fade-up" >
     <Hero />
       
   </div>

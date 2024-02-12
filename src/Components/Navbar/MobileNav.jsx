@@ -20,7 +20,6 @@ const MobileNav = () => {
     navigate('/');
   };
 
-  // Condition to check if the menu is open then make the body overflow hidden meaning unscrollable
 useEffect(() => {
   if (isOpen) {
     document.body.style.overflow = 'hidden';
@@ -92,23 +91,23 @@ useEffect(() => {
 
 
 
-      <div className={`${isOpen ? 'block' : 'hidden'} w-full h-screen fixed top-23 transition-all duration-500 ease-in-out  ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-black':'bg-skin' }`}`}>
+      <div className={`${isOpen ? 'block' : 'hidden'} z-40 w-full h-screen fixed top-23 transition-all duration-500 ease-in-out  ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-black':'bg-skin' }`}`}>
 
-        <div className="flex flex-col items-center justify-center h-full -mt-10 gap-10">
+        <div className="flex flex-col items-center justify-center h-full -mt-10 gap-10 ">
         {isLoggedIn ? 
               <div className=' flex flex-col justify-center items-center gap-10'>
                 
                 <Link to={'/dashboard'} onClick={() => setIsOpen(false)}>
-                  <button data-aos="fade-left" className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">
+                  <button className="py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">
                     <img src={UserProfile} alt="Dash Board" className="h-8 w-8 rounded-full" />
                   </button>
                 </Link>
               </div> : 
             
             <div className='btn' onClick={() => setIsOpen(false)} >
-            <Link data-aos="fade-left" to="/login" className=" flex items-center justify-center min-w-20 font-medium text-white btn-content-login duration-500 transition-all ">
-            Login
-          </Link>
+            <Link to="/login" className=" flex items-center justify-center min-w-20 font-medium text-white btn-content-login duration-500 transition-all ">
+              Login
+            </Link>
           </div>
               }
 
@@ -117,7 +116,7 @@ useEffect(() => {
           <Link to="/timeline" className={navbarStyle} onClick={() => setIsOpen(false)}>Timeline</Link>
           <Link to="/contact" className={navbarStyle} onClick={() => setIsOpen(false)}>Contact</Link>
           {isLoggedIn ? 
-          <button data-aos="fade-up" onClick={logout} className={` py-2 px-2 font-medium rounded ${isOnDashboard?'text-white':'text-brown' } hover:text-rose-200 duration-500 transition-all`}>Logout</button>
+          <button  onClick={logout} className={` py-2 px-2 font-medium rounded ${isOnDashboard?'text-white':'text-brown' } hover:text-rose-200 duration-500 transition-all`}>Logout</button>
 
             : null
           }
