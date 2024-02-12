@@ -15,14 +15,3 @@
      height: 100%;
      background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 10%, rgba(255,255,255,0) 90%, rgba(255,255,255,1) 100%);
 }
-
-.hide-after-5s {
-     animation: hide 5s forwards;
-   }
-   
-   @keyframes hide {
-     to {
-       opacity: 0;
-       visibility: hidden;
-     }
-   }

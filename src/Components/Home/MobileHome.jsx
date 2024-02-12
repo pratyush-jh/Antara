@@ -15,13 +15,7 @@ const MobileHome = () => {
     }
     setIsLoggedIn(true);
   }, [navigate])
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    const timeoutId = setTimeout(() => {
-      document.body.style.overflow = 'hidden';
-    }, 5000);
-    return () => clearTimeout(timeoutId);
-  }, [navigate]);
+
     const toggleAnswer = (index) => {
       if (index === clickedIndex) {
         setClickedIndex(null);
@@ -33,19 +27,16 @@ const MobileHome = () => {
   const colour = isLoggedIn ? 'brown' : 'blue';
   return (
     <>
-    <div  className='-z-10 relative'>
+    <div  className='overflow-hidden relative '>
     <Hero />
     </div>
 
         <div className='min-h-screen min-w-screen py-10 relative '>
-        {/* Background Image */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 home-bg">
         </div>
 
-        {/* Content */}
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center">
-            {/* About Us Card */}
             <div className="max-w-md mx-auto mb-8 bg-white bg-opacity-70 p-6 rounded-lg shadow-lg">
               <h1 className="text-3xl font-bold mb-4 font-serif">ABOUT US</h1>
               <p className="text-lg font-serif">
