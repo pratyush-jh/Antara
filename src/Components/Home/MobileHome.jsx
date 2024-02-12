@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Hero from '../Hero/Hero';
 import { MobilePara } from '../../Functions/Constants';
-// import './Home.css'
+import './Home.css'
 import Aos from 'aos';
 import 'aos/dist/aos.css'
 const MobileHome = () => {

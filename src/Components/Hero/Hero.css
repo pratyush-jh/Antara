@@ -319,6 +319,9 @@ body, html{
 }
 
 @media (max-width: 768px) {
+  .images{
+    filter: none;
+  }
   .heading-animation{
     font-family: Berkshire Swash, cursive;  
     text-transform: capitalize;

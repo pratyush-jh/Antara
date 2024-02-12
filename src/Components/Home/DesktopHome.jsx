@@ -4,7 +4,7 @@ import Hero from '../Hero/Hero';
 const DesktopHome = () => {
 
   return (
-    <div  className='-z-10 overflow-hidden' >        
+    <div  className='-z-10 overflow-hidden relative' >        
       <Hero />
     </div>
   );
