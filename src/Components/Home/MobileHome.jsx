@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Hero from '../Hero/Hero';
 import { MobilePara } from '../../Functions/Constants';
-import './Home.css'
+// import './Home.css'
+import Aos from 'aos';
+import 'aos/dist/aos.css'
 const MobileHome = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
@@ -23,6 +25,10 @@ const MobileHome = () => {
         setClickedIndex(index);
       }
     };
+
+    useEffect(()=>{
+      Aos.init()
+    },[])
 
   const colour = isLoggedIn ? 'brown' : 'blue';
   return (
