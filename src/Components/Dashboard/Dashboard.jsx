@@ -4,13 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 import Api from '../../Functions/api';
 import { TypeAnimation } from 'react-type-animation';
-import { Link } from 'react-router-dom';
 import UserProfile from './UserProfile';
 import UserEventDetails from './UserEventDetails';
 import UserTeams from './UserTeams';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import './Dashboard.scss';
+import Welcome from './Welcome';
+import '../../Button.css';
+import { FaUser, FaCalendar, FaUsers } from 'react-icons/fa';
+
+
 
 const Dashboard = () => {
   const { authUser } = Api();
@@ -35,6 +38,12 @@ const Dashboard = () => {
   }, [navigate]);
 
   useEffect(() => {
+    document.querySelectorAll('button').forEach(button => {
+      button.innerHTML = '<div><span>' + button.textContent.trim().split('').join('</span><span>') + '</span></div>';
+    });
+  }, [navigate, hamOpen, activeComponent, user]);
+
+  useEffect(() => {
     AOS.init({duration: 1000});
     AOS.refresh(); // This line will refresh AOS and cause animations to trigger again
   }, []);
@@ -47,41 +56,52 @@ const Dashboard = () => {
 
   return (
     <>    
-      <div className="z-30 flex justify-between  pr-48  items-center h-16 bg-gradient-to-r from-black to-linear-darkBlue    text-white dashboard mdmax:pr-0 mdmax:flex-row-reverse"  data-aos-delay="200">
-      <div className={`hamburger ${hamOpen? 'is-active' :''}`} onClick={() => setHamOpen(!hamOpen)}>
+      <div className=' absolute top-5'>
+      <div className={`hamburger ${hamOpen? 'is-active' :''} `} onClick={() => setHamOpen(!hamOpen)}>
           <div className="hamburger__container">
             <div className="hamburger__inner"></div>
             <div className="hamburger__hidden"></div>
           </div>
-        </div>
-        <h1 className='text-3xl hover:text-rose-600 select-none font-bold' data-aos="fade-left" data-aos-delay="400">Dashboard</h1>
-       
+        </div>   
       </div>
-      <div className="flex" data-aos="fade-up">
-        <div className={`${!hamOpen? 'w-0 mdmax:w-0' :'w-1/5 mdmax:w-screen'}` } >
+
+      <div className="flex  " data-aos="fade-up">
+        <div className={`${!hamOpen? 'w-0 mdmax:w-0' :'w-1/5 mdmax:w-screen'} dashboard-left-body` } >
             {
               !hamOpen? <div></div>:
-              <div className=' bg-black h-screen dashboard-left' >
-              <button 
-                className={`glow-on-hover ${activeComponent === 'userProfile' ? 'open' : 'close'}`} 
-                onClick={() => setActiveComponent('userProfile')}
-              >
-                Profile
-              </button>
-              <button 
-                className={` glow-on-hover ${activeComponent === 'userEventDetails' ? 'open' : 'close'}`} 
-                onClick={() => setActiveComponent('userEventDetails')}
-              >
-                Team Details
-              </button>
-              <button 
-                className={`glow-on-hover ${activeComponent === 'userTeams' ? 'open' : 'close'}`} 
-                onClick={() => setActiveComponent('userTeams')}
-              >
-                Participations
-              </button>
+              <div className='h-screen dashboard-left flex items-center justify-center' >
+              <div className='button-list'>
+                  <div className=''>
+                  <FaUser className=' absolute scale-125 text-white left-52 translate-y-4'/>
 
-              <div className='flex gap-1 absolute top-60 '>
+                    <button
+                      onClick={() => setActiveComponent('userProfile')}
+                      className={`button  ${activeComponent === 'userProfile' ? 'open' : 'close'}`}
+                    >
+                      <p>Profile</p>
+                    </button>
+                  </div>
+                  <div>
+                  <FaCalendar className=' absolute scale-125 text-white left-52 translate-y-4'/>
+                    <button 
+                      onClick={() => setActiveComponent('userEventDetails')}
+                      className={` button reverse ${activeComponent === 'userEventDetails' ? 'open' : 'close'}`} 
+                    >
+                      <p>Event Details</p>
+                    </button>
+                  </div>
+                  <div>
+                    <FaUsers className=' absolute scale-125 text-white left-52 translate-y-4'/>
+                    <button
+                      onClick={() => setActiveComponent('userTeams')}
+                      className={`button ${activeComponent === 'userTeams' ? 'open' : 'close'}`}
+                    >
+                      <p>Teams</p>
+                    </button>
+                  </div>
+                </div>
+      
+              <div className='flex gap-1 absolute top-10 '>
                 <TypeAnimation
                   sequence={[
                     `Namaste ${user?.name.split(' ')[0]} 🙏`,
@@ -96,23 +116,31 @@ const Dashboard = () => {
                   wrapper="span"
                   speed={10}
                   
-                  style={{ fontSize: '20px', display: 'inline-block', width: '300px' , padding: '10px' , color: 'white',
-                  textAlign: 'center', fontWeight: 'bold', fontFamily: 'Berkshire Swash ', backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: '10px'  
+                  style={{ fontSize: '20px', display: 'inline-block', width: '300px' , padding: '10px' , color: 'black',
+                  textAlign: 'center', fontWeight: 'bold',  borderRadius: '10px'  
 
                 }}
-                  repeat={Infinity}
+                  repeat={3}
                 />
+                
               </div>
               </div>
             }
         </div>
+        {
+          hamOpen? null:
+          <div className='menu ' onClick={() => setHamOpen(!hamOpen)}>
+          </div>
+        
+        }
         <div 
-          className={`dashboard-body ${hamOpen ? 'w-4/5 mdmax:w-0' : 'w-full mdmax:w-full'} ${hamOpen ? 'pl-10 mdmax:pl-0' : 'pl-20'} `} 
+          className={`dashboard-body ${hamOpen ? 'w-4/5 mdmax:w-0' : 'w-full mdmax:w-full'} ${hamOpen ? 'pl-10 mdmax:pl-0 maxHieght' : 'pl-10'} `} 
           onClick={() => setHamOpen(false)}
         >
-          {activeComponent === 'userProfile' && <UserProfile user={user} />}
-          {activeComponent === 'userEventDetails' && <UserEventDetails />}
-          {activeComponent === 'userTeams' && <UserTeams />}
+          <Welcome user={user} />
+            {activeComponent === 'userProfile' && <UserProfile user={user} />}
+            {activeComponent === 'userEventDetails' && <UserEventDetails user={user} />}
+            {activeComponent === 'userTeams' && <UserTeams user={user} />}
         </div>
       </div>
     </>

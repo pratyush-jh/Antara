@@ -18,9 +18,9 @@ export default {
         'lightPurple': '#b8a2b9',
         'skin': '#ffdec7',
         'brown': '#493129',
-        'linear-darkBlue':'#090979',
+        'linear-darkBlue':'rgb(0, 64, 255)',
         'linear-lightBlue':'#00d4ff',
-        'shade-darkBlue':'#00008B',
+        'shade-darkBlue':'#00f7ff',
       },
       screens: {
         'sm': '425px',

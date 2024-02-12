@@ -3,7 +3,7 @@ import './dashboard.css';
 
 const UserEventDetails = () => {
   return (
-    <div>
+    <div data-aos="fade-left">
       <div>
         <h1 className='text-6xl font-sans font-semibold pad-1 text-amber-950'>Team Details</h1> <br /><hr /><br />
         

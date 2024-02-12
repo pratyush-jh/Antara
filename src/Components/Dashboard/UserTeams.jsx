@@ -2,7 +2,7 @@ import React from 'react'
 
 const UserTeams = () => {
   return (     
-    <div>UserTeams</div>
+    <div data-aos="fade-left">UserTeams</div>
   )
 }
 
