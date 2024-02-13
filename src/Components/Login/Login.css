@@ -67,7 +67,7 @@
    [ Utility ]*/
    .txt1 {
      /* font-family: Poppins-Regular; */
-     font-size: 13px;
+     font-size: 14px;
      color: #e5e5e5;
      line-height: 1.5;
    }
@@ -83,7 +83,7 @@
    
    .container-login100 {
      width: 100%;  
-     min-height: 100vh;
+     height: 100vh;
      display: -webkit-box;
      display: -webkit-flex;
      display: -moz-box;
@@ -91,9 +91,7 @@
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
-     align-items: center;
      padding: 15px;
-   
      background-repeat: no-repeat;
      background-position: center;
      background-size: cover;
@@ -114,11 +112,10 @@
    }
    
    .wrap-login100 {
-     /* width: 500px; */
      border-radius: 10px;
-     overflow: hidden;
      padding: 55px 55px 37px 55px;
-   
+      max-height: 85vh;
+      overflow: scroll;
      background: #9152f8;
      background: -webkit-linear-gradient(to top, #7579ff, #b224ef);
      background: -o-linear-gradient(to top, #7579ff, #b224ef);
@@ -126,6 +123,7 @@
      background: linear-gradient(to bottom, #7579ff, #b224ef);
    }
    
+
    
    /*------------------------------------------------------------------
    [ Form ]*/
@@ -485,4 +483,28 @@
     color: rgb(255, 255, 255);
     /* position: absolute; */
     transform: translateY(-24px) ;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label {
+  padding: 10px 30px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid #fff;
+  border-radius: 25px;
+  
+}
+
+.screenshotBox{
+  margin-bottom: 10px;
+}
+.file-label:hover{
+  border: 1px solid #7b00ff;
+  background-color: #fff;
+  color: #000;
 }

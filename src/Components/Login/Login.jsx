@@ -47,9 +47,9 @@ const Login = ({path}) => {
      };
 
      return (
-          <div className={`${isLoading? 'opacity-40': 'opacity-100'}`} >
+          <div className={`${isLoading? 'opacity-40': 'opacity-100'} `} >
                <div className="container-login100 " >
-                    <div className="wrap-login100 ">
+                    <div className="wrap-login100 flex items-center">
                     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                     {({ isValid }) => (
                          <Form className={`login100-form validate-form `} onSubmit={handleAutofill}>
@@ -74,7 +74,7 @@ const Login = ({path}) => {
                                              Login
                                         </button>
                                    </div>
-                                   <div className="text-center">
+                                   <div className="text-center pt-6">
                                         <Link to="/registration" className="txt1">
                                              Don't Have an account? <p className=' text-white font-medium'> Singup</p> 
                                         </Link>

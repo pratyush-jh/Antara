@@ -34,10 +34,11 @@ const Signup = () => {
     };
 
     return (
-        <div className={`${isLoading ? 'opacity-40' : 'opacity-100'}`}>
-            <div className="container-login100">
-                <div className="wrap-login100">
-                    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        <div className={`${isLoading ? 'opacity-40' : 'opacity-100'} `}>
+            <div className="container-login100 min-h-screen mt-2 ">
+                <div className="wrap-login100 ">
+                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+               {({ values, errors }) => (
                         <Form className="login100-form validate-form" onSubmit={handleAutofill}>
                             <span className="login100-form-logo">
                                 <img src={Profile} alt="" />
@@ -57,23 +58,42 @@ const Signup = () => {
                               <Field type="password" name="password" className="input100 placeholder:text-white" placeholder="Password" />
                               <span className="focus-input100" data="&#xf191;"></span>
                               </div>
-                              <ErrorMessage name="password" component="div" className="error-message"/>
+                              <ErrorMessage name="password" component="div" className="error-message" />
+                              {values.password && (
+                                   <div className={errors.password ? 'password-weak error-message' : 'password-strong error-message'}>
+                                        {errors.password ? '' : 'Strong password'}
+                                   </div>
+                              )}
                               <div className="wrap-input100 validate-input" data-validate="Confirm password">
                               <Field type="password" name="password_confirmation" className="input100 placeholder:text-white" placeholder="Confirm Password" />
                               <span className="focus-input100" data="&#xf191;"></span>
                               </div>
                               <ErrorMessage name="password_confirmation" component="div" className="error-message" />
+                              <div className=" flex justify-center validate-input screenshotBox">
+                              <Field type="file" name="screenshot" className="  file-input" accept="image/*" id="screenshot" />
+                              <label htmlFor="screenshot" className="file-label">
+                                   Upload
+                              </label>
+                              </div>
+                              <ErrorMessage name="screenshot" component="div" className="error-message" />
+                              <div className="text-center">
+                                <Link to="tutorial" className="txt1" > How to do this task?</Link>
+                            </div>
                             <div className="container-login100-form-btn">
-                                <button type="submit" className="login100-form-btn" disabled={isLoading}>
+                                <button type="submit" className={`login100-form-btn ${values?'opacity-40 cursor-not-allowed':""} `}disabled={values}>
                                     Signup
                                 </button>
                             </div>
-                            <div className="text-center">
-                                <Link to="/tutorial" className="txt1">How to do this task?</Link>
-                            </div>
+
                         </Form>
+                         )}
                     </Formik>
                 </div>
+
+            </div>
+
+            <div id='tutorial'>
+               Tutorial
             </div>
         </div>
     );

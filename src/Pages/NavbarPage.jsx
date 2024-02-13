@@ -59,7 +59,9 @@ const NavbarPage = () => {
         <p>🎉 You can now participate in the events.🎉 </p>
       <Link to ={'/events'}>
       <button className='bg-brown text-white p-2 rounded-lg mt-4 w-20 '
-         onClick={() => setAlertMessage(null)}>Close</button>
+         onClick={() => {
+          navigate('/dashboard');
+          setAlertMessage(null)}}>See Your Dashboard</button>
       </Link>
       </Modal>
 

@@ -14,6 +14,7 @@ const SignupFunc = () => {
           email: '',
           password: '',
           password_confirmation: '',
+          screenshot: '',
 
      };
 
@@ -23,10 +24,11 @@ const SignupFunc = () => {
           password: Yup.string()
                .matches(
                     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{8,}$/,
-                    'Must contain 8 characters, at least one uppercase letter, one lowercase letter, one number, and one special character'
+                    'Weak Password'
                )
                .required('Required'),
           password_confirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
+          screenshot: Yup.mixed().required('A screenshot is required'),
      });
      const onSubmit = async (values) => {
           setIsLoading(true);
@@ -44,14 +46,16 @@ const SignupFunc = () => {
             ); 
             const data = await response.data;
           if (response.status == 200) {
+               setIsLoading(false);
               localStorage.setItem('token', data.access_token);
               navigate(`/thanks`);
             } else {
-
+                 setIsLoading(false);
               alert("Signup failed! Please try again.");
               console.log('Signup failed');
             }
           } catch (error) {
+               setIsLoading(false);
                if(error.response.status == 422){
                     alert("Email already exists.");   
                     setIsLoading(false);
