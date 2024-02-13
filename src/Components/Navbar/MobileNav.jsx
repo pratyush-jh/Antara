@@ -112,7 +112,7 @@ useEffect(() => {
               }
 
           <Link to="/" className={navbarStyle} onClick={() => setIsOpen(false)}>Home</Link>
-          <Link to="/events" className={navbarStyle} onClick={() => setIsOpen(false)}>Events</Link>
+          <Link to="/categories" className={navbarStyle} onClick={() => setIsOpen(false)}>Events</Link>
           <Link to="/timeline" className={navbarStyle} onClick={() => setIsOpen(false)}>Timeline</Link>
           <Link to="/contact" className={navbarStyle} onClick={() => setIsOpen(false)}>Contact</Link>
           {isLoggedIn ? 

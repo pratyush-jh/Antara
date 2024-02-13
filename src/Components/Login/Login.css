@@ -204,7 +204,7 @@
    }
    
    .focus-input100::before {
-     content: "";
+     content: attr(data);
      display: block;
      position: absolute;
      bottom: -2px;
@@ -225,7 +225,7 @@
      font-size: 22px;
      color: #fff;
    
-      content:url();
+      content:attr(data);
      display: block;
      width: 100%;
      position: absolute;
@@ -415,7 +415,7 @@
    }
    
    .alert-validate::before {
-     content: attr(data-validate);
+     content: attr(data);
      position: absolute;
      max-width: 70%;
      background-color: #fff;
