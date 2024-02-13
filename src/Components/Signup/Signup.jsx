@@ -44,21 +44,25 @@ const Signup = () => {
                             </span>
                             <span className="login100-form-title">Signup</span>
                             <div className="wrap-input100 validate-input" data-validate="Enter username">
-                                <Field type="text" name="name" className="input100 text-white placeholder:text-white" placeholder="Username" />
-                                <span className="focus-input100"></span>
-                            </div>
-                            <div className="wrap-input100 validate-input" data-validate="Enter email">
-                                <Field type="email" name="email" className="input100 placeholder:text-white" placeholder="Email" />
-                                <span className="focus-input100"></span>
-                            </div>
-                            <div className="wrap-input100 validate-input" data-validate="Enter password">
-                                <Field type="password" name="password" className="input100 placeholder:text-white" placeholder="Password" />
-                                <span className="focus-input100"></span>
-                            </div>
-                            <div className="wrap-input100 validate-input" data-validate="Confirm password">
-                                <Field type="password" name="password_confirmation" className="input100 placeholder:text-white" placeholder="Confirm Password" />
-                                <span className="focus-input100"></span>
-                            </div>
+                              <Field type="text" name="name" className="input100 text-white placeholder:text-white" placeholder="Username" />
+                              <span className="focus-input100" data="&#xf207;"></span>
+                              </div>
+                              <ErrorMessage name="name" component="div" className="error-message"/>
+                              <div className="wrap-input100 validate-input" data-validate="Enter email">
+                                   <Field type="email" name="email" className="input100 placeholder:text-white" placeholder="Email" />
+                                   <span className="focus-input100" data="&#xf15a;"></span>
+                              </div>
+                              <ErrorMessage name="email" component="div" className="error-message" />
+                              <div className="wrap-input100 validate-input" data-validate="Enter password">
+                              <Field type="password" name="password" className="input100 placeholder:text-white" placeholder="Password" />
+                              <span className="focus-input100" data="&#xf191;"></span>
+                              </div>
+                              <ErrorMessage name="password" component="div" className="error-message"/>
+                              <div className="wrap-input100 validate-input" data-validate="Confirm password">
+                              <Field type="password" name="password_confirmation" className="input100 placeholder:text-white" placeholder="Confirm Password" />
+                              <span className="focus-input100" data="&#xf191;"></span>
+                              </div>
+                              <ErrorMessage name="password_confirmation" component="div" className="error-message" />
                             <div className="container-login100-form-btn">
                                 <button type="submit" className="login100-form-btn" disabled={isLoading}>
                                     Signup

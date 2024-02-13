@@ -57,9 +57,6 @@
         background: transparent;
    }
    
-   button:hover {
-        cursor: pointer;
-   }
    
    iframe {
         border: none !important;
@@ -204,14 +201,12 @@
    }
    
    .focus-input100::before {
-     content: attr(data);
      display: block;
      position: absolute;
      bottom: -2px;
      left: 0;
      width: 0;
      height: 2px;
-   
      -webkit-transition: all 0.4s;
      -o-transition: all 0.4s;
      -moz-transition: all 0.4s;
@@ -221,11 +216,11 @@
    }
    
    .focus-input100::after {
-     /* font-family: Material-Design-Iconic-Font; */
+     font-family: Material-Design-Iconic-Font;
      font-size: 22px;
      color: #fff;
-   
-      content:attr(data);
+     content: attr(data);
+
      display: block;
      width: 100%;
      position: absolute;
@@ -485,3 +480,9 @@
      color: white;
      -webkit-text-fill-color: white;
    }
+
+   .error-message {
+    color: rgb(255, 255, 255);
+    /* position: absolute; */
+    transform: translateY(-24px) ;
+}
