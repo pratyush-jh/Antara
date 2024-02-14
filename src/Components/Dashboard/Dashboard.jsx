@@ -48,7 +48,7 @@ const Dashboard = () => {
     AOS.refresh(); // This line will refresh AOS and cause animations to trigger again
   }, []);
 
-  if (user.length === 0) {
+  if (user?.length === 0) {
     return <div className='dashboard-hero flex justify-center items-center text-white'>
     </div>;
   }

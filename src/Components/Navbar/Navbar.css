@@ -43,3 +43,7 @@
    .navbar:hover {
      color: #00f7ff;
    }
+
+   .logoWhite{
+    filter:invert()
+   }

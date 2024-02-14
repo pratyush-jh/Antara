@@ -33,15 +33,15 @@ const Footer = () => {
 
     return ( 
         <div className=' bottom-0'>
-            <footer className={`${!isLoggedIn ? 'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r from-black to-linear-darkBlue ':'bg-skin'}`}`}>
+            <footer className={`${!isLoggedIn ? 'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue ':'bg-skin'}`}`}>
                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">
                         <div className="mb-6 md:mb-0">
-                            <a href="Antara/src/Components/Home/Home.jsx" className="flex items-center">
-                                <span className={`self-center text-5xl font-bold whitespace-nowrap text-${textColor}`}>Arohana</span>
+                            <a href="Antara/src/Components/Home/Home.jsx" className="flex items-center" >
+                                <span className={`flip self-center text-5xl font-bold whitespace-nowrap text-${textColor}`}>Arohana</span>
                             </a>
                         </div>
-                        <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                        <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3" >
                             <div>
                                 <h2 className={`mb-6 text-sm font-semibold text-${textColor} uppercase dark:text-${textColor}`}>Resources</h2>
                                 <ul className={`text-${textColor} dark:text-${textColor} font-medium`}>
@@ -79,7 +79,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <hr className={`my-6 border-${color}-500 sm:mx-auto dark:border-${textColor}`} />
-                    <div className="sm:flex sm:items-center sm:justify-between">
+                    <div className="sm:flex sm:items-center sm:justify-between" >
                         <span className={`text-sm text-${textColor}-500 sm:text-center dark:text-${textColor}`}>  
                         </span>
                         <span className={`text-sm text-${textColor} sm:text-center dark:text-${textColor}`}>© 2024 <a href="https://pgdavhyperion.in/" className="hover:underline">Hyperion™</a>

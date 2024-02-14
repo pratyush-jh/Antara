@@ -23,11 +23,12 @@ const DesktopNav = () => {
       navigate('/');
     };
 
-  useEffect(() => {
-    setIsOnDashboard(location.pathname === '/dashboard');
-
-  }, [navigate, location]);
-
+    useEffect(() => {
+      setIsOnDashboard(location.pathname === '/dashboard');
+      if (location.pathname !== '/dashboard') {
+        window.scrollTo(0, 84); 
+      }
+    }, [navigate, location]);
 
 
  useEffect(() => {
@@ -46,19 +47,17 @@ const DesktopNav = () => {
     AOS.init({
       duration: 1000
     });
-  }, []); // Initialize AOS when component mounts
-  
-  useEffect(() => {
-    AOS.refresh(); // Refresh AOS on navigation
-  }, [location]); // Refresh AOS when location changes
+  }, []); 
+
+
 
   const color = isLoggedIn ? `${isOnDashboard ? 'white' : 'brown'}` : 'darkBlue';
-  const bgcolor = isLoggedIn ? 'skin' : 'midBlue';
+  const bgcolor = isLoggedIn ? 'bg-skin' : ' bg-skyBlue';
 
   const navbarStyle = `py-4 px-2 border-b-4 border-transparent ${isLoggedIn? `${isOnDashboard? 'text-white':'text-brown'}` :' text-darkBlue'} 
   ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-brown'}`: 'hover:border-darkBlue'}  font-medium rounded`;
   return (
-  <nav className={`shadow-lg pt-2 pb-2 ${isOnDashboard ? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue  ' : `bg-${bgcolor}`}`} data-aos="fade-down">
+  <nav className={` z-20 shadow-lg pt-2 pb-2 ${isOnDashboard ? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue ' : bgcolor} `} data-aos="fade-down"> 
       <div className=" px-40">
         <div className="flex justify-between items-center">
           <div data-aos="fade-right">
@@ -84,7 +83,7 @@ const DesktopNav = () => {
           <div className="flex gap-40 " >
             <div className="hidden md:flex items-center space-x-6">
               <Link to="/" data-aos="fade-down" className={navbarStyle}>Home</Link>
-              <Link data-aos="fade-up" to="/events" className={navbarStyle}>Events</Link>
+              <Link data-aos="fade-up" to="/categories" className={navbarStyle}>Events</Link>
               <Link data-aos="fade-down" to="/timeline" className={navbarStyle}>Timeline</Link>
               <Link data-aos="fade-up" to="/teams" className= {navbarStyle}>Teams</Link>
             </div>
@@ -95,7 +94,7 @@ const DesktopNav = () => {
                 
                 <Link to={'/dashboard'} >
                   <div data-aos="fade-left" className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white hover:text-shade-darkBlue':' text-brown hover:text-rose-200'} duration-500 transition-all flex flex-col items-center`}>
-                    <img src={UserProfile} alt="UserProfile" className="h-8 w-8 rounded-full text-white" />
+                    <img src={UserProfile} alt="UserProfile" className={`h-8 w-8 rounded-ful ${isOnDashboard? 'logoWhite' :''}`} />
                     <div className=' text-sm'>
                       Dash Board
                     </div>
