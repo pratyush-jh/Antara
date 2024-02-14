@@ -13,12 +13,13 @@ import { Tab } from "@headlessui/react";
 import { Link , useParams} from "react-router-dom";
 import Api from "../../Functions/api";
 import Spinner2 from "../ShimmerAndSpinner/Spinner2";
-import RegistrationForm from "../RegisterEvents/RegisterForm";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import Rangoli1 from '../../assets/Image/rangoli1.png'
 import Rangoli2 from '../../assets/Image/rangoli2.png'
 import Participation from "./Participation";
+import PaidPart from "./PaidPart";
+import UnpaidPart from "./UnpaidPart";
 const CompetitionDetailsPage = () => {
 
   const { id } = useParams();
@@ -340,7 +341,9 @@ const CompetitionDetailsPage = () => {
               >
                 {title}
               </Dialog.Title>
-              < Participation event = {event} />
+              {
+                paid_event ? <PaidPart event={event} closeModal={closeModal} /> : <UnpaidPart event={event} closeModal={closeModal} />
+              }
 
               <div className="mt-4 text-center">
                 <button
