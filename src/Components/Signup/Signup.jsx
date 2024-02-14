@@ -45,6 +45,7 @@ const Signup = () => {
             const response = await axios.post(`${API_URL}/register`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Accept': 'application/json',
                 }
             });
             const data = response.data;
