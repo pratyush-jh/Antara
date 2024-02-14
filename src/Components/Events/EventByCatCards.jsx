@@ -1,10 +1,12 @@
 import React , {useState} from 'react';
 import { Link } from 'react-router-dom';
-const CategoryCard = ( {eventname } ) => {
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+const EventByCatCards = ( {eventname } ) => {
      const { title , id , image_url , tag_line } = eventname;
      const [hover, setHover] = useState(false);
      return (
-          <div>
+          <div data-aos="fade-up">
                <div
                onMouseOver={() => setHover(true)}
                onMouseOut={() => setHover(false)} 
@@ -26,7 +28,7 @@ const CategoryCard = ( {eventname } ) => {
                </div>
                <div className='p-6 mt-4 mb-4 text-center '>
                <Link className=" bg-white p-2 rounded-lg 
-                " to={``}>
+                " to={`/competition/${id}`}>
                     Register
                </Link>
                </div>
@@ -35,4 +37,4 @@ const CategoryCard = ( {eventname } ) => {
         );
 };
 
-export default CategoryCard;
+export default EventByCatCards;

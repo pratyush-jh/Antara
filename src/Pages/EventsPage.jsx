@@ -1,5 +1,5 @@
 import React from 'react'
-import Events from '../Components/Events/Events'
+import CompetitionDetailsPage from '../Components/Events/CompetitionDetailsPage';
 import { useEffect, useState } from 'react';
 import Api from '../Functions/api';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ const EventsPage = () => {
 
   return (
     <>
-      <Events />
+      <CompetitionDetailsPage />
     </>
   )
 }

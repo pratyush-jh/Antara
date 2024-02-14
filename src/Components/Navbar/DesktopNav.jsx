@@ -15,7 +15,7 @@ const DesktopNav = () => {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isOnDashboard, setIsOnDashboard] = useState(false);
-
+  const [previousPath , setPreviousPath] = useState(location.pathname);
 
     const logout = async () => {
       setIsLoggedIn(false);
@@ -25,9 +25,10 @@ const DesktopNav = () => {
 
     useEffect(() => {
       setIsOnDashboard(location.pathname === '/dashboard');
-      if (location.pathname !== '/dashboard') {
+      if (location.pathname !== '/dashboard' && previousPath === '/dashboard') {
         window.scrollTo(0, 84); 
       }
+      setPreviousPath(location.pathname);
     }, [navigate, location]);
 
 
