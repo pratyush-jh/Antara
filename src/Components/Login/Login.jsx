@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, Link } from 'react-router-dom';
-import { MdEmail } from "react-icons/md";
-import { TbPasswordUser } from "react-icons/tb";
 import Api from '../../Functions/api';
 import './Login.css'
 import Profile from '../../assets/userProfile.png'

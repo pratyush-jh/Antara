@@ -69,7 +69,7 @@ const login = async(values) => {
               body: JSON.stringify(values),
           });
           const data = await response.json();     
-          if (response.status === 200) {
+          if (response.status === 200 || response.status === 204) {
               setIsLoading(false);
               localStorage.setItem('token', data.access_token);
               authUser().then((data) => {  
@@ -89,7 +89,7 @@ const login = async(values) => {
       } catch (error) {
         setIsLoading(false);
           if (error){
-              alert('Something went wrong! Please try again.');
+              alert("Something went wrong. Please try again.");
           }
           console.error('Error:', error);
       }
