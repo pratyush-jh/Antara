@@ -500,6 +500,22 @@
   
 }
 
+.file-label1 {
+  padding: 10px 30px;
+  background-color: rgb(0, 132, 255);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+  border: 1px solid #fff;
+  border-radius: 25px;
+  
+}
+
+.file-label1:hover {
+  background-color: #fff;
+  color: #00ffd0;
+}
+
 .screenshotBox{
   margin-bottom: 10px;
 }

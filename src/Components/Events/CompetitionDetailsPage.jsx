@@ -30,7 +30,6 @@ const CompetitionDetailsPage = () => {
   const randomImage = images[Math.floor(Math.random() * images.length)];
   const [buttonSelected, setButtonSelected] = useState("Solo");
 
-  console.log(randomImage)
   
   useEffect(() => {
     const result = fetchApi('GET', `api/competitions/${id}` , 'events');
@@ -41,7 +40,6 @@ const CompetitionDetailsPage = () => {
     });
   }
   , []);
-  console.log(event)
   const {date, description, start_at, ends_at, rounds, paid_event, minimum_size, maximum_size , society , tag_line, title, team_fee , upi_id, venue , image_url} = event;
   function closeModal() {
     setIsOpen(false)
@@ -245,7 +243,12 @@ const CompetitionDetailsPage = () => {
               </div>
             </div>
 
-            <div className="flex flex-row items-center justify-end py-16" >
+            <div className="flex flex-row items-center justify-around py-16" >
+              <div>
+                {
+                  paid_event ? <p className="text-rose-500 text-lg font-semibold">Paid Event</p> : <p className="text-green-500 text-lg font-semibold">Free Event</p>
+                }
+              </div>
               <button className="bg-rose-500 h-12 w-40 rounded-md" onClick={openModal}>
                 <div className="flex flex-row items-center justify-center" >
                   <IoTicketOutline color="white" size={30}/>
