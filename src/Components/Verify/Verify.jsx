@@ -22,7 +22,7 @@ const Verify = () => {
           }
           else{
           authUser().then((data) => {
-            setUser(data.data);
+            setUser(data);
           });}
      }
      , [navigate]);

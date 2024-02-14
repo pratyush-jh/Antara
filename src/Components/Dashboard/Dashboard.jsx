@@ -29,7 +29,7 @@ const Dashboard = () => {
       const token = localStorage.getItem('token');
       if (token) {
         authUser().then((data) => {
-          setUser(data?.data);
+          setUser(data);
         })
         setIsLoggedIn(true);
       }
@@ -52,7 +52,6 @@ const Dashboard = () => {
     return <div className='dashboard-hero flex justify-center items-center text-white'>
     </div>;
   }
-
 
   return (
     <>    

@@ -31,7 +31,7 @@ const NavbarPage = () => {
         const result = fetchApi('GET', 'auth-user' , 'navbar');
         result.then (response => {
             if (response?.status === 200){
-            setUser(response?.data?.data);
+            setUser(response?.data?.data?.user);
           }
         })
       }
@@ -42,7 +42,7 @@ const NavbarPage = () => {
       if(token){
       authUser();
       const congratulationsShown = localStorage.getItem('congratulations-shown');
-      if(congratulationsShown == 0 && user?.is_verified === true ){
+      if(congratulationsShown == 0 &&user?.email_verified_at != null && user?.is_verified == true  ){
             showAlert('🎉 Congratulations! Your account has been verified. 🎉');
             localStorage.setItem('congratulations-shown', 1);
        }
