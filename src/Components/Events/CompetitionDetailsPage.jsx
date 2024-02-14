@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { FaFire } from "react-icons/fa";
@@ -11,10 +11,46 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Tab } from "@headlessui/react";
 import { Link , useParams} from "react-router-dom";
-
+import Api from "../../Functions/api";
+import Spinner2 from "../ShimmerAndSpinner/Spinner2";
+import RegistrationForm from "../RegisterEvents/RegisterForm";
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import Rangoli1 from '../../assets/Image/rangoli1.png'
+import Rangoli2 from '../../assets/Image/rangoli2.png'
+import Participation from "./Participation";
 const CompetitionDetailsPage = () => {
 
   const { id } = useParams();
+  const { fetchApi } = Api();
+  const [event, setEvent] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
+  const images = [Rangoli1, Rangoli2];
+  const randomImage = images[Math.floor(Math.random() * images.length)];
+  const [buttonSelected, setButtonSelected] = useState("Solo");
+
+  console.log(randomImage)
+  
+  useEffect(() => {
+    const result = fetchApi('GET', `api/competitions/${id}` , 'events');
+    result.then(response => {
+      if (response?.status === 200) {
+        setEvent(response?.data?.data );
+      }
+    });
+  }
+  , []);
+  console.log(event)
+  const {date, description, start_at, ends_at, rounds, paid_event, minimum_size, maximum_size , society , tag_line, title, team_fee , upi_id, venue , image_url} = event;
+  function closeModal() {
+    setIsOpen(false)
+  }
+
+  function openModal() {
+    setIsOpen(true)
+  }
+
+
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -59,6 +95,15 @@ const CompetitionDetailsPage = () => {
       },
     ],
   });
+
+  if (Object.keys(event).length === 0) {
+    return (
+      <div className=" w-screen h-screen flex justify-center items-center">
+        <Spinner2 />
+      </div>
+    );
+  }
+
   return (
     <>
       <Swiper
@@ -150,13 +195,13 @@ const CompetitionDetailsPage = () => {
         <div className="h-8 bg-rose-500 w-36 rounded-full">
           <div className="pt-1.5 px-3 flex flex-row justify-between items-start">
             <FaFire color="white" />
-            <p className="pr-7 text-sm text-white font-semibold">Diversity</p>
+            <p className="pr-7 text-sm text-white font-semibold"></p>
           </div>
         </div>
         <div className="h-8 bg-blue-600 w-20 rounded-full">
           <div className="pt-1.5 flex flex-row justify-around items-center">
             <p className="text-sm text-white font-semibold text-center">
-              NATRAJ
+              {society.name}
             </p>
           </div>
         </div>
@@ -164,24 +209,19 @@ const CompetitionDetailsPage = () => {
 
       {/* Title */}
       <div className="mt-6 flex flex-col px-40">
-        <h1 className="text-5xl font-semibold text-slate-600">
-          NARTANAM’24: Solo Indian Classical Competition
+        <h1 className="text-4xl font-semibold text-slate-600">
+          {title}: {tag_line}
         </h1>
         <div className="poster flex flex-row my-6">
           <img
-            className="rounded-xl"
-            src="https://picsum.photos/300/450"
+            className="rounded-xl w-1/3 object-cover "
+            src={ image_url }
             alt=""
           />
-          <div className="flex-col">
-            <p className="ml-8 pt-16 text-lg">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
-              perspiciatis necessitatibus odit explicabo quia fuga eum esse ex
-              obcaecati quis nobis facilis sit, blanditiis saepe labore vel,
-              quibusdam earum. Delectus. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Beatae perspiciatis necessitatibus odit
-              explicabo quia fuga eum esse ex obcaecati quis nobis facilis sit,
-              blanditiis saepe labore vel, quibusdam earum. Delectus.
+          <div className="flex-col ">
+          
+            <p className="ml-8 pt-16 text-lg desciptionbg">
+              {description}
             </p>
 
             {/* Basic Details */}
@@ -189,26 +229,26 @@ const CompetitionDetailsPage = () => {
               <div className="flex flex-col items-center">
                 <BsCalendar2Date size={60} color="#475569" />
                 <p className="my-4 font-semibold text-slate-600">
-                  Octobr 5, 2024
+                  {date}
                 </p>
               </div>
               <div className="flex flex-col items-center">
                 <HiOutlineClock size={70} color="#475569" />
-                <p className="my-4 font-semibold text-slate-600">11:00 AM</p>
+                <p className="my-4 font-semibold text-slate-600"> { start_at} </p>
               </div>
               <div className="flex flex-col items-center">
                 <PiMapPinLine size={70} color="#475569" />
                 <p className="my-4 font-semibold text-slate-600">
-                  New Seminar Hall
+                  {venue}
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-row items-center justify-end py-16">
-              <button className="bg-rose-500 h-12 w-40 rounded-md">
-                <div className="flex flex-row items-center justify-center">
+            <div className="flex flex-row items-center justify-end py-16" >
+              <button className="bg-rose-500 h-12 w-40 rounded-md" onClick={openModal}>
+                <div className="flex flex-row items-center justify-center" >
                   <IoTicketOutline color="white" size={30}/>
-                  <p className="text-lg text-white mx-2">Particaipte</p>
+                  <p className="text-lg text-white mx-2" > Participate </p>
                 </div>
               </button>
             </div>
@@ -274,6 +314,49 @@ const CompetitionDetailsPage = () => {
           </Tab.Group>
         </div>
       </div>
+      
+      <div>
+
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-10 overflow-y-auto"
+          onClose={setIsOpen}
+        >
+          <div className="min-h-screen px-4 text-center">
+            <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+
+            <span
+              className="inline-block h-screen align-middle"
+              aria-hidden="true"
+            >
+              &#8203; 
+            </span>
+
+            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <Dialog.Title
+                as="h3"
+                className="text-lg font-medium leading-6 text-gray-900 text-center"
+              >
+                {title}
+              </Dialog.Title>
+              < Participation event = {event} />
+
+              <div className="mt-4 text-center">
+                <button
+                  type="button"
+                  className="text-rose-700"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+    </div>
+      
     </>
   );
 };

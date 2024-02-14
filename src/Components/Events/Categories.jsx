@@ -29,7 +29,7 @@ const Categories = () => {
     }
     return (
         <div className="flex flex-col justify-center items-center">
-               <h1 className="text-4xl font-bold mt-10 mb-5" data-aos="fade-up">Categories</h1>
+               <h1 className="text-4xl font-bold mt-10 mb-5" data-aos="fade-up" >Categories</h1>
                 <div className=' min-w-full m-auto items-center flex' >
                 <CategoryCards category={categories} key={categories.id} length={length} data-aos="fade-up" />
                 </div>

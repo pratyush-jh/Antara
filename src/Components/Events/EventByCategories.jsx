@@ -33,7 +33,9 @@ const EventByCategories = () => {
 
   return (
       <>
-      <h1 className="text-4xl font-bold mt-10 mb-5 text-center" data-aos="fade-up"
+      <div className=' w-screen h-screen eventCategories'
+      >
+      <h1 className="text-4xl font-bold mb-5 text-center" data-aos="fade-up"
       > {name}</h1>
       <div className='flex flex-wrap gap-4 justify-start p-20 mdmax:p-5 mdmax:justify-center' >
         {
@@ -42,6 +44,7 @@ const EventByCategories = () => {
           })
         }
      </div>
+      </div>
       
       </>
   )

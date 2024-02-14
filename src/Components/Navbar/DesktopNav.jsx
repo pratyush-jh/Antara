@@ -53,7 +53,7 @@ const DesktopNav = () => {
 
 
   const color = isLoggedIn ? `${isOnDashboard ? 'white' : 'brown'}` : 'darkBlue';
-  const bgcolor = isLoggedIn ? 'bg-skin' : ' bg-skyBlue';
+  const bgcolor = isLoggedIn ? 'bglogin' : ' bgnotlogin';
 
   const navbarStyle = `py-4 px-2 border-b-4 border-transparent ${isLoggedIn? `${isOnDashboard? 'text-white':'text-brown'}` :' text-darkBlue'} 
   ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-brown'}`: 'hover:border-darkBlue'}  font-medium rounded`;

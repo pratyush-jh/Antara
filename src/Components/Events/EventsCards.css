@@ -1,13 +1,57 @@
-.wrapper{
-     width: 90%;
-     margin: 0 auto;
-     max-width: 80rem;
-    box-shadow:  0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 10px;
-    background: #ff000017;
-    padding: 10px;
-    margin-bottom: 10%;
-   }
+
+
+.wrapper {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 80rem;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10%;
+  min-height: 100vh;
+}
+
+.wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/aaabstract (1).webp') no-repeat center center/cover;
+  opacity: 0.4; /* Change this value to adjust the opacity */
+  z-index: -1;
+  filter: blur(6px);
+}
+
+
+.eventCategories::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/aaabstract (1).webp') no-repeat center center/cover;
+  opacity: 0.4; /* Change this value to adjust the opacity */
+  z-index: -1;
+  filter: blur(6px);
+  
+}
+.desciptionbg::before{
+  content: "";
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/aaabstract.webp') no-repeat center center/cover;
+
+  opacity: 0.4;
+  z-index: -1;
+  filter: hue-rotate(100deg);
+}
    
    .cols{
      display: -webkit-box;
