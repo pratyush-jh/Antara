@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom
 import Navbar from './Pages/NavbarPage';
 import Home from './Pages/HomePage';
 import Footer from './Pages/FooterPage';
-import Events from './Pages/EventsPage';
+import CompetitionDetailsPage from './Components/Events/CompetitionDetailsPage';
 import EventByCategories from './Components/Events/EventByCategories';
 import Teams from './Pages/TeamsPage';
 import Sponsors from './Pages/SponsorsPage';
@@ -36,7 +36,6 @@ const appRouters = () => (
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Home />} />
         <Route path="hero" element={<Hero />} />
-        <Route path="events" element={<Events />} />
         <Route path="teams" element={<Teams />} />
         <Route path="sponsors" element={<Sponsors />} />
         <Route path="timeline" element={<Timeline/>} />
@@ -50,7 +49,8 @@ const appRouters = () => (
         {/* //* Routes for event Registration */}
         <Route path="event-registration" element={<RegistrationForm />} />
         <Route path='categories' element ={<Categories/>} />
-        <Route path="categories/:id" element={<EventByCategories />} />
+        <Route path="categories/:id/:name" element={<EventByCategories />} />
+        <Route path="competition/:id" element={<CompetitionDetailsPage />} />
         <Route path="*" element={<Home /> } />
 
       </Route>

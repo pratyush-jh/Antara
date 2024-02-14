@@ -15,8 +15,7 @@ const RegistrationForm = () => {
           const token = localStorage.getItem('token');
           if(token){
             authUser().then((data) => {
-               console.log(data);
-                    if(data.data.email_verified_at == null){
+                    if(data.email_verified_at == null){
                          navigate('/verify');
                     }
             })

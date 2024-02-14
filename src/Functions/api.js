@@ -22,7 +22,8 @@ const Api = () => {
           'Authorization': `Bearer ${token}`
         }
       });
-      const data = response.data;
+      const data = response.data.data.user;
+      console.log();
       if (response.status === 401) {
         navigate('/login');
       }
@@ -54,7 +55,7 @@ const Api = () => {
       localStorage.removeItem('token');
       navigate('/login');
     }
-    return response;
+    return error;
   }
 }
 
@@ -65,15 +66,17 @@ const login = async(values) => {
               method: 'POST',
               headers: {
                     'Content-Type': 'application/json',
+                    "accept": "application/json"
               },
               body: JSON.stringify(values),
           });
+          console.log(response.status);
           const data = await response.json();     
-          if (response.status === 200) {
+          if (response.status == 200 || response.status == 204) {
               setIsLoading(false);
-              localStorage.setItem('token', data.access_token);
+              localStorage.setItem('token', data?.access_token);
               authUser().then((data) => {  
-                    if(data.data.email_verified_at == null){
+                    if(data?.data?.email_verified_at == null){
                         navigate('/verify');
                     }
               })
@@ -89,7 +92,7 @@ const login = async(values) => {
       } catch (error) {
         setIsLoading(false);
           if (error){
-              alert('Something went wrong! Please try again.');
+              alert("Something went wrong. Please try again.");
           }
           console.error('Error:', error);
       }

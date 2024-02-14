@@ -1,33 +1,49 @@
 import React from 'react'
 import { useEffect , useState } from 'react';
-import EventsCards from './EventsCards'
+import EventsCards from './CategoryCards'
 import { useNavigate, useParams,Link } from 'react-router-dom';
 import Api from '../../Functions/api';
-import CategoryCard from './CategorieCard';
+import EventCards from './EventByCatCards';
+import Spinner2 from '../ShimmerAndSpinner/Spinner2';
+
+// * event according to categories
 
 const EventByCategories = () => {
   const [events, setEvents] = useState([]);
-  const navigate = useNavigate();
-  const { id } = useParams();
+  const { id , name} = useParams();
   const { fetchApi } = Api();
   useEffect(() => {
-    const result = fetchApi('GET', `api/competitions`, 'events');
+    const result = fetchApi('GET', `api/category-competitions/${id}` , 'events');
     result.then(response => {
       if (response?.status === 200) {
-        setEvents(response?.data?.data);
+        setEvents(response?.data?.data );
       }
     });
   }
   , []);
+  console.log(name)
+
+ if(events.length === 0){
   return (
-     <div className='flex flex-wrap gap-4 justify-center pt-20'
-     >
+      <div className=' w-screen h-screen flex justify-center items-center'>
+            <Spinner2 />
+      </div>
+  );
+  }
+
+  return (
+      <>
+      <h1 className="text-4xl font-bold mt-10 mb-5 text-center" data-aos="fade-up"
+      > {name}</h1>
+      <div className='flex flex-wrap gap-4 justify-start p-20 mdmax:p-5 mdmax:justify-center' >
         {
           events.map((category)=>{
-            return  <CategoryCard eventname={category} key={category.id}  />
+            return <EventCards eventname={category} key={category.id} />
           })
         }
      </div>
+      
+      </>
   )
 }
 

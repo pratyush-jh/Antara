@@ -60,7 +60,7 @@ function WelcomeBanner({user}) {
 
       {/* Content */}
       <div className="relative">
-        <h1 className="text-2xl md:text-3xl text-slate-800 dark:text-slate-100 font-bold ">{greeting}, {user.name.split(' ')[0]}. 👋</h1>
+        <h1 className="text-2xl md:text-3xl text-slate-800 dark:text-slate-100 font-bold ">{greeting}, {user?.name?.split(' ')[0]}. 👋</h1>
         <p className="dark:text-indigo-200">
           How are you doing today? We hope you are having a great day! 🌞
         </p>

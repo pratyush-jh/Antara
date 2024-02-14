@@ -2,7 +2,7 @@ import React from 'react';
 import './EventsCards.css';
 import { useNavigate } from 'react-router-dom';
 
-function EventsCards({ category, length }) {
+function CategoryCards({ category, length }) {
   const navigate = useNavigate();
   const cards = [];
   const numCards = length;
@@ -15,7 +15,7 @@ function EventsCards({ category, length }) {
         }
         
       } key={i} >
-        <div className="container" onClick={() => {navigate('/categories/'+ category[i].id)}}>
+        <div className="container" onClick={() => {navigate('/categories/'+ category[i].id +'/' + category[i].name)}}>
           <div className="front" style={{ backgroundImage: `url(${category[i].background_image})` }}>
             <div className="inner">
               <p>{category[i].id}</p>
@@ -42,4 +42,4 @@ function EventsCards({ category, length }) {
 }
 
 
-export default EventsCards;
+export default CategoryCards;

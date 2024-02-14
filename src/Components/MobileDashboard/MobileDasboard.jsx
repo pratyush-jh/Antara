@@ -14,7 +14,7 @@ const MobileDasboard = () => {
          const token = localStorage.getItem('token');
          if (token) {
            authUser().then((data) => {
-             setUser(data?.data);
+             setUser(data);
            })
            setIsLoggedIn(true);
          }
