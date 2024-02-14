@@ -14,7 +14,7 @@ import { Link , useParams} from "react-router-dom";
 
 const CompetitionDetailsPage = () => {
 
-  
+  const { id } = useParams();
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
