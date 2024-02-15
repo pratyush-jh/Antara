@@ -21,6 +21,10 @@ export default {
         'linear-darkBlue':'rgb(0, 64, 255)',
         'linear-lightBlue':'#00d4ff',
         'shade-darkBlue':'#00f7ff',
+        'maldive-darkblue':'#6190E8',
+        'maldive-lightblue':'#A7BFE8',
+        'morning-yellw':'#f6d365',
+        'morning-orange':'#fda085',
       },
       screens: {
         'sm': '425px',

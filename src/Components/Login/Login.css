@@ -116,11 +116,13 @@
      padding: 55px 55px 37px 55px;
       max-height: 85vh;
       overflow: scroll;
-     background: #9152f8;
-     background: -webkit-linear-gradient(to top, #7579ff, #b224ef);
-     background: -o-linear-gradient(to top, #7579ff, #b224ef);
-     background: -moz-linear-gradient(to top, #7579ff, #b224ef);
-     background: linear-gradient(to bottom, #7579ff, #b224ef);
+     background: #093637;
+     background: -webkit-linear-gradient(to top, #44A08D, #093637);
+     background: -o-linear-gradient(to top, #44A08D, #093637);
+     background: -moz-linear-gradient(to top, #44A08D, #093637);
+     background: linear-gradient(to bottom, #44A08D, #093637);
+     box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+
    }
    
 

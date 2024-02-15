@@ -18,13 +18,12 @@ function CategoryCards({ category, length }) {
         <div className="container" onClick={() => {navigate('/categories/'+ category[i].id +'/' + category[i].name)}}>
           <div className="front" style={{ backgroundImage: `url(${category[i].background_image})` }}>
             <div className="inner">
-              <p>{category[i].id}</p>
-              <span>{category[i].name}</span>
+              <span className=''>{category[i].name}</span>
             </div>
           </div>
-          <div className="back">
+          <div className="back"  style={{ backgroundImage: `url(${category[i].background_image})` }}
+          >
             <div className="inner">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
             </div>
           </div>
         </div>
