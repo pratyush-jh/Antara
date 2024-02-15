@@ -25,6 +25,10 @@ export default {
         'maldive-lightblue':'#A7BFE8',
         'morning-yellw':'#f6d365',
         'morning-orange':'#fda085',
+        'haldi':'#FFA900',
+        'haldi-orange':'#FF5C01',
+        'haldi-red':'#B01432',
+        'haldi-yellow':'#EECF1A',
       },
       screens: {
         'sm': '425px',
