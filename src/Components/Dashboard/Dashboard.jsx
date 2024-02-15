@@ -86,7 +86,7 @@ const Dashboard = () => {
                       onClick={() => setActiveComponent('userEventDetails')}
                       className={` button reverse ${activeComponent === 'userEventDetails' ? 'open' : 'close'}`} 
                     >
-                      <p>Event Details</p>
+                      <p>Participations</p>
                     </button>
                   </div>
                   <div>
