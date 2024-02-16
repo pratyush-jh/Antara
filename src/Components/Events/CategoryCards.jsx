@@ -6,7 +6,6 @@ function CategoryCards({ category, length }) {
   const navigate = useNavigate();
   const cards = [];
   const numCards = length;
-  console.log(category);
   for (let i = 0; i < numCards; i++) {
     cards.push(
       <div className="col" onTouchStart= {

@@ -40,7 +40,7 @@ const UserEventDetails = ({user}) => {
         <p>
           Please verify your email to continue
         </p>
-        <Link to = {'/verify'} target='_blanc' className=' bg-black p-2 rounded-lg text-white hover:text-black transition-all duration-500 '>Verify Email</Link>
+        <Link to = {'/verify'} target='_blanc' className=' bg-black p-2 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 '>Verify Email</Link>
       </div>
       }
 

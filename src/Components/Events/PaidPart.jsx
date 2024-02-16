@@ -1,38 +1,46 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Formik, Field, Form,ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Api from '../../Functions/api';
 import axios from 'axios';
 import { API_URL } from '../../Functions/Constants';
-import { useNavigate } from 'react-router-dom';
-const PaidPart = ({event}) => {
+import { useNavigate , Link} from 'react-router-dom';
+import Modal from 'react-modal';
+
+const PaidPart = ({event , closeModal ,onParticipation }) => {
      const { date, description, start_at, ends_at, rounds, paid_event, minimum_size , society , tag_line, title,  upi_id, venue , image_url, individual_fee, team_fee, maximum_size, id } = event;
      const navigate = useNavigate();
      const [buttonSelected, setButtonSelected] = useState("Solo");
+     const [isModalOpen, setIsModalOpen] = useState(false);
+     const [isParticipated, setIsParticipated] = useState(false);
+
+     useEffect(() => {
+          onParticipation(isParticipated);
+        }, [isParticipated]);
 
      const initialValue = {
           team_name: '',
           team_size: '',
           team_code: '',
           competition_id : id,
+          team : 1,
      };
      const initialValueMaxSize = {
           team_code: '',
           competition_id : id,
+          team :1
      };
      const validationSchema = Yup.object({
           team_name: Yup.string().required('Required'),
           team_size: Yup.number().required('Required').min(minimum_size, `Must be at least ${minimum_size} `).max(maximum_size, `Must be at most ${maximum_size}`),
-          // screenShot: Yup.mixed().required('A screenshot is required'),
      });
      
      const validationSchemaTeam = Yup.object({
-          // screenShot: Yup.mixed().required('A screenshot is required'),
      });
 
-     const {fetchApi} = Api();
-     const onSubmit = (values) => {
+
+     const onSubmit = async (values) => {
           const token = localStorage.getItem('token');
           const formData = new FormData();
           for (const key in values) {
@@ -43,16 +51,15 @@ const PaidPart = ({event}) => {
               }
           }
           try {
-               const response =    axios.post(`${API_URL}/api/participations`, formData, {
+               const response = await axios.post(`${API_URL}/api/participations`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
-                        'Accept': 'application/json',
                         "Authorization": `Bearer ${token}`
                     }
                 });
                if (response.status === 200 || response.status === 204) {
-                    alert("Participation Successfull");
-                    navigate(`/dashboard`);
+                    setIsParticipated(true);
+                   
                } else {
                     alert("Participation failed! Please try again.");
                }
@@ -69,16 +76,15 @@ const PaidPart = ({event}) => {
                formData.append(key, values[key]);
           }
           try {
-               const response =    axios.post(`${API_URL}/api/participations`, formData, {
+               const response = await axios.post(`${API_URL}/api/participations`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
-                        'Accept': 'application/json',
                         "Authorization": `Bearer ${token}`
                     }
                 });
-               if (response.status === 200 || response.status === 204) {
-                    alert("Congratulations! You have successfully joined the team.");
-                    navigate(`/dashboard`);
+                
+               if (response.status == 200 || response.status ===204) {
+                    setIsParticipated(true);
                } else {
                     alert("Participation failed! Please try again.");
                }
@@ -91,9 +97,13 @@ const PaidPart = ({event}) => {
 
 
   return (
-    <div>
-
-                              
+     <>
+ 
+   {isParticipated? <div className=" flex flex-col gap-10 justify-center items-center pt-10 pb-10 ">
+   🎉 Your participation has been recorded. 🎉
+   </div>
+   
+   : <div>                              
           <div className=" flex gap-10 justify-center mb-10 mt-5">
           <button onClick={() => setButtonSelected("Solo")} className={`text-lg font-semibold ${buttonSelected === "Solo" ? "bg-gray-800 text-white" : "text-gray-500"} pt-2 pb-2 pl-4 pr-4 rounded-lg`}>
                {
@@ -108,7 +118,7 @@ const PaidPart = ({event}) => {
           }
           </div>
           { buttonSelected === "Solo" ?
-               <Formik   
+          <Formik   
                initialValues={ maximum_size > 1 ? initialValue : initialValueMaxSize}
                onSubmit={ maximum_size > 1 ? onSubmit : onSubmitTeam}
                validationSchema={ maximum_size > 1 ? validationSchema : validationSchemaTeam}
@@ -185,7 +195,8 @@ const PaidPart = ({event}) => {
           <Formik
           initialValues = {{
                team_code: '',
-               competition_id: id
+               competition_id: id,
+               team : 0
           }}
           onSubmit= {onSubmitTeam}
           validationSchema={Yup.object({
@@ -213,9 +224,10 @@ const PaidPart = ({event}) => {
                </div>
           </Form>
           )}
-     </Formik>
+          </Formik>
           }
-    </div>
+    </div>}
+     </>
   )
 }
 

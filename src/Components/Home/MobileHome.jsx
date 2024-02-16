@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Hero from '../Hero/Hero';
 import { MobilePara } from '../../Functions/Constants';
 import './Home.css'
-import Aos from 'aos';
-import 'aos/dist/aos.css'
 import LandingPage from './LandingPage';
 const MobileHome = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,15 +25,11 @@ const MobileHome = () => {
       }
     };
 
-    useEffect(()=>{
-      Aos.init()
-    },[])
-
-  const colour = isLoggedIn ? 'brown' : 'blue';
   return (
     <>
-
+      <div>
       <LandingPage />
+      </div>
         <div className='min-h-screen min-w-screen py-10 relative '>
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 home-bg">
         </div>

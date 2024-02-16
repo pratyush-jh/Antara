@@ -24,6 +24,8 @@
      height: 100vh;
      min-height: 375px;
      position: relative;
+    animation: zoomIn 1s;
+    background-position: center -150px;
    }
 
    
@@ -53,7 +55,7 @@
    
    .header_Arohana{
     position: absolute;
-    top: 50%;
+    top: 50vh;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -64,4 +66,29 @@
     font-size: 100px;
     text-shadow: 2px 2px 4px #000000;
     z-index: 10;
+    animation: Trim 2s;
    }
+  .row{
+    position: absolute;
+    right: 20px;
+    bottom: 15%;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px #000000;
+    font-family: "Marck Script", cursive;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 50px;
+    z-index: 10;
+  }
+
+  @media screen and (max-width: 768px) {
+    .header_Arohana{
+      font-size: 50px;
+    }
+    .row{
+      font-size: 30px;
+      right: 20px;
+
+    }
+    
+  }

@@ -1,44 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import { FaFire } from "react-icons/fa";
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 import { BsCalendar2Date } from "react-icons/bs";
-import { PiMapPinLine, PiMicrophoneStage } from "react-icons/pi";
+import { PiMapPinLine } from "react-icons/pi";
 import { HiOutlineClock } from "react-icons/hi2";
 import { IoTicketOutline } from "react-icons/io5";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Tab } from "@headlessui/react";
-import { Link , useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import Api from "../../Functions/api";
 import Spinner2 from "../ShimmerAndSpinner/Spinner2";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import Rangoli1 from '../../assets/Image/rangoli1.png'
 import Rangoli2 from '../../assets/Image/rangoli2.png'
-import Participation from "./Participation";
 import PaidPart from "./PaidPart";
 import UnpaidPart from "./UnpaidPart";
-import Slide1 from '../../assets/Participation/Img1.jpg'
 import Slide2 from '../../assets/Participation/Img2.jpg'
 import Slide3 from '../../assets/Participation/Img3.jpg'
 import Slide4 from '../../assets/Participation/Img4.jpg'
-import Slide5 from '../../assets/Participation/Img5.jpg'
 import Slide6 from '../../assets/Participation/Img6.jpg'
 import Slide7 from '../../assets/Participation/Img7.jpg'
-
+import { useNavigate, Link } from "react-router-dom";
+import Rules from "./Rules";
 const CompetitionDetailsPage = () => {
-
+  const navigate = useNavigate();
   const { id } = useParams();
-  const { fetchApi } = Api();
+  const { fetchApi , authUser} = Api();
   const [event, setEvent] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const images = [Rangoli1, Rangoli2];
-  const randomImage = images[Math.floor(Math.random() * images.length)];
-  const [buttonSelected, setButtonSelected] = useState("Solo");
-
-  
+  const [isChildParticipated, setIsChildParticipated] = useState(false);
+  const [step , setStep] = useState(0);
+  const [user, setUser] = useState({});
+  const [alreadyParticipated, setAlreadyParticipated] = useState(false);
+  const handleChildParticipation = (value) => {
+    setIsChildParticipated(value);
+  };
   useEffect(() => {
     const result = fetchApi('GET', `api/competitions/${id}` , 'events');
     result.then(response => {
@@ -46,9 +45,40 @@ const CompetitionDetailsPage = () => {
         setEvent(response?.data?.data );
       }
     });
-  }
-  , []);
+
+    const checkParticipation = async () => {
+      const token = localStorage.getItem('token');
+      if(token){
+        authUser().then((data) => {
+          setUser(data?.data);
+        });
+        const result = await fetchApi('GET', `api/participations/${id}`);
+        if(result?.status === 200){
+          setAlreadyParticipated(true);
+        }
+      }
+    }
+    checkParticipation();
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if(!token){
+      setStep(1);
+    }
+    else{
+      if(user?.email_verified_at == null){
+        setStep(2);
+      } else if(user?.email_verified_at !== null && user?.is_verified == null){
+        setStep(3);
+      }
+      else if(user?.email_verified_at !== null && user?.is_verified == true){
+        setStep(4);
+      }
+    }
+  }, [user]);
   const {date, description, start_at, ends_at, rounds, paid_event, minimum_size, maximum_size , society , tag_line, title, team_fee , upi_id, venue , image_url} = event;
+  console.log(rounds);
   function closeModal() {
     setIsOpen(false)
   }
@@ -62,47 +92,7 @@ const CompetitionDetailsPage = () => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
-  let [categories] = useState({
-    Priliminary: [
-      {
-        id: 1,
-        title: "Time limit: 2-3 minutes",
-      },
-      {
-        id: 2,
-        title: "No video editing is allowed.",
-      },
-      {
-        id: 3,
-        title: "3 entries per college will be accepted",
-      },
-      {
-        id: 4,
-        title: "Last date for submission",
-      },
-    ],
-    Final: [
-      {
-        id: 1,
-        title:
-          "The song should be purely classical. Semi-classical or Bollywood songs are strictly not allowed.",
-      },
-      {
-        id: 2,
-        title: "Participants are requested to bring your own college ID cards.",
-      },
-      {
-        id: 3,
-        title:
-          "Kindly bring your pre-recorded music in mp3 format in a pen drive.",
-      },
-      {
-        id: 4,
-        title: "No props shall be provided by the college",
-      },
-    ],
-  });
-
+  
   if (Object.keys(event).length === 0) {
     return (
       <div className=" w-screen h-screen flex justify-center items-center">
@@ -186,7 +176,7 @@ const CompetitionDetailsPage = () => {
             src={ image_url }
             alt=""
           />
-          <div className="flex-col ">
+          <div className="flex-col w-full ">
           
             <p className="ml-8 pt-16 text-lg desciptionbg">
               {description}
@@ -218,74 +208,52 @@ const CompetitionDetailsPage = () => {
                   paid_event ? <p className="text-rose-500 text-lg font-semibold">Paid Event</p> : <p className="text-green-500 text-lg font-semibold">Free Event</p>
                 }
               </div>
-              <button className="bg-rose-500 h-12 w-40 rounded-md" onClick={openModal}>
+            {
+              step === 1 && <button>
+                <Link to="/login" className="text-rose-500 font-semibold ">Login to Participate</Link>
+              </button>
+            }
+            {
+              step === 2 && <button>
+              <Link to = {'/verify'} className=' bg-black p-2 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 '>Verify Email</Link>
+              </button>
+            }
+            {
+              step === 3 && <p className=" max-w-60">
+                Please wait for the admin to verify your account.
+              </p>
+
+            }
+            {
+              step == 4 && <>
+              {
+                alreadyParticipated ? <button>
+                  <Link to="/dashboard" className="text-rose-700 ">Dashboard</Link>
+                </button>:
+                <>
+                {  !isChildParticipated ?
+                <button className="bg-rose-500 h-12 w-40 rounded-md" onClick={openModal}>
                 <div className="flex flex-row items-center justify-center" >
                   <IoTicketOutline color="white" size={30}/>
                   <p className="text-lg text-white mx-2" > Participate </p>
                 </div>
-              </button>
+              </button> :
+
+                <p className=" bg-green-500 text-lg font-semibold h-12 w-40 rounded-md flex flex-row items-center justify-center text-white hover:cursor-pointer" onClick={()=> navigate('/dashboard')}>
+                  Dashboard
+                </p>
+                }
+                </>
+              }
+              </>
+            }
             </div>
           </div>
         </div>
-
-        {/* Rules and Regulations */}
-        <div className="my-16 flex flex-col items-start">
-          <h1 className="text-5xl font-semibold text-slate-600">
-            Rules and Regulations:
-          </h1>
-          <Tab.Group>
-            <Tab.List className="flex space-x-1 rounded-xl bg-blue-600 p-1 w-full mt-6">
-              {Object.keys(categories).map((category) => (
-                <Tab
-                  key={category}
-                  className={({ selected }) =>
-                    classNames(
-                      "w-full rounded-lg py-2.5 text-lg font-medium leading-5",
-                      "ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-                      selected
-                        ? "bg-white text-blue-700 shadow"
-                        : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
-                    )
-                  }
-                >
-                  {category}
-                </Tab>
-              ))}
-            </Tab.List>
-            <Tab.Panels className="mt-2">
-              {Object.values(categories).map((posts, idx) => (
-                <Tab.Panel
-                  key={idx}
-                  className={classNames(
-                    "rounded-xl bg-white p-3",
-                    "ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
-                  )}
-                >
-                  <ul>
-                    {posts.map((post) => (
-                      <li
-                        key={post.id}
-                        className="relative rounded-md p-3 hover:bg-gray-100 list-disc"
-                      >
-                        <h3 className="text-md font-medium leading-5">
-                          {post.title}
-                        </h3>
-
-                        <a
-                          href="#"
-                          className={classNames(
-                            "absolute inset-0 rounded-md",
-                            "ring-blue-400 focus:z-10 focus:outline-none focus:ring-2"
-                          )}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </Tab.Panel>
-              ))}
-            </Tab.Panels>
-          </Tab.Group>
-        </div>
+            <h1 className="text-3xl font-semibold text-slate-600 text-center">
+              RULES
+            </h1>
+     <Rules rounds={rounds} /> 
       </div>
       
       <div>
@@ -314,17 +282,27 @@ const CompetitionDetailsPage = () => {
                 {title}
               </Dialog.Title>
               {
-                paid_event ? <PaidPart event={event} closeModal={closeModal} /> : <UnpaidPart event={event} closeModal={closeModal} />
+                paid_event ? <PaidPart event={event} closeModal={closeModal} onParticipation={handleChildParticipation}  /> : <UnpaidPart event={event} closeModal={closeModal} onParticipation= {handleChildParticipation} />
               }
 
               <div className="mt-4 text-center">
+                {
+                  isChildParticipated? 
+                  <button
+                  type="button"
+                  className="text-rose-700"
+                  onClick={()=> navigate('/dashboard')}
+                >
+                  Dashboard
+                </button> : 
                 <button
                   type="button"
                   className="text-rose-700"
-                  onClick={() => setIsOpen(false)}
+                  onClick={closeModal}
                 >
-                  Close
+                  Cancel
                 </button>
+                }
               </div>
             </div>
           </div>
