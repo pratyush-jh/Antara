@@ -6,7 +6,7 @@ import DayTimeline from '../Components/Timeline/DayTimeline'
 const TimelinePage = () => {
   return (
     <>
-      <ParallelTimelines />
+      {/* <ParallelTimelines /> */}
       <Timeline />
     </>
   )
