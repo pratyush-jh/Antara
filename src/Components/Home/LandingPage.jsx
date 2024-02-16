@@ -1,7 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import $ from 'jquery';
 
+
 const LandingPage = () => {
+  const [opacity, setOpacity] = useState(0);
+
+
+  
+  useEffect(() => {
+    $(window).scroll(function(e){          
+      if($(document).scrollTop() > 120) {
+        setOpacity(1);
+      } else {
+        setOpacity(0);
+      }
+    });
+  }, []);
+
   useEffect(() => {
     function getOffSet(){
       var _offset = 450;
@@ -49,26 +64,21 @@ const LandingPage = () => {
       background_image_parallax($(".tm-parallax"), 0.30, true);
     }, true);
 
-    // Detect window scroll and update navbar
-    $(window).scroll(function(e){          
-      if($(document).scrollTop() > 120) {
-        $('.tm-navbar').addClass("scroll");
-      } else {
-        $('.tm-navbar').removeClass("scroll");
-      }
-    });
+
   }, []);
 
   return (
-    <div>
-     <div>
-          <h1  className="header_Arohana" 
-          >
-               Arohana
-          </h1>
-     </div>
-        <section id="hero" class="text-white tm-font-big tm-parallax">    
+    <div className='landingPage' data-aos = "fade-up">
+        <section id="hero" className="text-white tm-font-big tm-parallax">    
         <div className="dark-div"></div> 
+        <div className="row" style={{opacity: opacity , transition: 'opacity 0.5s'}}>
+                The Annual Cultural Fest 
+        </div>
+          <div>
+              <h1  className="header_Arohana" >
+                  Arohana
+              </h1>
+        </div>
         </section>
         <div style={{height: '100vh'}}></div>
     </div>

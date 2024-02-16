@@ -37,7 +37,7 @@ const UserTeams = ({user}) => {
         <p>
           Please verify your email to continue
         </p>
-        <button className=' bg-black p-2 rounded-lg text-white hover:text-black transition-all duration-500 ' onClick={() => navigate('/verify')}>Verify Email</button>
+        <button className=' bg-black p-2 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 ' onClick={() => navigate('/verify')}>Verify Email</button>
       </div>
       }
 

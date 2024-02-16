@@ -23,7 +23,6 @@ const Api = () => {
         }
       });
       const data = response.data.data.user;
-      console.log();
       if (response.status === 401) {
         navigate('/login');
       }
@@ -70,7 +69,6 @@ const login = async(values) => {
               },
               body: JSON.stringify(values),
           });
-          console.log(response.status);
           const data = await response.json();     
           if (response.status == 200 || response.status == 204) {
               setIsLoading(false);
@@ -87,7 +85,6 @@ const login = async(values) => {
           } else {
               setIsLoading(false);
               alert('Wrong Credentials! Please try again.');
-              console.log('Login failed');
           }
       } catch (error) {
         setIsLoading(false);

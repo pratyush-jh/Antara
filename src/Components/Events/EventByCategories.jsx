@@ -21,7 +21,6 @@ const EventByCategories = () => {
     });
   }
   , []);
-  console.log(name)
 
  if(events.length === 0){
   return (

@@ -13,7 +13,7 @@ const Verify = () => {
   const [isLoading, setIsLoading] = useState(true);
 
      const [user, setUser] = useState([]);
-     const [alertMessage, setAlertMessage] = useState(null); // New state variable
+     const [alertMessage, setAlertMessage] = useState(null);
     //* Check if the user is logged in and if not, redirect to the login page
      useEffect(() => {
           const token = localStorage.getItem('token');
@@ -54,7 +54,6 @@ const Verify = () => {
           });
           const data = await response.json();
           if (response.status === 200) {
-            console.log(data);
             setIsLoading(false);
             showAlert('Email verification link sent successfully');
           }
@@ -74,8 +73,6 @@ const Verify = () => {
       }
     const checkVerified = () => {
       authUser().then((data) => {
-        console.log(data);
-        console.log(data?.data?.email_verified_at);
         if(data?.data?.email_verified_at != null){
           showAlert('Email verified successfully');
           navigate(`/dashboard`);

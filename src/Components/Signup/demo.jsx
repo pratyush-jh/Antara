@@ -39,11 +39,8 @@ const Signup = () => {
           try {
                const response = await axios.post(`${API_URL}/send-otp`, values);
                if(response.status === 200) {
-                    console.log(response.data);
                     const emailData = await response.data.email;
-                    console.log(emailData);
                     setEmail(emailData);
-                    console.log(email);
                     setStep(2);
                }
           } catch (error) {
@@ -63,8 +60,7 @@ const Signup = () => {
           }
      };
      const onSubmit = async (values) => {
-          console.log("submitting")
-          console.log(values);
+
           try {
             const response = await axios.post(`${API_URL}/register`, values , {
                  headers: {
@@ -73,17 +69,14 @@ const Signup = () => {
                }
             ); 
             const data = response.data;
-            console.log(data);
             if (response.status === 400) {
               alert('User already exists! Please login.');
             }
             else if (response.status === 200) {
-              console.log('Signup success');
               localStorage.setItem('token', data.token);
               navigate(`/thanks`);
             } else {
               alert("Signup failed! Please try again.");
-              console.log('Signup failed');
             }
           } catch (error) {
             console.error('Error:', error);

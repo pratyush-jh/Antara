@@ -16,21 +16,31 @@ const UserEventDetails = ({user}) => {
   if (user?.length === 0) {
     return < Spinner2 />; 
   }
- useEffect(() => {
-  if(user?.email_verified_at === null){
-    setStep(2);
-  } else if(user?.email_verified_at !== null && user?.is_verified == null){
-    setStep(3);
+//  useEffect(() => {
+//   if(user?.email_verified_at === null){
+//     setStep(2);
+//   } else if(user?.email_verified_at !== null && user?.is_verified == null){
+//     setStep(3);
+//   }
+//   else if(user?.email_verified_at !== null && user?.is_verified == true){
+//     setStep(4);
+//     fetchApi('get', `user/${user?.id}/participated-events`).then((data) => {
+//       setParticipatedEvents(data?.data);
+//       setIsLoading(false);
+//     });
+//   }
+//   }
+//   , [user]);
+
+useEffect(() => {
+  fetchApi('get', `user/${user?.id}/participated-events`).then((data) => {
+    setParticipatedEvents(data?.data);
+    setIsLoading(false);
   }
-  else if(user?.email_verified_at !== null && user?.is_verified == true){
-    setStep(4);
-    fetchApi('get', `user/${user?.id}/participated-events`).then((data) => {
-      setParticipatedEvents(data?.data);
-      setIsLoading(false);
-    });
-  }
-  }
-  , [user]);
+  );
+}, [user]);
+
+
   console.log(participatedEvents);
   return (
     <div data-aos="fade-left">
@@ -40,7 +50,7 @@ const UserEventDetails = ({user}) => {
         <p>
           Please verify your email to continue
         </p>
-        <Link to = {'/verify'} target='_blanc' className=' bg-black p-2 rounded-lg text-white hover:text-black transition-all duration-500 '>Verify Email</Link>
+        <Link to = {'/verify'} target='_blanc' className=' bg-black p-2 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 '>Verify Email</Link>
       </div>
       }
 

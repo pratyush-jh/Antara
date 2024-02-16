@@ -1,6 +1,6 @@
 import React from 'react'
 import Dashboard from '../Components/Dashboard/Dashboard'
-import MobileDasboard from '../Components/MobileDashboard/MobileDasboard'
+import MobileDasboard from '../Components/Dashboard/MobileDasboard'
 import { useState, useEffect } from 'react'
 const DashBoardPage = () => {
 

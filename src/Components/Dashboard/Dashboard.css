@@ -267,7 +267,6 @@
 .qrcode{
   position: absolute;
   width:400px;
-
   z-index: -1;
   transform: translateY(-22px) translateX(-45px);
 }

@@ -24,7 +24,6 @@ const Participation = ({ event }) => {
      });
 
      const onSubmit = (values) => {
-          console.log(values);
           if (buttonSelected === "Solo") {
                if(paid_event){
                     fetchApi('POST', 'participations', { event_id: event.id, team_name: values.teamName, no_of_participants: values.numberOfMembers, amount: inidiviual_fees })
