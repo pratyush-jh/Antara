@@ -52,11 +52,11 @@ const DesktopNav = () => {
 
 
 
-  const color = isLoggedIn ? `${isOnDashboard ? 'white' : 'brown'}` : 'darkBlue';
-  const bgcolor = isLoggedIn ? 'bglogin' : ' bgnotlogin';
+  const color = 'white';
+  const bgcolor = isLoggedIn ? 'bg-gradient-to-r from-haldi-orange to-haldi-red' : 'bg-gradient-to-r from-haldi-yellow to-haldi';
 
-  const navbarStyle = `py-4 px-2 border-b-4 border-transparent ${isLoggedIn? `${isOnDashboard? 'text-white':'text-brown'}` :' text-darkBlue'} 
-  ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-brown'}`: 'hover:border-darkBlue'}  font-medium rounded`;
+  const navbarStyle = `py-4 px-2 border-b-4 border-transparent text-${color}
+  ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-haldi'}`: 'hover:border-haldi-orange'}  font-medium rounded`;
   return (
   <nav className={` z-20 shadow-lg pt-2 pb-2 ${isOnDashboard ? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue ' : bgcolor} `} data-aos="fade-down"> 
       <div className=" px-40">
@@ -94,8 +94,8 @@ const DesktopNav = () => {
               <div className=' flex justify-center items-center gap-10'>
                 
                 <Link to={'/dashboard'} >
-                  <div data-aos="fade-left" className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white hover:text-shade-darkBlue':' text-brown hover:text-rose-200'} duration-500 transition-all flex flex-col items-center`}>
-                    <img src={UserProfile} alt="UserProfile" className={`h-8 w-8 rounded-ful ${isOnDashboard? 'logoWhite' :''}`} />
+                  <div data-aos="fade-left" className={`py-2 px-2 font-medium rounded ${isOnDashboard ? ' text-white hover:text-shade-darkBlue':' text-white hover:text-rose-200'} duration-500 transition-all flex flex-col items-center`}>
+                    <img src={UserProfile} alt="UserProfile" className={`h-8 w-8  logoWhite rounded-ful `} />
                     <div className=' text-sm'>
                       Dash Board
                     </div>

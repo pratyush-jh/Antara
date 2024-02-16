@@ -6,6 +6,7 @@ import { MobilePara } from '../../Functions/Constants';
 import './Home.css'
 import Aos from 'aos';
 import 'aos/dist/aos.css'
+import LandingPage from './LandingPage';
 const MobileHome = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
@@ -33,10 +34,8 @@ const MobileHome = () => {
   const colour = isLoggedIn ? 'brown' : 'blue';
   return (
     <>
-    <div  className='-z-10 overflow-hidden' data-aos = "fade-up" >
-    <Hero />
-    </div>
 
+      <LandingPage />
         <div className='min-h-screen min-w-screen py-10 relative '>
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 home-bg">
         </div>

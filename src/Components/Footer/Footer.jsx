@@ -27,13 +27,13 @@ const Footer = () => {
     }
     , [location]);
 
-    const color = isLoggedIn ? `${isOnDashboard? 'white':'brown'}` : 'darkBlue';
-    const textColor = isLoggedIn ? `${isOnDashboard? 'white':'brown'}` : 'darkBlue';
+    const color = isLoggedIn ? `${isOnDashboard? 'white':'brown'}` : 'white';
+    const textColor = isLoggedIn ? `${isOnDashboard? 'white':'brown'}` : 'white';
     
 
     return ( 
         <div className=' bottom-0'>
-            <footer className={`${!isLoggedIn ? 'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue ':'bg-skin'}`}`}>
+            <footer className={`${!isLoggedIn ? ' bg-gradient-to-tr from-maldive-darkblue to-maldive-lightblue':`${isOnDashboard? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue ':' bg-gradient-to-l from-morning-yellw to-morning-orange'}`}`}>
                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">
                         <div className="mb-6 md:mb-0">

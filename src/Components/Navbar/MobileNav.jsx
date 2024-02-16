@@ -54,12 +54,15 @@ useEffect(() => {
     checkAndNavigate();
   }, [navigate]);
 
-  const navbarStyle = `py-4 px-2 border-b-4 border-transparent ${isLoggedIn? `${isOnDashboard? 'text-white':'text-brown'}` :' text-darkBlue'} 
-  ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-brown'}`: 'hover:border-darkBlue'}  font-medium rounded`;
+  const color = 'white';
+  const bgcolor = isLoggedIn ? 'bg-gradient-to-r from-haldi-orange to-haldi-red' : 'bg-gradient-to-r from-haldi-yellow to-haldi';
+
+  const navbarStyle = `py-4 px-2 border-b-4 border-transparent text-${color}
+  ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-haldi'}`: 'hover:border-haldi-orange'}  font-medium rounded`;
   return (
     <>
       <div className={`flex justify-between items-center h-20 shadow-lg p-4 z-10 pt-2 pb-2 ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue  ':'bg-skin'}`}`}>
-          <Link to="/" className={`logo flex items-center py-4 px-2 gap-12 font ${isLoggedIn?`${isOnDashboard? 'text-white':'text-brown'}`:' text-darkBlue'}`}>
+          <Link to="/" className={`logo flex items-center py-4 px-2 gap-12 font text${color}`}>
               <TypeAnimation
               sequence={[
                 'HYPERION',

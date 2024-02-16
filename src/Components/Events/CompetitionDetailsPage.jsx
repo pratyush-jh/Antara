@@ -20,6 +20,14 @@ import Rangoli2 from '../../assets/Image/rangoli2.png'
 import Participation from "./Participation";
 import PaidPart from "./PaidPart";
 import UnpaidPart from "./UnpaidPart";
+import Slide1 from '../../assets/Participation/Img1.jpg'
+import Slide2 from '../../assets/Participation/Img2.jpg'
+import Slide3 from '../../assets/Participation/Img3.jpg'
+import Slide4 from '../../assets/Participation/Img4.jpg'
+import Slide5 from '../../assets/Participation/Img5.jpg'
+import Slide6 from '../../assets/Participation/Img6.jpg'
+import Slide7 from '../../assets/Participation/Img7.jpg'
+
 const CompetitionDetailsPage = () => {
 
   const { id } = useParams();
@@ -30,7 +38,6 @@ const CompetitionDetailsPage = () => {
   const randomImage = images[Math.floor(Math.random() * images.length)];
   const [buttonSelected, setButtonSelected] = useState("Solo");
 
-  console.log(randomImage)
   
   useEffect(() => {
     const result = fetchApi('GET', `api/competitions/${id}` , 'events');
@@ -41,7 +48,6 @@ const CompetitionDetailsPage = () => {
     });
   }
   , []);
-  console.log(event)
   const {date, description, start_at, ends_at, rounds, paid_event, minimum_size, maximum_size , society , tag_line, title, team_fee , upi_id, venue , image_url} = event;
   function closeModal() {
     setIsOpen(false)
@@ -108,74 +114,45 @@ const CompetitionDetailsPage = () => {
   return (
     <>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={2}
         spaceBetween={15}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
+
         className="mySwiper h-[26rem] mt-4 px-2"
       >
         <SwiperSlide>
           <img
-            className="rounded-xl"
-            src="https://picsum.photos/800/500"
+            className="rounded-xl h-[26rem] w-full object-cover
+            "
+            src={Slide7}
             alt=""
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            className="rounded-xl"
-            src="https://picsum.photos/800/500"
+            className="rounded-xl h-[26rem] w-full object-cover"
+            src={ Slide2 }
             alt=""
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            className="rounded-xl"
-            src="https://picsum.photos/800/500"
+            className="rounded-xl h-[26rem] w-full object-cover"
+            src={ Slide3 }
             alt=""
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            className="rounded-xl"
-            src="https://picsum.photos/800/500"
+            className="rounded-xl h-[26rem] w-full object-cover"
+            src={   Slide4 }
             alt=""
           />
         </SwiperSlide>
+
         <SwiperSlide>
           <img
-            className="rounded-xl"
-            src="https://picsum.photos/800/500"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="rounded-xl"
-            src="https://picsum.photos/800/500"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="rounded-xl"
-            src="https://picsum.photos/800/500"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="rounded-xl"
-            src="https://picsum.photos/800/500"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="rounded-xl"
-            src="https://picsum.photos/800/500"
+            className="rounded-xl h-[26rem] w-full object-cover"
+            src={ Slide6 }
             alt=""
           />
         </SwiperSlide>
@@ -193,18 +170,8 @@ const CompetitionDetailsPage = () => {
 
       {/* Basic Tags */}
       <div className="tags mt-10 px-40 flex flex-row gap-4">
-        <div className="h-8 bg-rose-500 w-36 rounded-full">
-          <div className="pt-1.5 px-3 flex flex-row justify-between items-start">
-            <FaFire color="white" />
-            <p className="pr-7 text-sm text-white font-semibold"></p>
-          </div>
-        </div>
-        <div className="h-8 bg-blue-600 w-20 rounded-full">
-          <div className="pt-1.5 flex flex-row justify-around items-center">
-            <p className="text-sm text-white font-semibold text-center">
-              {society.name}
-            </p>
-          </div>
+        <div className=" bg-amber-500 rounded-full w-fit pt-1 pb-1 pr-3 pl-3 text-white">
+          {society.name}  
         </div>
       </div>
 
@@ -245,7 +212,12 @@ const CompetitionDetailsPage = () => {
               </div>
             </div>
 
-            <div className="flex flex-row items-center justify-end py-16" >
+            <div className="flex flex-row items-center justify-around py-16" >
+              <div>
+                {
+                  paid_event ? <p className="text-rose-500 text-lg font-semibold">Paid Event</p> : <p className="text-green-500 text-lg font-semibold">Free Event</p>
+                }
+              </div>
               <button className="bg-rose-500 h-12 w-40 rounded-md" onClick={openModal}>
                 <div className="flex flex-row items-center justify-center" >
                   <IoTicketOutline color="white" size={30}/>

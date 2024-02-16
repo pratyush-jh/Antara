@@ -9,6 +9,10 @@
      font-family: 'Audrey' ;
      src: url('../src/assets/Fonts/Audrey/Audrey-Medium.otf');
 }
+@font-face {
+     font-family: Olive-font;
+     src: url('../src/assets/Fonts/Olive/TTF/OliveVillage-Regular.ttf');
+}
 
 *{
      font-family: 'Poppins', sans-serif;
