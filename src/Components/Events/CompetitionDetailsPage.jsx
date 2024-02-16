@@ -32,13 +32,13 @@ const CompetitionDetailsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const images = [Rangoli1, Rangoli2];
   const [isChildParticipated, setIsChildParticipated] = useState(false);
-  const [step , setStep] = useState(0);
+  const [step , setStep] = useState(4);
   const [user, setUser] = useState({});
   const [alreadyParticipated, setAlreadyParticipated] = useState(false);
   const [isOnMobile, setIsOnMobile] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth < 620) {
+    if (window.innerWidth < 764) {
       setIsOnMobile(true);
     }
   }, []);
@@ -50,7 +50,9 @@ const CompetitionDetailsPage = () => {
     const result = fetchApi('GET', `api/competitions/${id}` , 'events');
     result.then(response => {
       if (response?.status === 200) {
-        setEvent(response?.data?.data );
+        setAlreadyParticipated(response?.data?.data?.participated);
+        setEvent(response?.data?.data?.competition  );
+
       }
     });
 
@@ -60,10 +62,6 @@ const CompetitionDetailsPage = () => {
         authUser().then((data) => {
           setUser(data?.data);
         });
-        const result = await fetchApi('GET', `api/participations/${id}`);
-        if(result?.status === 200){
-          setAlreadyParticipated(true);
-        }
       }
     }
     checkParticipation();
@@ -245,7 +243,7 @@ const CompetitionDetailsPage = () => {
               <button>
                 <Link
                   to="/verify"
-                  className="bg-black p-2 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 text-sm md:text-base"
+                  className="bg-black p-2 rounded-lg text-white hover:bg-haldi transition-all duration-500 text-sm md:text-base"
                 >
                   Verify Email
                 </Link>
@@ -262,7 +260,7 @@ const CompetitionDetailsPage = () => {
                   <button>
                     <Link
                       to="/dashboard"
-                      className="text-rose-700 text-sm md:text-base"
+                      className="bg-haldi text-sm md:text-base font-semibold h-10 md:h-12 w-32 md:w-40 rounded-md flex items-center justify-center text-white cursor-pointer"
                     >
                       Dashboard
                     </Link>
@@ -280,7 +278,7 @@ const CompetitionDetailsPage = () => {
                       </button>
                     ) : (
                       <p
-                        className="bg-green-500 text-sm md:text-base font-semibold h-10 md:h-12 w-32 md:w-40 rounded-md flex items-center justify-center text-white cursor-pointer"
+                        className="bg-haldi text-sm md:text-base font-semibold h-10 md:h-12 w-32 md:w-40 rounded-md flex items-center justify-center text-white cursor-pointer"
                         onClick={() => navigate('/dashboard')}
                       >
                         Dashboard
@@ -375,7 +373,7 @@ const CompetitionDetailsPage = () => {
             }
             {
               step === 2 && <button>
-              <Link to = {'/verify'} className=' bg-black p-2 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 '>Verify Email</Link>
+              <Link to = {'/verify'} className=' bg-black p-2 rounded-lg text-white hover:bg-haldi transition-all duration-500 '>Verify Email</Link>
               </button>
             }
             {
@@ -388,7 +386,7 @@ const CompetitionDetailsPage = () => {
               step == 4 && <>
               {
                 alreadyParticipated ? <button>
-                  <Link to="/dashboard" className="text-rose-700 ">Dashboard</Link>
+                  <Link to="/dashboard" className=" bg-haldi text-sm md:text-base font-semibold h-10 md:h-12 w-32 md:w-40 rounded-md flex items-center justify-center text-white cursor-pointer">Dashboard</Link>
                 </button>:
                 <>
                 {  !isChildParticipated ?
@@ -399,7 +397,7 @@ const CompetitionDetailsPage = () => {
                 </div>
               </button> :
 
-                <p className=" bg-green-500 text-lg font-semibold h-12 w-40 rounded-md flex flex-row items-center justify-center text-white hover:cursor-pointer" onClick={()=> navigate('/dashboard')}>
+                <p className=" bg-haldi text-lg font-semibold h-12 w-40 rounded-md flex flex-row items-center justify-center text-white hover:cursor-pointer" onClick={()=> navigate('/dashboard')}>
                   Dashboard
                 </p>
                 }
