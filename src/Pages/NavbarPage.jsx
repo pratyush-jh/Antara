@@ -15,7 +15,7 @@ const NavbarPage = () => {
       const [user , setUser] = useState([]);
 
       const {fetchApi} = Api();
-     const breakpoint = 620;
+     const breakpoint = 764;
     //* Function to switch between mobile and desktop view
       useEffect(() => {
        const handleWindowResize = () => setWidth(window.innerWidth)

@@ -35,6 +35,14 @@ const CompetitionDetailsPage = () => {
   const [step , setStep] = useState(0);
   const [user, setUser] = useState({});
   const [alreadyParticipated, setAlreadyParticipated] = useState(false);
+  const [isOnMobile, setIsOnMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 620) {
+      setIsOnMobile(true);
+    }
+  }, []);
+
   const handleChildParticipation = (value) => {
     setIsChildParticipated(value);
   };
@@ -149,6 +157,158 @@ const CompetitionDetailsPage = () => {
       </Swiper>
 
       {/* Tag Line */}
+
+{ isOnMobile?  
+<>
+<div className="flex flex-col md:flex-row my-8 md:my-16 items-center justify-center text-center md:gap-3">
+        <RiDoubleQuotesL />
+        <div className="tag_line font-semibold mt-2 md:text-xl text-gray-600">
+          उद्यमेन हि सिध्यन्ति कार्याणि न मनोरथैः। न हि सुप्तस्य सिंहस्य
+          प्रविशन्ति मुखे मृगा:।
+        </div>
+        <RiDoubleQuotesR />
+      </div>
+
+      {/* Basic Tags */}
+      <div className="tags mt-6 md:mt-10 px-4 lg:px-0 flex flex-row flex-wrap gap-2 md:gap-4">
+        <div className="bg-amber-500 rounded-full w-fit pt-1 pb-1 pr-3 pl-3 text-white">
+          {society.name}
+        </div>
+      </div>
+
+      {/* Title */}
+      <div className="mt-6 md:mt-12 flex flex-col md:flex-row items-center md:items-start justify-between">
+        <div className="md:w-1/2">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-slate-600 text-center md:text-left">
+            {title}: {tag_line}
+          </h1>
+          <div className="poster flex flex-col md:flex-row my-6 md:my-8">
+            <img
+              className="rounded-xl w-full md:w-1/3 object-cover mb-4 md:mb-0"
+              src={image_url}
+              alt=""
+            />
+            <p className="ml-0 md:ml-8 text-base md:text-lg description bg-gray-100 p-4 rounded-md">
+              {description}
+            </p>
+          </div>
+        </div>
+
+        {/* Basic Details */}
+        <div className="flex flex-col justify-center md:w-1/2 mt-8 md:mt-0">
+          <div className="flex flex-row justify-around md:justify-start mt-4">
+            <div className="flex flex-col items-center">
+              <BsCalendar2Date size={40} color="#475569" />
+              <p className="my-2 font-semibold text-slate-600 text-sm md:text-base">
+                {date}
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <HiOutlineClock size={40} color="#475569" />
+              <p className="my-2 font-semibold text-slate-600 text-sm md:text-base">
+                {start_at}
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <PiMapPinLine size={40} color="#475569" />
+              <p className="my-2 font-semibold text-slate-600 text-sm md:text-base">
+                {venue}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center mt-4 md:mt-8">
+            {paid_event ? (
+              <p className="text-rose-500 text-sm md:text-lg font-semibold">
+                Paid Event
+              </p>
+            ) : (
+              <p className="text-green-500 text-sm md:text-lg font-semibold">
+                Free Event
+              </p>
+            )}
+          </div>
+
+          {/* Participant Actions */}
+          <div className="flex justify-center mt-4 md:mt-8">
+            {step === 1 && (
+              <button>
+                <Link
+                  to="/login"
+                  className="text-rose-500 font-semibold text-sm md:text-base"
+                >
+                  Login to Participate
+                </Link>
+              </button>
+            )}
+            {step === 2 && (
+              <button>
+                <Link
+                  to="/verify"
+                  className="bg-black p-2 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 text-sm md:text-base"
+                >
+                  Verify Email
+                </Link>
+              </button>
+            )}
+            {step === 3 && (
+              <p className="max-w-60 text-sm md:text-base">
+                Please wait for the admin to verify your account.
+              </p>
+            )}
+            {step === 4 && (
+              <>
+                {alreadyParticipated ? (
+                  <button>
+                    <Link
+                      to="/dashboard"
+                      className="text-rose-700 text-sm md:text-base"
+                    >
+                      Dashboard
+                    </Link>
+                  </button>
+                ) : (
+                  <>
+                    {!isChildParticipated ? (
+                      <button className="bg-rose-500 h-10 md:h-12 w-32 md:w-40 rounded-md">
+                        <div className="flex flex-row items-center justify-center">
+                          <IoTicketOutline color="white" size={24} />
+                          <p className="text-sm md:text-base text-white mx-2">
+                            Participate
+                          </p>
+                        </div>
+                      </button>
+                    ) : (
+                      <p
+                        className="bg-green-500 text-sm md:text-base font-semibold h-10 md:h-12 w-32 md:w-40 rounded-md flex items-center justify-center text-white cursor-pointer"
+                        onClick={() => navigate('/dashboard')}
+                      >
+                        Dashboard
+                      </p>
+                    )}
+                  </>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Rules Section */}
+      <div className="mt-12">
+        <h2 className="text-3xl md:text-4xl font-semibold text-slate-600 text-center">
+          RULES
+        </h2>
+        <div className=" pr-2 pl-2">
+        <Rules rounds={rounds} /> {/* Render the Rules component */}
+
+        </div>
+      </div>
+
+
+</>
+
+:   <>
       <div className="flex flex-row my-16 items-center justify-center text-center gap-3">
         <RiDoubleQuotesL />
         <div className="tag_line font-semibold mt-2 text-xl text-gray-600">
@@ -250,12 +410,14 @@ const CompetitionDetailsPage = () => {
             </div>
           </div>
         </div>
-            <h1 className="text-3xl font-semibold text-slate-600 text-center">
-              RULES
-            </h1>
-     <Rules rounds={rounds} /> 
+          <h1 className="text-3xl font-semibold text-slate-600 text-center">
+            RULES
+          </h1>
+          <Rules rounds={rounds} /> 
       </div>
-      
+</>
+}
+      {/* //*  Modal */}
       <div>
 
       <Transition appear show={isOpen} as={Fragment}>

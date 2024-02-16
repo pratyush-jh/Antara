@@ -62,7 +62,8 @@ const DesktopNav = () => {
       <div className=" px-40">
         <div className="flex justify-between items-center">
           <div data-aos="fade-right">
-          <Link to="/" className={`logo absolute -top-7 flex items-center py-4 px-2 gap-12  text-${color}`}>
+          <Link to="/" className={`logo absolute -top-8 flex items-center py-4 px-2 gap-12 xxlmax:-left-32
+            text-${color}`}>
           <TypeAnimation
           sequence={[
             'HYPERION',
