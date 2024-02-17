@@ -39,8 +39,8 @@ const UserEventDetails = ({user}) => {
 // * Have to delete this code later on
 useEffect(() => {
   fetchApi('get', `api/participations`).then((data) => {
-    setParticipatedEvents(data?.data);
-    console.log(data?.data);  
+    setParticipatedEvents(data?.data?.data[0]?.competitions);
+    console.log(data?.data?.data[0]?.competitions);  
     setIsLoading(false);
   }
   );
@@ -94,17 +94,27 @@ if(participatedEvents?.length === 0){
       <h1>Here Are the details of the events you have participated in:
       </h1>
 
-      <div className='flex flex-col items-center justify-center gap-10 pt-10'>
-        {/* {
-          participatedEvents?.map((event, index) => {
+      <div className='flex flex-col items-center justify-center gap-20 pt-10'>
+        {
+          participatedEvents.map((event, index) => {
             return (
-              <div key={index} className='flex flex-col items-center justify-center gap-5'>
-
+              <div key={index} className='flex items-center justify-center gap-5'>
+                <h1>{event?.title}</h1>
+                <p>{event?.pivot?.team_name}</p>
+                <p>
+                  Approval: 
+                  {event?.pivot?.allowed ? ' Allowed' : ' Pending'}
+                </p>
+                <p>
+                  {
+                    event?.pivot?.team_size > 1 ? 'Team Event' : 'Individual Event'
+                  }
+                </p>
               </div>
             )
           
           })
-        } */}
+        }
       </div>
     </>
   )
