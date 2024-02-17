@@ -24,6 +24,7 @@ import Slide6 from '../../assets/Participation/Img6.jpg'
 import Slide7 from '../../assets/Participation/Img7.jpg'
 import { useNavigate, Link } from "react-router-dom";
 import Rules from "./Rules";
+
 const CompetitionDetailsPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -36,6 +37,7 @@ const CompetitionDetailsPage = () => {
   const [user, setUser] = useState({});
   const [alreadyParticipated, setAlreadyParticipated] = useState(false);
   const [isOnMobile, setIsOnMobile] = useState(false);
+  const [sponsorStep , setSponsorStep] = useState(0);
 
   useEffect(() => {
     if (window.innerWidth < 764) {
@@ -50,9 +52,12 @@ const CompetitionDetailsPage = () => {
     const result = fetchApi('GET', `api/competitions/${id}` , 'events');
     result.then(response => {
       if (response?.status === 200) {
-        setAlreadyParticipated(response?.data?.data?.participated);
+        // setAlreadyParticipated(response?.data?.data?.participated);
         setEvent(response?.data?.data?.competition  );
-
+        if (response?.data?.data?.competition?.sponsor_task == 1) {
+          console.log(response?.data?.data?.competition?.sponsor_task);
+          setSponsorStep(1);
+        }
       }
     });
 
@@ -66,7 +71,7 @@ const CompetitionDetailsPage = () => {
     }
     checkParticipation();
   }, []);
-
+  console.log(event);
   useEffect(() => {
     const token = localStorage.getItem('token');
     if(!token){
@@ -74,7 +79,7 @@ const CompetitionDetailsPage = () => {
     }
     else{
       if(user?.email_verified_at == null){
-        setStep(2);
+        setStep(4);
       } else if(user?.email_verified_at !== null && user?.is_verified == null){
         setStep(3);
       }
@@ -83,7 +88,7 @@ const CompetitionDetailsPage = () => {
       }
     }
   }, [user]);
-  const {date, description, start_at, ends_at, rounds, paid_event, minimum_size, maximum_size , society , tag_line, title, team_fee , upi_id, venue , image_url} = event;
+  const {date, description, start_at, ends_at, rounds, paid_event, minimum_size, maximum_size , society , tag_line, title, team_fee , upi_id, venue , image_url , sponsor_task} = event;
   console.log(rounds);
   function closeModal() {
     setIsOpen(false)
@@ -268,7 +273,7 @@ const CompetitionDetailsPage = () => {
                 ) : (
                   <>
                     {!isChildParticipated ? (
-                      <button className="bg-rose-500 h-10 md:h-12 w-32 md:w-40 rounded-md">
+                      <button className="bg-rose-500 h-10 md:h-12 w-32 md:w-40 rounded-md" onClick={openModal}>
                         <div className="flex flex-row items-center justify-center">
                           <IoTicketOutline color="white" size={24} />
                           <p className="text-sm md:text-base text-white mx-2">
@@ -441,8 +446,25 @@ const CompetitionDetailsPage = () => {
               >
                 {title}
               </Dialog.Title>
+
               {
+                sponsorStep == 1 ? (
+                  <>
+                    <div>
+                       Complete the sponsor task to participate in the event.
+                    </div>
+                    <button onClick={()=>setSponsorStep(0)}  className="bg-rose-500 text-white rounded-md p-2 w-full ">  
+                      Next
+                    </button>
+                  </>
+                )
+                :  (
+                  <>
+                  {
                 paid_event ? <PaidPart event={event} closeModal={closeModal} onParticipation={handleChildParticipation}  /> : <UnpaidPart event={event} closeModal={closeModal} onParticipation= {handleChildParticipation} />
+              }
+                  </>
+                )
               }
 
               <div className="mt-4 text-center">

@@ -23,14 +23,14 @@ const Rules = ({ rounds }) => {
       <div className="mt-8">
         {rounds.map(round => (
           <div key={round?.id} className={selectedRound === round.id ? 'block' : 'hidden'}>
-              <p className="mt-2"> {
+            <h2 className="text-xl mt-4 uppercase"> Mode: {round?.mode}</h2>
+              <ul className="mt-2 list-disc mdmax:pl-4" > 
+              {
               
               round?.rules.map((rule, index) => (
-                <div key={index}>
-                  <p className="mt-2">{rule.statement}</p>
-                </div>
+                  <li className="mt-2 " key={index}>{rule.statement}</li>
               ))
-              }</p>
+              }</ul>
           </div>
         ))}
       </div>

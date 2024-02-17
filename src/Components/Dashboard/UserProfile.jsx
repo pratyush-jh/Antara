@@ -26,14 +26,14 @@ const UserProfile = ({ user }) => {
           >
           <p className="font-bold">Email Verification Status :</p>
           <p>{email_verified_at ? 'Verified' : 
-                  <Link to = {'/verify'} target='_blanc' className=' bg-black p-1 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 '>Verify Now</Link>
+                  <Link to = {'/verify'}  className=' bg-black p-1 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 '>Verify Now</Link>
           }</p>
           </div>
-          <div className="flex gap-2 mb-4"
+          {/* <div className="flex gap-2 mb-4"
           >
           <p className="font-bold">Date of Birth:</p>
           <p>{dob}</p>
-          </div>
+          </div> */}
           <div className="flex gap-2 mb-4"
           >
           <p className="font-bold">College:</p>

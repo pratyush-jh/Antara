@@ -44,17 +44,17 @@ const Tutorial = () => {
 
                <div data-aos="fade-up" className="flex flex-col items-start justify-center mb-5">
                     <label className="flex items-center">
-                         <input type="checkbox" name="tutorial" className="form-checkbox h-5 w-5 text-blue-600" onChange={handleCheckboxChange} />
+                         <input type="checkbox" name="tutorial" className="form-checkbox h-5 w-5 text-haldi" onChange={handleCheckboxChange} />
                          <span className="ml-2 text-gray-700">I have read the tutorial</span>
                     </label>
                     <label className="flex items-center">
-                         <input type="checkbox" name="terms" className="form-checkbox h-5 w-5 text-blue-600" onChange={handleCheckboxChange} />
+                         <input type="checkbox" name="terms" className="form-checkbox h-5 w-5 text-haldi  " onChange={handleCheckboxChange} />
                          <span className="ml-2 text-gray-700">I agree to the terms and conditions</span>
                     </label>
                </div>
 
                {showButton && (
-                    <button data-aos="fade-up" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-500 ease-in-out signup-button  ">
+                    <button data-aos="fade-up" className="bg-haldi hover:bg-haldi-red text-white font-bold py-2 px-4 rounded transition-all duration-500 ease-in-out signup-button  ">
                          <Link to={'/signup'}>
                               Signup
                          </Link>

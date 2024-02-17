@@ -16,6 +16,7 @@ const Signup = () => {
         password: '',
         password_confirmation: '',
         screenshot: '',
+        college: '',
     };
 
     const validationSchema = Yup.object({
@@ -24,11 +25,12 @@ const Signup = () => {
         password: Yup.string()
             .matches(
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{8,}$/,
-                'Weak Password'
+                'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
             )
             .required('Required'),
         password_confirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
         screenshot: Yup.mixed().required('A screenshot is required'),
+        college: Yup.string().required('Required'), 
     });
 
     const onSubmit = async (values) => {
@@ -83,12 +85,14 @@ const Signup = () => {
         const password = e.target.elements.password.value;
         const password_confirmation = e.target.elements.password_confirmation.value;
         const selectedFile = e.target.elements.screenshot.files[0]; // Get the uploaded file
+        const college = e.target.elements.college.value;
         const values = {
             name,
             email,
             password,
             password_confirmation,
             screenshot: selectedFile, // Add the selected file to the form data
+            college
         };
         onSubmit(values);
     };
@@ -118,12 +122,25 @@ const Signup = () => {
                               <Field type="password" name="password" className="input100 placeholder:text-white" placeholder="Password" />
                               <span className="focus-input100" data="&#xf191;"></span>
                               </div>
-                              <ErrorMessage name="password" component="div" className="error-message" />
+                              <ErrorMessage name="password" component="div" className="error-message max-w-60" />
                               <div className="wrap-input100 validate-input" data-validate="Confirm password">
                               <Field type="password" name="password_confirmation" className="input100 placeholder:text-white" placeholder="Confirm Password" />
                               <span className="focus-input100" data="&#xf191;"></span>
                               </div>
                               <ErrorMessage name="password_confirmation" component="div" className="error-message" />
+
+                                <div className="wrap-input100 validate-input" data-validate="Enter college">
+                                <Field type="text" name="college" className="input100 placeholder:text-white" placeholder="College" />
+                                <span className="focus-input100" data="&#xf133;"></span>
+                                </div>
+                                <ErrorMessage name="college" component="div" className="error-message" />
+                                {/* ** Indian Phone number */}
+                                <div className="wrap-input100 validate-input" data-validate="Enter college">
+                                <Field type="text" name="phone" className="input100 placeholder:text-white" placeholder="Phone" />
+                                <span className="focus-input100" data="&#xf155;"></span>
+                                </div>
+                                <ErrorMessage name="phone" component="div" className="error-message" />
+                                {/* ** Indian Phone number */}
                               <div className="validate-input">
                             <Field name="screenshot" type="file" className="input100 placeholder:text-white file-input" accept="image/*" id="screenshot" />
                             <label htmlFor="screenshot" className="file-label">
@@ -132,10 +149,10 @@ const Signup = () => {
                         </div>
                             <ErrorMessage name="screenshot" component="div" className="error-message" />
                               <div className="text-center">
-                                <Link to="tutorial" className="txt1" > How to do this task?</Link>
+                                <Link to="/registration" className="txt1" > How to do this task?</Link>
                             </div>
                             <div className="container-login100-form-btn">
-                                <button type="submit" className={`login100-form-btn ${Object.keys(errors).length ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer opacity-100'}`} disabled={!!Object.keys(errors).length}>
+                                <button type="submit" className={`login100-form-btn mt-4 ${Object.keys(errors).length ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer opacity-100'}`} disabled={!!Object.keys(errors).length}>
                                     Signup
                                 </button>
                             </div>
@@ -147,9 +164,6 @@ const Signup = () => {
 
             </div>
 
-            <div id='tutorial'>
-               Tutorial
-            </div>
         </div>
     );
 };

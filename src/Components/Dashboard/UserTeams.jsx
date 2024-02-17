@@ -5,44 +5,38 @@ import { useNavigate } from 'react-router-dom';
 import Api from '../../Functions/api';
 import { useEffect, useState } from 'react';
 import Spinner2 from '../ShimmerAndSpinner/Spinner2';
-
+import PopOver from './Popover';
 const UserTeams = ({user}) => {
   const navigate = useNavigate();
   const { authUser, fetchApi } = Api();
   const [step , setStep] = useState(1);
   const [participatedEvents, setParticipatedEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   if (user?.length === 0) {
     return < Spinner2 />; 
   }
 // * Uncomment this code after working on this section 
 
 
-//  useEffect(() => {
-//   if(user?.email_verified_at === null){
-//     setStep(2);
-//   } else if(user?.email_verified_at !== null && user?.is_verified == null){
-//     setStep(3);
-//   }
-//   else if(user?.email_verified_at !== null && user?.is_verified == true){
-//     setStep(4);
-//     fetchApi('get', `api/my-team`).then((data) => {
-//       setParticipatedEvents(data?.data);
-//       setIsLoading(false);
-//     });
-//   }
-//   }
-//   , [user]);
-
-
-// * Have to delete this code later on
-useEffect(() => {
-  fetchApi('get', `api/my-team`).then((data) => {
-    setParticipatedEvents(data?.data);
-    setIsLoading(false);
+ useEffect(() => {
+  if(user?.email_verified_at === null){
+    setStep(2);
+  } else if(user?.email_verified_at !== null && user?.is_verified == null){
+    setStep(3);
   }
-  );
-}, [user]);
+  else if(user?.email_verified_at !== null && user?.is_verified == true){
+    setIsLoading(true);
+    setStep(4);
+    fetchApi('get', `api/my-team`).then((data) => {
+      setParticipatedEvents(data?.data);
+      setIsLoading(false);
+    });
+  }
+  }
+  , [user]);
+
+
+
 
 if(isLoading){
   return <div className= 'absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
@@ -56,7 +50,7 @@ if(step ==2){
     <p>
       Please verify your email to continue
     </p>
-    <Link to = {'/verify'} target='_blanc' className=' bg-black p-2 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 '>Verify Email</Link>
+    <Link to = {'/verify'}  className=' bg-black p-2 rounded-lg text-white hover:bg-teal-600 transition-all duration-500 '>Verify Email</Link>
   </div>
   )
 }
@@ -87,11 +81,45 @@ if(participatedEvents?.length === 0){
 }
 
 
-  console.log(participatedEvents);
   return (
     <>
-      <h1>Here Are the details of the events you have participated in:
-      </h1>
+    
+     <h1 className=' flex w-full justify-center text-3xl font-semibold text-gray-700'>
+      Teams
+     </h1>
+
+      <div className='flex flex-wrap items-center gap-44 justify-center pt-20 pb-40'>
+        {
+          participatedEvents?.map((event, index) => (
+            <div key={index} className='flex items-center justify-center gap-10'>
+              {
+                event?.team_size > 1 && 
+                (
+                  <>
+                    <div className='flex gap-4 '>
+                        <div>
+                          <h2 className='text-xl font-semibold text-gray-700'>
+                            {event?.title}
+                          </h2>
+                          <h3>
+                            {
+                              event?.team_name
+                            }
+                          </h3>
+                        </div>
+                        <div >
+                          <PopOver details={event} />
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                  </>
+                )
+              }
+            </div>
+          ))
+        }
+      </div>
     
     </>
   )

@@ -19,25 +19,35 @@ const PaidPart = ({event , closeModal ,onParticipation }) => {
           onParticipation(isParticipated);
         }, [isParticipated]);
 
-     const initialValue = {
+        const initialValue = {
           team_name: '',
           team_size: '',
           team_code: '',
           competition_id : id,
           team : 1,
-     };
-     const initialValueMaxSize = {
+          sponsor_link: '' ,
+          remarks: ''
+        };
+
+        const initialValueMaxSize = {
           team_code: '',
           competition_id : id,
-          team :1
-     };
-     const validationSchema = Yup.object({
-          team_name: Yup.string().required('Required'),
-          team_size: Yup.number().required('Required').min(minimum_size, `Must be at least ${minimum_size} `).max(maximum_size, `Must be at most ${maximum_size}`),
-     });
-     
-     const validationSchemaTeam = Yup.object({
-     });
+          team : 0,
+          team_size :  1,
+          remarks: ''
+        };
+
+ const validationSchema = Yup.object({
+  team_name: Yup.string().required('Required'),
+  team_size: Yup.number().required('Required').min(minimum_size, `Must be at least ${minimum_size} `).max(maximum_size, `Must be at most ${maximum_size}`),
+  remarks: event?.remarks == 1 && Yup.string().required('Remarks are required') ,
+  sponsor_link: event?.sponsor_task == 1 && Yup.string().url('Must be a valid URL').required('Sponsor link is required') 
+});
+
+const validationSchemaTeam = Yup.object({
+  remarks: event?.remarks == 1 && Yup.string().required('Remarks are required') ,
+  sponsor_link: event?.sponsor_task == 1 && Yup.string().url('Must be a valid URL').required('Sponsor link is required') 
+});
 
 
      const onSubmit = async (values) => {
@@ -181,7 +191,28 @@ const PaidPart = ({event , closeModal ,onParticipation }) => {
                          <p>
                               Upload a screenshot of the payment
                          </p>
-
+                         <Field 
+                              type = 'text'
+                              id = 'remarks'
+                              placeholder = {event.remarks_label}
+                              name = 'remarks'
+                              className="w-72 h-12 bg-slate-700 border-2 border-gray-800 rounded-md p-4 placeholder:text-white text-white"
+                         />
+                         <ErrorMessage name="remarks" />
+                         {
+                              sponsor_task == 1 && (
+                              <>
+                              <Field 
+                                   type = 'text'
+                                   id = 'sponsor_link'
+                                   placeholder = 'Sponsor Link'
+                                   name = 'sponsor_link'
+                                   className="w-72 h-12 bg-slate-700 border-2 border-gray-800 rounded-md p-4 placeholder:text-white text-white"
+                              />
+                              <ErrorMessage name="sponsor_link" />
+                              </>
+                              )
+                         }
                          <button type="submit" disabled={!isValid} className={`bg-gray-800 text-white p-2 rounded-lg
                          ${
                               isValid ? 'cursor-pointer' : 'cursor-not-allowed'

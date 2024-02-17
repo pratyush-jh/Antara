@@ -23,12 +23,15 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeComponent, setActiveComponent] = useState('userEventDetails');
+  const [activeComponent, setActiveComponent] = useState('userProfile');
   const [hamOpen, setHamOpen] = useState(false);
 
   useEffect(() => {
     const checkAndNavigate = async () => {
       const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/login');
+      }
       if (token) {
         authUser().then((data) => {
           setUser(data);

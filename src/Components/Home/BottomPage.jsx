@@ -2,6 +2,10 @@ import React from 'react'
 import './Bottom.css'
 import { useState } from 'react';
 import Bg from '../../assets/bg-bottom.jpg'
+import Bg1 from '../../assets/bg-bottom1.jpg'
+import Bg2 from '../../assets/bg-bottom2.jpg'
+import Bg3 from '../../assets/bg-bottom3.jpg'
+import { MobilePara } from '../../Functions/Constants';
 const BottomPage = () => {
   const [isChecked, setIsChecked] = useState(false);
 
@@ -16,19 +20,18 @@ const BottomPage = () => {
 
      <div className="video">
       
-      <video src={Bg}>
-      </video>
+      <img className='source opacity-70' src={Bg1}>
+      </img>
 
      </div>
      <div className="text">
-          <span data-text="What is Arohana?"></span>
+          <span data-text="Curious about Arohana?"></span>
      </div>
-      {
-        isChecked && 
-        <p className=' absolute'>
-          Arohana is a platform that connects people who are looking for a place to stay with those who are looking for a tenant
+      
+        <p className={` absolute text-white m-28 p-10 rounded-lg ${ !isChecked ? 'opacity-0' :''} duration-500  transition-all`}  style={{backgroundColor: 'rgba(0,0,0,0.7)'}}>
+          {MobilePara}
         </p>
-      }
+      
      </div>    
     </>
   )

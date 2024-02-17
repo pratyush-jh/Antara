@@ -7,7 +7,7 @@ import axios from 'axios';
 import { API_URL } from '../../Functions/Constants';
 import { useNavigate } from 'react-router-dom';
 const UnpaidPart = ({event , closeModal ,onParticipation }) => {
-  const { date, description, start_at, ends_at, rounds, paid_event, minimum_size , society , tag_line, title,  upi_id, venue , image_url, individual_fee, team_fee, maximum_size, id } = event;
+  const { date, description, start_at, ends_at, rounds, paid_event, minimum_size , society , tag_line, title,  upi_id, venue , image_url, individual_fee, team_fee, maximum_size, id, sponsor_task , remarks } = event;
   const navigate = useNavigate();
 const [buttonSelected, setButtonSelected] = useState("Solo");
 const [isParticipated, setIsParticipated] = useState(false);
@@ -22,22 +22,29 @@ const initialValue = {
   team_code: '',
   competition_id : id,
   team : 1,
-
+  sponsor_link: '' ,
+  remarks: ''
 };
+
 const initialValueMaxSize = {
   team_code: '',
   competition_id : id,
-  team : 1,
-
+  team : 0,
+  team_size :  1,
+  remarks: ''
 };
 const validationSchema = Yup.object({
   team_name: Yup.string().required('Required'),
   team_size: Yup.number().required('Required').min(minimum_size, `Must be at least ${minimum_size} `).max(maximum_size, `Must be at most ${maximum_size}`),
+  remarks: event?.remarks == 1 && Yup.string().required('Remarks are required') ,
+  sponsor_link: event?.sponsor_task == 1 && Yup.string().url('Must be a valid URL').required('Sponsor link is required') 
 });
 
-const validationSchemaTeam = Yup.object({});
+const validationSchemaTeam = Yup.object({
+  remarks: event?.remarks == 1 && Yup.string().required('Remarks are required') ,
+  sponsor_link: event?.sponsor_task == 1 && Yup.string().url('Must be a valid URL').required('Sponsor link is required') 
+});
 
-const {fetchApi} = Api();
 const onSubmit = async (values) => {
     const token = localStorage.getItem('token');
     const formData = new FormData();
@@ -59,7 +66,7 @@ const onSubmit = async (values) => {
     }
   }
   catch (error) {
-    alert("Participation failed! Please try again.");
+    alert(error.message);
   }
 };
 
@@ -96,10 +103,10 @@ return (
 :
 <div>
     <div className=" flex gap-20 justify-center mb-10 mt-5">
-      <button onClick={() => setButtonSelected("Solo")} className={`text-lg font-semibold ${buttonSelected === "Solo" ? "bg-gray-800 text-white" : "text-gray-500"} pt-2 pb-2 pl-4 pr-4 rounded-lg`}>
+      <button onClick={() => setButtonSelected("Solo")} className={`text-lg font-semibold ${buttonSelected === "Solo" ? " bg-haldi text-white" : "text-gray-500"} pt-2 pb-2 pl-4 pr-4 rounded-lg`}>
         {
-          maximum_size > 1 ? "Join Solo" : "Register"
-        }
+          maximum_size > 1 ? "Register Team" : "Join Solo"
+        } 
       </button>
       {
         maximum_size > 1 ? (
@@ -140,6 +147,28 @@ return (
                   <ErrorMessage name="team_size" />
                 </>
               )}
+                  <Field 
+                    type = 'text'
+                    id = 'remarks'
+                    placeholder = {event.remarks_label}
+                    name = 'remarks'
+                    className="w-72 h-12 bg-slate-700 border-2 border-gray-800 rounded-md p-4 placeholder:text-white text-white"
+                  />
+                  <ErrorMessage name="remarks" />
+                  {
+                    sponsor_task == 1 && (
+                      <>
+                        <Field 
+                          type = 'text'
+                          id = 'sponsor_link'
+                          placeholder = 'Sponsor Link'
+                          name = 'sponsor_link'
+                          className="w-72 h-12 bg-slate-700 border-2 border-gray-800 rounded-md p-4 placeholder:text-white text-white"
+                        />
+                        <ErrorMessage name="sponsor_link" />
+                      </>
+                    )
+                  }
               <button type="submit" disabled={!isValid} className={`bg-gray-800 text-white p-2 rounded-lg
                 ${
                   isValid ? 'cursor-pointer' : 'cursor-not-allowed'
