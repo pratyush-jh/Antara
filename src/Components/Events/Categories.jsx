@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Api from '../../Functions/api';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import 'aos/dist/aos.css';
 import CategoryCards from './CategoryCards';
 import  Spinner2 from '../ShimmerAndSpinner/Spinner2';
+
 const Categories = () => {
     const { fetchApi , isLoading } = Api();
     const navigate = useNavigate();
