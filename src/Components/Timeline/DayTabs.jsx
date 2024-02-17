@@ -1,32 +1,23 @@
-// import React, { useState } from 'react';
-// // import TimelineBody from './TimelineBody';
+import React from 'react';
 
-// const DayTabs = ({ eventsData, activeTab, onTabClick }) => {
-//     // const [activeTab, setActiveTab] = useState(0);
+const DayTabs = ({ eventsData, activeTab, onTabClick }) => {
+  return (
+    <div className="flex items-center justify-center gap-4 mt-8 mb-4">
+      {Object.keys(eventsData).map((dayName, index) => (
+        <button
+          key={index}
+          className={`text-md px-4 py-2 rounded-lg font-bold text-center focus:outline-none hover:opacity-80 ${
+            activeTab === index
+              ? 'timeline-tabs'
+              : 'bg-gray-200 text-black hover:bg-gray-300'
+          }`}
+          onClick={() => onTabClick(index)}
+        >
+          {dayName}
+        </button>
+      ))}
+    </div>
+  );
+};
 
-//     // const handleTabClick = (tabIndex) => {
-//     //     setActiveTab(tabIndex);
-//     // };
-
-//     return (
-//       <>
-//             <div className="flex space-x-4 mt-8 mb-4">
-//                 {Object.keys(eventsData).map((dayName, index) => (
-//                     <div
-//                         key={index}
-//                         className={`cursor-pointer px-4 py-2 rounded-lg ${activeTab === index ? 'bg-blue-500 text-white' : 'bg-gray-300'
-//                             }`}
-//                         onClick={() => onTabClick(index)}
-//                     >
-//                         {dayName}
-//                     </div>
-//                 ))}
-//             </div>
-//             {/* <div>
-//                 <TimelineBody eventsData={Object.values(eventsData)[activeTab]} />
-//             </div> */}
-//         </>
-//     );
-// };
-
-// export default DayTabs;
+export default DayTabs;
