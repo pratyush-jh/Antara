@@ -55,8 +55,9 @@ const DesktopNav = () => {
   const color = 'white';
   const bgcolor = isLoggedIn ? 'bg-gradient-to-r from-haldi-orange to-haldi-red' : 'bg-gradient-to-r from-haldi-yellow to-haldi';
 
-  const navbarStyle = `py-4 px-2 border-b-4 border-transparent text-${color}
-  ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-haldi'}`: 'hover:border-haldi-orange'}  font-medium rounded`;
+  const navbarStyle = path => `py-4 px-2 border-b-4 border-transparent text-${color} ${location.pathname === path ? 'border-haldi-yellow' : ''} ${isLoggedIn ? `${isOnDashboard ? 'navbar' : 'hover:border-haldi'}` : 'hover:border-haldi-orange'} font-medium rounded`;
+
+
   return (
   <nav className={` z-20 shadow-lg pt-2 pb-2 ${isOnDashboard ? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue ' : bgcolor} `} data-aos="fade-down"> 
       <div className=" px-40">
@@ -84,10 +85,26 @@ const DesktopNav = () => {
           </div>
           <div className="flex gap-40 " >
             <div className="hidden md:flex items-center space-x-6">
-              <Link to="/" data-aos="fade-down" className={navbarStyle}>Home</Link>
-              <Link data-aos="fade-up" to="/categories" className={navbarStyle}>Events</Link>
-              <Link data-aos="fade-down" to="/timeline" className={navbarStyle}>Timeline</Link>
-              <Link data-aos="fade-up" to="/teams" className= {navbarStyle}>Teams</Link>
+              <Link to="/" data-aos="fade-down" >
+              <p className={navbarStyle('/')} >
+                  Home
+                </p>
+              </Link>
+              <Link data-aos="fade-up" to="/categories" >
+              <p className= {navbarStyle('/categories')}>
+                  Categories
+                </p>
+              </Link>
+              <Link data-aos="fade-down" to="/timeline" >
+              <p className= {navbarStyle('/timeline')}>
+                  Timeline
+                </p>
+              </Link>
+              <Link data-aos="fade-up" to="/teams" >
+                <p className= {navbarStyle('/teams')}>
+                  Teams
+                </p>
+              </Link>
             </div>
           </div>
           <div className="hidden md:flex items-center justify-center space-x-3 ">

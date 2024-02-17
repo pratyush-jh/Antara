@@ -80,7 +80,6 @@ const LandingPage = () => {
               </h1>
         </div>
         </section>
-        <div style={{height: '100vh'}}></div>
     </div>
   );
 };

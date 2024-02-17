@@ -55,12 +55,13 @@
    
    .header_Arohana{
     position: absolute;
+    text-transform:uppercase ;
     top: 50vh;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: rgb(255, 255, 255);
-    font-family: "Marck Script", cursive;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 400;
     font-style: normal;
     font-size: 100px;

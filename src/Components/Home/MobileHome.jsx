@@ -41,12 +41,9 @@ const MobileHome = () => {
                 {MobilePara}  
               </p>
             </div>
-            {/* FAQ Card */}
             <div className="max-w-md mx-auto bg-white bg-opacity-70 p-6 rounded-lg shadow-lg">
               <h1 className="text-3xl font-bold mb-4 font-serif">FAQ</h1>
-              {/* Question Cards */}
               <div className="grid grid-cols-1 gap-4">
-                {/* Question 1 */}
                 <div
                   className={`bg-white bg-opacity-70 p-4 rounded-lg shadow-md transition-all duration-200 ease-in-out transform hover:scale-105 ${clickedIndex === 0 ? 'border border-blue-500' : ''}`}
                   onClick={() => toggleAnswer(0)}
@@ -56,7 +53,6 @@ const MobileHome = () => {
                     Arohana, formerly known as Aaghaz, is the Annual Cultural Fest of PGDAV College, University of Delhi.
                   </p>
                 </div>
-                {/* Question 2 */}
                 <div
                   className={`bg-white bg-opacity-70 p-4 rounded-lg shadow-md transition-all duration-200 ease-in-out transform hover:scale-105 ${clickedIndex === 1 ? 'border border-blue-500' : ''}`}
                   onClick={() => toggleAnswer(1)}
@@ -66,7 +62,6 @@ const MobileHome = () => {
                     Browse to the events of your choice in the Event Section.
                   </p>
                 </div>
-                {/* Question 3 */}
                 <div
                   className={`bg-white bg-opacity-70 p-4 rounded-lg shadow-md transition-all duration-200 ease-in-out transform hover:scale-105 ${clickedIndex === 2 ? 'border border-blue-500' : ''}`}
                   onClick={() => toggleAnswer(2)}
@@ -76,7 +71,6 @@ const MobileHome = () => {
                     It's absolutely FREE!
                   </p>
                 </div>
-                {/* Question 4 */}
                 <div
                   className={`bg-white bg-opacity-70 p-4 rounded-lg shadow-md transition-all duration-200 ease-in-out transform hover:scale-105 ${clickedIndex === 3 ? 'border border-blue-500' : ''}`}
                   onClick={() => toggleAnswer(3)}

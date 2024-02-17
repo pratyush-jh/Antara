@@ -23,7 +23,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeComponent, setActiveComponent] = useState('userProfile');
+  const [activeComponent, setActiveComponent] = useState('userEventDetails');
   const [hamOpen, setHamOpen] = useState(false);
 
   useEffect(() => {
@@ -39,7 +39,6 @@ const Dashboard = () => {
     };
     checkAndNavigate();
   }, [navigate]);
-  console.log(user);
   useEffect(() => {
     document.querySelectorAll('button').forEach(button => {
       button.innerHTML = '<div><span>' + button.textContent.trim().split('').join('</span><span>') + '</span></div>';
