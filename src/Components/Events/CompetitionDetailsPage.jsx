@@ -52,7 +52,7 @@ const CompetitionDetailsPage = () => {
     const result = fetchApi('GET', `api/competitions/${id}` , 'events');
     result.then(response => {
       if (response?.status === 200) {
-        // setAlreadyParticipated(response?.data?.data?.participated);
+        setAlreadyParticipated(response?.data?.data?.participated);
         setEvent(response?.data?.data?.competition  );
         if (response?.data?.data?.competition?.sponsor_task == 1) {
           console.log(response?.data?.data?.competition?.sponsor_task);
@@ -78,6 +78,7 @@ const CompetitionDetailsPage = () => {
       setStep(1);
     }
     else{
+      // ! Imortant, change the step after production
       if(user?.email_verified_at == null){
         setStep(4);
       } else if(user?.email_verified_at !== null && user?.is_verified == null){
@@ -166,8 +167,7 @@ const CompetitionDetailsPage = () => {
 <div className="flex flex-col md:flex-row my-8 md:my-16 items-center justify-center text-center md:gap-3">
         <RiDoubleQuotesL />
         <div className="tag_line font-semibold mt-2 md:text-xl text-gray-600">
-          उद्यमेन हि सिध्यन्ति कार्याणि न मनोरथैः। न हि सुप्तस्य सिंहस्य
-          प्रविशन्ति मुखे मृगा:।
+         {tag_line}
         </div>
         <RiDoubleQuotesR />
       </div>
@@ -183,7 +183,7 @@ const CompetitionDetailsPage = () => {
       <div className="mt-6 md:mt-12 flex flex-col md:flex-row items-center md:items-start justify-between">
         <div className="md:w-1/2">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-slate-600 text-center md:text-left">
-            {title}: {tag_line}
+            {title}
           </h1>
           <div className="poster flex flex-col md:flex-row my-6 md:my-8">
             <img
@@ -315,8 +315,7 @@ const CompetitionDetailsPage = () => {
       <div className="flex flex-row my-16 items-center justify-center text-center gap-3">
         <RiDoubleQuotesL />
         <div className="tag_line font-semibold mt-2 text-xl text-gray-600">
-          उद्यमेन हि सिध्यन्ति कार्याणि न मनोरथैः। न हि सुप्तस्य सिंहस्य
-          प्रविशन्ति मुखे मृगा:।
+          {tag_line}
         </div>
         <RiDoubleQuotesR />
       </div>
@@ -331,7 +330,7 @@ const CompetitionDetailsPage = () => {
       {/* Title */}
       <div className="mt-6 flex flex-col px-40">
         <h1 className="text-4xl font-semibold text-slate-600">
-          {title}: {tag_line}
+          {title}
         </h1>
         <div className="poster flex flex-row my-6">
           <img
