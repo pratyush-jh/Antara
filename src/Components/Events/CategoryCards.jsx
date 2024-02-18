@@ -30,7 +30,7 @@ function CategoryCards({ category, length }) {
     );
   }
   return (
-    <div className="wrapper">
+    <div className="wrapper  bg-gradient-to-tr">
       <h1></h1>
       <div className="cols">
         {cards}

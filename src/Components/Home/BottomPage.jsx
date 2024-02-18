@@ -1,10 +1,7 @@
 import React from 'react'
 import './Bottom.css'
 import { useState } from 'react';
-import Bg from '../../assets/bg-bottom.jpg'
-import Bg1 from '../../assets/bg-bottom1.jpg'
-import Bg2 from '../../assets/bg-bottom2.jpg'
-import Bg3 from '../../assets/bg-bottom3.jpg'
+import background1 from '../../assets/bg-bottom1.jpg'
 import { MobilePara } from '../../Functions/Constants';
 const BottomPage = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -20,7 +17,7 @@ const BottomPage = () => {
 
      <div className="video">
       
-      <img className='source opacity-70' src={Bg1}>
+      <img className='source opacity-70' src={background1}>
       </img>
 
      </div>

@@ -2,7 +2,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Qrcode from '../../assets/qrcode.jpg';
-import QrBg from '../../assets/Flowers/Other/pngegg (6).png';
 import { Link } from 'react-router-dom';
 const UserProfile = ({ user }) => {
   const { name, dob, collegeName, qrCode, email, email_verified_at, is_verified } = user;
