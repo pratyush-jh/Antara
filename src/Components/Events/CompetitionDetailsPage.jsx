@@ -136,13 +136,13 @@ const CompetitionDetailsPage = () => {
             alt=""
           />
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <img
             className="rounded-xl h-[26rem] w-full object-cover"
             src={ Slide3 }
             alt=""
           />
-        </SwiperSlide>
+        </SwiperSlide> */}
         <SwiperSlide>
           <img
             className="rounded-xl h-[26rem] w-full object-cover"
