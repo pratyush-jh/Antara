@@ -1,7 +1,7 @@
 import React from 'react'
 import './Bottom.css'
 import { useState } from 'react';
-import background1 from '../../assets/bg-bottom1.jpg'
+import background1 from '../../assets/Bg-bottom1.jpg'
 import { MobilePara } from '../../Functions/Constants';
 const BottomPage = () => {
   const [isChecked, setIsChecked] = useState(false);
