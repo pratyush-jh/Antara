@@ -15,7 +15,6 @@ import { FaUser, FaCalendar, FaUsers } from 'react-icons/fa';
 import Spinner2 from '../ShimmerAndSpinner/Spinner2';
 
 
-
 const Dashboard = () => {
   const { authUser } = Api();
   const [user, setUser] = useState('');
