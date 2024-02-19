@@ -12,7 +12,7 @@ import 'aos/dist/aos.css';
 import Welcome from './Welcome';
 import '../../Button.css';
 import { FaUser, FaCalendar, FaUsers } from 'react-icons/fa';
-
+import Spinner2 from '../ShimmerAndSpinner/Spinner2';
 
 
 const Dashboard = () => {
@@ -21,22 +21,26 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeComponent, setActiveComponent] = useState('userProfile');
   const [hamOpen, setHamOpen] = useState(false);
 
   useEffect(() => {
     const checkAndNavigate = async () => {
       const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/login');
+      }
       if (token) {
         authUser().then((data) => {
           setUser(data);
+          setIsLoading(false);
         })
         setIsLoggedIn(true);
       }
     };
     checkAndNavigate();
   }, [navigate]);
-
   useEffect(() => {
     document.querySelectorAll('button').forEach(button => {
       button.innerHTML = '<div><span>' + button.textContent.trim().split('').join('</span><span>') + '</span></div>';
@@ -49,7 +53,8 @@ const Dashboard = () => {
   }, []);
 
   if (user?.length === 0) {
-    return <div className='dashboard-hero flex justify-center items-center text-white'>
+    return <div className='dashboard-hero h-screen flex justify-center items-center text-white'>
+      <Spinner2 />
     </div>;
   }
 
@@ -86,7 +91,7 @@ const Dashboard = () => {
                       onClick={() => setActiveComponent('userEventDetails')}
                       className={` button reverse ${activeComponent === 'userEventDetails' ? 'open' : 'close'}`} 
                     >
-                      <p>Event Details</p>
+                      <p>Participations</p>
                     </button>
                   </div>
                   <div>

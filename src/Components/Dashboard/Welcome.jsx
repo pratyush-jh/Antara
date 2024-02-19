@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-function WelcomeBanner({user}) {
+function WelcomeBanner({user, message}) {
   const currentHour = new Date().getHours();
 
   const [greeting, setGreeting] = useState('');
@@ -14,7 +14,6 @@ function WelcomeBanner({user}) {
     }
   }
   , [currentHour]);
-  console.log(greeting);
   return (
     <div className=" relative bg-indigo-200 bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue  p-4 sm:p-6 rounded-sm mb-8" >
       <div className="absolute right-0 top-0 -mt-4 mr-16 pointer-events-none hidden xl:block" aria-hidden="true">
@@ -62,7 +61,7 @@ function WelcomeBanner({user}) {
       <div className="relative">
         <h1 className="text-2xl md:text-3xl text-slate-800 dark:text-slate-100 font-bold ">{greeting}, {user?.name?.split(' ')[0]}. 👋</h1>
         <p className="dark:text-indigo-200">
-          How are you doing today? We hope you are having a great day! 🌞
+          {message}
         </p>
       </div>
     </div>

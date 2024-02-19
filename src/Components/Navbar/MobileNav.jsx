@@ -5,7 +5,8 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { TypeAnimation } from 'react-type-animation';
 import UserProfile from '../../assets/userProfile.png';
 import './Navbar.css';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const MobileNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,11 +21,19 @@ const MobileNav = () => {
     navigate('/');
   };
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000
+    });
+  }, []); 
+
 useEffect(() => {
   if (isOpen) {
     document.body.style.overflow = 'hidden';
+    document.body.style.maxHeight = '100vh';
   } else {
     document.body.style.overflow = 'auto';
+    document.body.style.maxHeight = '100%';
   }
 }, [isOpen]);
 
@@ -54,12 +63,14 @@ useEffect(() => {
     checkAndNavigate();
   }, [navigate]);
 
-  const navbarStyle = `py-4 px-2 border-b-4 border-transparent ${isLoggedIn? `${isOnDashboard? 'text-white':'text-brown'}` :' text-darkBlue'} 
-  ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-brown'}`: 'hover:border-darkBlue'}  font-medium rounded`;
+  const color = 'white';
+  const bgcolor = isLoggedIn ? 'bg-gradient-to-r from-haldi-orange to-haldi-red' : 'bg-gradient-to-r from-haldi-yellow to-haldi';
+  const navbarStyle = `py-4 px-2 border-b-4 border-transparent text-${color}
+  ${isLoggedIn? `${isOnDashboard? 'navbar':'hover:border-haldi'}`: 'hover:border-haldi-orange'}  font-medium rounded`;
   return (
     <>
-      <div className={`flex justify-between items-center h-20 shadow-lg p-4 z-10 pt-2 pb-2 ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue  ':'bg-skin'}`}`}>
-          <Link to="/" className={`logo flex items-center py-4 px-2 gap-12 font ${isLoggedIn?`${isOnDashboard? 'text-white':'text-brown'}`:' text-darkBlue'}`}>
+      <div className={`flex justify-between items-center h-20 shadow-lg p-4 z-10 pt-2 pb-2 ${`${isOnDashboard? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue  ': bgcolor}`}`}>
+          <Link to="/" className={`logo flex items-center py-4 px-2 gap-12 font text-white`}>
               <TypeAnimation
               sequence={[
                 'HYPERION',
@@ -73,14 +84,14 @@ useEffect(() => {
               ]}
                   wrapper="span"
                   speed={20}
-                  style={{ fontSize: '20px', display: 'inline-block' , fontFamily: "fantasy"}}
+                  style={{ fontSize: '20px', display: 'inline-block', width: '200px'}}
                   repeat={2}
                 />
                 </Link>
         <div onClick={() => setIsOpen(!isOpen)} className=' cursor-pointer'>
-          <div onClick={() => setIsOpen(!isOpen)} className=' cursor-pointer'> 
+          <div> 
             <div className={`hamburger ${isOpen? 'is-active' :''}`} >
-              <div className="hamburger__container " onClick={() => setIsOpen(!isOpen)}>
+              <div className="hamburger__container " >
                 <div className="hamburger__inner"></div>
                 <div className="hamburger__hidden"></div>
               </div>
@@ -89,18 +100,19 @@ useEffect(() => {
         </div>
       </div>
 
-
-
-      <div className={`${isOpen ? 'block' : 'hidden'} z-40 w-full h-screen fixed top-23 transition-all duration-500 ease-in-out  ${!isLoggedIn?'bg-skyBlue':`${isOnDashboard? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue ':'bg-skin' }`}`}>
+      <div className={`${isOpen ? 'block' : 'hidden'} z-40 w-full h-screen fixed top-23 transition-all duration-500 ease-in-out  ${`${isOnDashboard? 'bg-gradient-to-r to-linear-lightBlue from-linear-darkBlue ':bgcolor }`}`}>
 
         <div className="flex flex-col items-center justify-center h-full -mt-10 gap-10 ">
         {isLoggedIn ? 
               <div className=' flex flex-col justify-center items-center gap-10'>
-                
                 <Link to={'/dashboard'} onClick={() => setIsOpen(false)}>
-                  <div className=" py-2 px-2 font-medium rounded text-brown hover:text-rose-200 duration-500 transition-all">
-                    <img src={UserProfile} alt="Dash Board" className={`h-8 w-8 rounded-full ${isOnDashboard?"logoWhite":""}`} />
+                  <div className=" py-2 px-2 font-medium rounded text-white flex flex-col items-center gap-2 duration-500 transition-all">
+                    <img src={UserProfile} alt="Dash Board" className={`h-8 w-8 rounded-full ${isOnDashboard?"logoWhite":"logoWhite"}`} />
+                    <p>
+                      Dash Board
+                    </p>
                   </div>
+
                 </Link>
               </div> : 
             
@@ -116,7 +128,7 @@ useEffect(() => {
           <Link to="/timeline" className={navbarStyle} onClick={() => setIsOpen(false)}>Timeline</Link>
           <Link to="/contact" className={navbarStyle} onClick={() => setIsOpen(false)}>Contact</Link>
           {isLoggedIn ? 
-          <button  onClick={logout} className={` py-2 px-2 font-medium rounded ${isOnDashboard?'text-white':'text-brown' } hover:text-rose-200 duration-500 transition-all`}>Logout</button>
+          <button  onClick={logout} className={` py-2 px-2 font-medium rounded ${isOnDashboard?'text-white':'text-white' } hover:text-rose-200 duration-500 transition-all`}>Logout</button>
             : null
           }
         </div>

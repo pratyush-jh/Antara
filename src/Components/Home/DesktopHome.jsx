@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Hero from '../Hero/Hero';
+import LandingPage from './LandingPage';
+import BottomPage from './BottomPage';
 const DesktopHome = () => {
 
   return (
-    <div  className='-z-10 overflow-hidden relative' >        
-      <Hero />
+    <div  className='' >        
+
+    <LandingPage />
+    <BottomPage />
     </div>
   );
 };

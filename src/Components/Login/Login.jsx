@@ -74,7 +74,7 @@ const Login = ({path}) => {
                                    </div>
                                    <div className="text-center pt-6">
                                         <Link to="/registration" className="txt1">
-                                             Don't Have an account? <p className=' text-white font-medium'> Singup</p> 
+                                             Don't Have an account? <p className=' text-white font-medium'> Sign Up</p> 
                                         </Link>
                                    </div>
                               </Form>

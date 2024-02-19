@@ -15,7 +15,7 @@ const NavbarPage = () => {
       const [user , setUser] = useState([]);
 
       const {fetchApi} = Api();
-     const breakpoint = 620;
+     const breakpoint = 764;
     //* Function to switch between mobile and desktop view
       useEffect(() => {
        const handleWindowResize = () => setWidth(window.innerWidth)
@@ -42,9 +42,9 @@ const NavbarPage = () => {
       if(token){
       authUser();
       const congratulationsShown = localStorage.getItem('congratulations-shown');
-      if(congratulationsShown == 0 &&user?.email_verified_at != null && user?.is_verified == true  ){
-            showAlert('🎉 Congratulations! Your account has been verified. 🎉');
+      if(congratulationsShown == 0 && user?.email_verified_at == null && !user?.is_verified == true  ){
             localStorage.setItem('congratulations-shown', 1);
+            setAlertMessage('Congratulations! Your account has been verified by the admin. You can now participate in the events.');
        }
       }
      }, [navigate]);     
@@ -53,15 +53,14 @@ const NavbarPage = () => {
      <>
      <Modal isOpen={!!alertMessage} onRequestClose={() => setAlertMessage(null)}
        className={`
-       absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-skin p-8 rounded-lg flex flex-col items-center gap-2` }
+       absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-haldi-orange text-white p-8 rounded-lg flex flex-col items-center gap-2 mdmax:w-4/5 mdmax:p-3` }
       >
         <p className=''>{alertMessage}</p>
         <p>🎉 You can now participate in the events.🎉 </p>
-      <Link to ={'/events'}>
-      <button className='bg-brown text-white p-2 rounded-lg mt-4 w-20 '
+      <Link to ={'/categories'}>
+      <button className='bg-white text-black p-2 rounded-lg mt-4 w-40 '
          onClick={() => {
-          navigate('/dashboard');
-          setAlertMessage(null)}}>See Your Dashboard</button>
+          setAlertMessage(null)}}>Events</button>
       </Link>
       </Modal>
 

@@ -1,13 +1,57 @@
-.wrapper{
-     width: 90%;
-     margin: 0 auto;
-     max-width: 80rem;
-    box-shadow:  0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 10px;
-    background: #ff000017;
-    padding: 10px;
-    margin-bottom: 10%;
-   }
+
+
+.wrapper {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 80rem;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10%;
+  min-height: 100vh;
+}
+
+.wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/Image/bg-2.jpg') no-repeat center center/cover;
+  opacity:0.7; /* Change this value to adjust the opacity */
+  z-index: -1;
+  filter: blur(6px);
+}
+
+
+.eventCategories::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/aaabstract (1).webp') no-repeat center center/cover;
+  opacity: 0.4; /* Change this value to adjust the opacity */
+  z-index: -1;
+  filter: blur(6px);
+  
+}
+.desciptionbg::before{
+  content: "";
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/aaabstract.webp') no-repeat center center/cover;
+
+  opacity: 0.4;
+  z-index: -1;
+  filter: hue-rotate(100deg);
+}
    
    .cols{
      display: -webkit-box;
@@ -54,13 +98,6 @@
         border-radius: 10px;
         color: #fff;
         font-size: 1.5rem;
-   }
-   
-   .back{
-     background: #cedce7;
-     background: -webkit-linear-gradient(45deg,  #cedce7 0%,#596a72 100%);
-     background: -o-linear-gradient(45deg,  #cedce7 0%,#596a72 100%);
-     background: linear-gradient(45deg,  #cedce7 0%,#fa0318 100%);
    }
    
    .front:after{
@@ -158,9 +195,9 @@
    }
    
    .front .inner span{
-     color: rgba(255,255,255,0.7);
+     color: rgb(255, 255, 255);
      font-family: 'Montserrat';
-     font-weight: 300;
+     font-weight: 500;
    }
    
    @media screen and (max-width: 64rem){

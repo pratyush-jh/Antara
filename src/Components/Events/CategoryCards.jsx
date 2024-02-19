@@ -6,7 +6,6 @@ function CategoryCards({ category, length }) {
   const navigate = useNavigate();
   const cards = [];
   const numCards = length;
-  console.log(category);
   for (let i = 0; i < numCards; i++) {
     cards.push(
       <div className="col" onTouchStart= {
@@ -18,13 +17,12 @@ function CategoryCards({ category, length }) {
         <div className="container" onClick={() => {navigate('/categories/'+ category[i].id +'/' + category[i].name)}}>
           <div className="front" style={{ backgroundImage: `url(${category[i].background_image})` }}>
             <div className="inner">
-              <p>{category[i].id}</p>
-              <span>{category[i].name}</span>
+              <span className=''>{category[i].name}</span>
             </div>
           </div>
-          <div className="back">
+          <div className="back"  style={{ backgroundImage: `url(${category[i].background_image})` }}
+          >
             <div className="inner">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
             </div>
           </div>
         </div>
@@ -32,7 +30,7 @@ function CategoryCards({ category, length }) {
     );
   }
   return (
-    <div className="wrapper">
+    <div className="wrapper  bg-gradient-to-tr">
       <h1></h1>
       <div className="cols">
         {cards}

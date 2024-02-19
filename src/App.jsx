@@ -13,7 +13,6 @@ import Signup from './Components/Signup/Signup';
 import Tutorial from './Components/Tutorial/Tutorial';
 import Tutorial2 from './Components/Tutorial/Tutorial2';
 import Thanks from './Components/Thanks/Thanks';
-import Hero from './Components/Hero/Hero';
 import Verify from './Components/Verify/Verify';
 import Dashboard from '../src/Pages/DashBoardPage';
 import RegistrationForm from './Components/RegisterEvents/RegisterForm';
@@ -23,7 +22,7 @@ import Categories from './Components/Events/Categories';
 const AppLayout = () => (
   <div>
     <Navbar />
-    <div className=' min-h-screen'>
+    <div className='min-h-screen'>
       <Outlet />
     </div>
     <Footer />
@@ -31,27 +30,25 @@ const AppLayout = () => (
 )
 
 const appRouters = () => (
-  <Router>
+  <Router  basename='/arohana'>
     <Routes>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Home />} />
-        <Route path="hero" element={<Hero />} />
         <Route path="teams" element={<Teams />} />
         <Route path="sponsors" element={<Sponsors />} />
-        <Route path="timeline" element={<Timeline/>} />
-        <Route path="login" element={<LoginPage/>} />
-        <Route path = "signup" element = {<Signup/>} />
-        <Route path = "registration" element = {<Tutorial/>} />
-        <Route path = "tutorial" element = {<Tutorial2/>} />
-        <Route path = "thanks" element = {< Thanks />}/>
-        <Route path = "verify" element = {<  Verify/>}/>
-        <Route path = "dashboard" element = {<Dashboard/>}/>
-        {/* //* Routes for event Registration */}
+        <Route path="timeline" element={<Timeline />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="registration" element={<Tutorial />} />
+        <Route path="tutorial" element={<Tutorial2 />} />
+        <Route path="thanks" element={< Thanks />} />
+        <Route path="verify" element={<  Verify />} />
+        <Route path="dashboard" element={<Dashboard />} />
         <Route path="event-registration" element={<RegistrationForm />} />
-        <Route path='categories' element ={<Categories/>} />
+        <Route path='categories' element={<Categories />} />
         <Route path="categories/:id/:name" element={<EventByCategories />} />
         <Route path="competition/:id" element={<CompetitionDetailsPage />} />
-        <Route path="*" element={<Home /> } />
+        <Route path="*" element={<Home />} />
 
       </Route>
     </Routes>
